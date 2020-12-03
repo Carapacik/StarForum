@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30717.126
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SForum", "SForum\SForum.csproj", "{CDC3030A-994A-4454-8437-9DE75BAEEA96}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SForum.Data", "SForum.Data\SForum.Data.csproj", "{51FB5D87-A372-4EA7-949D-EDAA50E7F559}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{CDC3030A-994A-4454-8437-9DE75BAEEA96}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CDC3030A-994A-4454-8437-9DE75BAEEA96}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CDC3030A-994A-4454-8437-9DE75BAEEA96}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CDC3030A-994A-4454-8437-9DE75BAEEA96}.Release|Any CPU.Build.0 = Release|Any CPU
+		{51FB5D87-A372-4EA7-949D-EDAA50E7F559}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{51FB5D87-A372-4EA7-949D-EDAA50E7F559}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{51FB5D87-A372-4EA7-949D-EDAA50E7F559}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{51FB5D87-A372-4EA7-949D-EDAA50E7F559}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {86CE9901-D5F0-49B9-BA61-971DEF8A3714}
+	EndGlobalSection
+EndGlobal
