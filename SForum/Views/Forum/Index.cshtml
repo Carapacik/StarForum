@@ -1,0 +1,18 @@
+﻿@model SForum.Models.Forum.ForumIndexModel
+
+<h1>Forums</h1>
+<table class="table table-hover" id="forumIndexTable">
+    <tbody>
+        @foreach (var forum in Model.ForumList)
+        {
+            <tr>
+                <td>
+                    @forum.Name
+                </td>
+                <td>
+                    @forum.Description
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

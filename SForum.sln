@@ -3,9 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30717.126
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SForum", "SForum\SForum.csproj", "{CDC3030A-994A-4454-8437-9DE75BAEEA96}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SForum", "SForum\SForum.csproj", "{CDC3030A-994A-4454-8437-9DE75BAEEA96}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SForum.Data", "SForum.Data\SForum.Data.csproj", "{51FB5D87-A372-4EA7-949D-EDAA50E7F559}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SForum.Data", "SForum.Data\SForum.Data.csproj", "{51FB5D87-A372-4EA7-949D-EDAA50E7F559}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SForum.Service", "SForum.Service\SForum.Service.csproj", "{EC20D187-E6EF-426C-898A-2C6E872492B0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{51FB5D87-A372-4EA7-949D-EDAA50E7F559}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{51FB5D87-A372-4EA7-949D-EDAA50E7F559}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{51FB5D87-A372-4EA7-949D-EDAA50E7F559}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EC20D187-E6EF-426C-898A-2C6E872492B0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EC20D187-E6EF-426C-898A-2C6E872492B0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EC20D187-E6EF-426C-898A-2C6E872492B0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EC20D187-E6EF-426C-898A-2C6E872492B0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
