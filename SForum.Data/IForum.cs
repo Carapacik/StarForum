@@ -1,6 +1,6 @@
-﻿using SForum.Data.Models;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
+using SForum.Data.Models;
 
 namespace SForum.Data
 {
@@ -14,6 +14,5 @@ namespace SForum.Data
         Task Delete(int forumId);
         Task UpdateForumTitle(int forumId, string newTitle);
         Task UpdateForumDescription(int forumId, string newDescription);
-
     }
 }

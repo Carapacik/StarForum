@@ -1,7 +1,5 @@
-﻿
-
+﻿using System;
 using Microsoft.AspNetCore.Identity;
-using System;
 
 namespace SForum.Data.Models
 {

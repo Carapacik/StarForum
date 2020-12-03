@@ -8,43 +8,43 @@ namespace SForum.Data.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.AddColumn<bool>(
-                name: "IsActive",
-                table: "AspNetUsers",
+                "IsActive",
+                "AspNetUsers",
                 nullable: true);
 
             migrationBuilder.AddColumn<DateTime>(
-                name: "MemberSicne",
-                table: "AspNetUsers",
+                "MemberSicne",
+                "AspNetUsers",
                 nullable: true);
 
             migrationBuilder.AddColumn<string>(
-                name: "ProfileImage",
-                table: "AspNetUsers",
+                "ProfileImage",
+                "AspNetUsers",
                 nullable: true);
 
             migrationBuilder.AddColumn<int>(
-                name: "Rating",
-                table: "AspNetUsers",
+                "Rating",
+                "AspNetUsers",
                 nullable: true);
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropColumn(
-                name: "IsActive",
-                table: "AspNetUsers");
+                "IsActive",
+                "AspNetUsers");
 
             migrationBuilder.DropColumn(
-                name: "MemberSicne",
-                table: "AspNetUsers");
+                "MemberSicne",
+                "AspNetUsers");
 
             migrationBuilder.DropColumn(
-                name: "ProfileImage",
-                table: "AspNetUsers");
+                "ProfileImage",
+                "AspNetUsers");
 
             migrationBuilder.DropColumn(
-                name: "Rating",
-                table: "AspNetUsers");
+                "Rating",
+                "AspNetUsers");
         }
     }
 }

@@ -1,10 +1,9 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using System.Linq;
+using Microsoft.AspNetCore.Mvc;
 using SForum.Data;
 using SForum.Data.Models;
 using SForum.Models.Forum;
 using SForum.Models.Post;
-using System;
-using System.Linq;
 
 namespace SForum.Controllers
 {
@@ -16,22 +15,24 @@ namespace SForum.Controllers
         {
             _forumService = forumService;
         }
+
         public IActionResult Index()
         {
             var forums = _forumService.GetAll()
                 .Select(forum => new ForumListingModel
-            {
-                Id = forum.Id, 
-                Name = forum.Title, 
-                Description = forum.Description
-            });
+                {
+                    Id = forum.Id,
+                    Name = forum.Title,
+                    Description = forum.Description
+                });
 
             var model = new ForumIndexModel
             {
                 ForumList = forums
-        };
+            };
             return View(model);
         }
+
         public IActionResult Topic(int id)
         {
             var forum = _forumService.GetById(id);

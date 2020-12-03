@@ -6,8 +6,8 @@
 {
     <table class="table table-bordered table-hover">
         <tbody>
-            @foreach(var post in Model.Posts)
-            {
+        @foreach (var post in Model.Posts)
+        {
             <tr>
                 <td>
                     <a asp-controller="Post" asp-action="Index" asp-route-id="@post.Id">
@@ -24,17 +24,17 @@
                     @post.RepliesCount
                 </td>
             </tr>
-            }
+        }
         </tbody>
     </table>
 }
-else { 
+else
+{
     <div class"noPosts">
         <h4>
-        It's looks like tut net @Model.Forum.Name posts ye. <br />
-        Почему бы не <a asp-controller="Post" asp-action="Create" asp-route-id="@Model.Forum.Id">добавить</a> один?</h4>
+            It's looks like tut net @Model.Forum.Name posts ye. <br/>
+            Почему бы не <a asp-controller="Post" asp-action="Create" asp-route-id="@Model.Forum.Id">добавить</a> один?
+        </h4>
 
-</div>
-
+    </div>
 }
-

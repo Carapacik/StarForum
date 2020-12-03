@@ -1,10 +1,10 @@
-﻿using Microsoft.EntityFrameworkCore;
-using SForum.Data;
-using SForum.Data.Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
+using SForum.Data;
+using SForum.Data.Models;
 
 namespace SForum.Service
 {
@@ -16,6 +16,7 @@ namespace SForum.Service
         {
             _context = context;
         }
+
         public Task Create(Forum forum)
         {
             throw new NotImplementedException();
@@ -28,7 +29,7 @@ namespace SForum.Service
 
         public IEnumerable<Forum> GetAll()
         {
-           return _context.Forums.Include(forum => forum.Posts);
+            return _context.Forums.Include(forum => forum.Posts);
         }
 
         public IEnumerable<ApplicationUser> GetAllActiveUsers()
