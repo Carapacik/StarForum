@@ -6,35 +6,35 @@
 {
     <table class="table table-bordered table-hover">
         <tbody>
-        @foreach (var post in Model.Posts)
-        {
-            <tr>
-                <td>
-                    <a asp-controller="Post" asp-action="Index" asp-route-id="@post.Id">
-                        @post.Title
-                    </a>
-                </td>
-                <td>
-                    @post.AuthorName
-                </td>
-                <td>
-                    @post.DatePosted
-                </td>
-                <td>
-                    @post.RepliesCount
-                </td>
-            </tr>
-        }
+            @foreach (var post in Model.Posts)
+            {
+                <tr>
+                    <td>
+                        <a asp-controller="Post" asp-action="Index" asp-route-id="@post.Id">
+                            @post.Title
+                        </a>
+                    </td>
+                    <td>
+                        @post.Author
+                    </td>
+                    <td>
+                        @post.DatePosted
+                    </td>
+                    <td>
+                        @post.RepliesCount
+                    </td>
+                </tr>
+            }
         </tbody>
     </table>
 }
 else
 {
-    <div class"noPosts">
-        <h4>
-            It's looks like tut net @Model.Forum.Name posts ye. <br/>
-            Почему бы не <a asp-controller="Post" asp-action="Create" asp-route-id="@Model.Forum.Id">добавить</a> один?
-        </h4>
-
+    <div class="noPosts">
+        <i class="material-icons md-72">question_answer</i>
+        <h3>
+            It looks like there are no @Model.Forum.Name posts yet. <br />
+            Why not <a asp-controller="Post" asp-action="Create" asp-route-id="@Model.Forum.Id"><span>Create One?</span></a>
+        </h3>
     </div>
 }

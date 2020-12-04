@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SForum", "SForum\SForum.csp
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SForum.Data", "SForum.Data\SForum.Data.csproj", "{51FB5D87-A372-4EA7-949D-EDAA50E7F559}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SForum.Service", "SForum.Service\SForum.Service.csproj", "{EC20D187-E6EF-426C-898A-2C6E872492B0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SForum.Service", "SForum.Service\SForum.Service.csproj", "{EC20D187-E6EF-426C-898A-2C6E872492B0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
