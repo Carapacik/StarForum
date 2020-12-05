@@ -1,5 +1,330 @@
-﻿/* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
-for details on configuring this project to bundle and minify static web assets. */
+﻿body {
+    background-color: #EEE;
+    background-size: 100%;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+}
+
+.navbar {
+    box-shadow: 0 5px 4px -6px #000;
+}
+
+.navLogo {
+    background-image: url("../images/app-logo-s.png");
+    background-size: 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+    padding-right: 16px;
+    width: 150px;
+    margin-right: 12px;
+    height: 100%;
+}
+
+.navbar li{
+    font-weight: bold;
+}
+
+.sectionHeader{
+    background-color: rgba(0,0,0,0.9);
+    padding: 8px 0 24px 24px;
+}
+
+.sectionHeading{
+    color:white;
+    font-size: 1.3em;
+    font-family: 'Roboto';
+    padding: 16px 0 16px 0;
+    border-bottom: 1px solid #335;
+    margin-bottom: 12px;
+}
+
+.postHeading {
+    color: white;
+    font-size: 1.1em;
+    font-family: 'Roboto';
+    padding: 16px 0 16px 0;
+}
+
+.sectionInfo{
+    height: 400px;
+    background-color: white;
+}
+
+.fronPageSplash {
+    background-image: url(/images/theme/front-splash.jpg);
+    background-repeat: no-repeat;
+    background-position: right;
+}
+
+.frontPageLearn{
+    font-family: 'Roboto';
+    padding: 12px 0 0 32px;
+    height: 360px;
+}
+
+.sectionDescription{
+    color: #EEE;
+}
+
+.frontPageHeading{
+    font-size: 3.2em;
+    margin: 16px 0;
+}
+
+.frontPageSubHeading{
+    font-size: 2em;
+}
+
+.frontPageTopContainer {
+    padding: 40px 80px 42px 40px;
+    border: 1px solid #999;
+    background-color: #2569D5;
+    font-family: 'Roboto';
+}
+
+.homeSearch{
+    width: 100%;
+    margin-top: 8px;
+    background: rgba(0,0,0,0.1);
+    padding: 8px;
+    border: 0px;
+    height: 2.3em;
+    font-size: 2.1em;
+    font-family: 'Roboto Mono';
+    font-weight: bold;
+    transition: ease-in 0.2s;
+}
+
+.homeSearch:focus{
+    border: none !important;
+    outline: none !important;
+    transition: ease-in 0.2s;
+    color: #03A9F4;
+    background-color: rgba(0,0,0,0.7);
+    box-shadow: 0 5px 4px -6px #000;
+}
+
+.frontPageContent{
+    background-color: rgba(255,255,255, 0.9);
+    padding: 16px;
+}
+
+#latestPosts{
+    font-size:1.2em;
+    font-weight: bold;
+    color: #333;
+    margin: 4px 0 16px 0;
+}
+
+/*Post page*/
+.postTitle {
+    font-family: 'Roboto';
+    font-weight: bold;
+}
+
+.postSubTitle {
+    color: #888;
+    font-family: 'Roboto Mono';
+    font-size: 0.8em;
+}
+
+.postData{
+    display: inline-block;
+}
+
+.postDate {
+    color: #888;
+    font-family: 'Roboto Mono';
+    font-size: 0.8em;
+}
+
+.postLogo{
+    display: inline-block;
+    border-radius: 3px;
+    margin-right: 20px;
+    height: 40px;
+    width: 40px;
+    background-color: #ddd;
+}
+
+.postAuthorImage{
+    height: 80px;
+    width: 80px;
+    background-size: 100%;
+}
+
+.postAuthorContainer{
+    padding: 12px;
+    color: #444;
+    font-family: 'Roboto';
+    width: 190px;
+}
+
+.postIndexTitle{
+    font-size: 1.4em;
+
+}
+
+.postHeader{
+    background-color: #212121;
+    padding:  8px 0 24px 24px;
+}
+
+#headingBtn{
+    float:right;
+    margin-right: 20px;
+}
+
+.postContentContainer{
+    font-family:'Roboto';
+    color: #222;
+    padding: 22px;
+    border-left: 1px solid #ddd;
+}
+
+.postAuthorRating{
+    font-size: 0.9em;   
+    color: #159;
+    font-family: 'Roboro Mono';
+}
+
+#postIndexContent{
+    background-color: white;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.2), 0 6px 6px rgba(0,0,0,0.3); 
+}
+
+/*Forum index*/
+#forumIndexTable td{
+    background-color: rgba(255,255,255, 0.9);
+}
+
+#forumIndexTable tr:hover{
+    background-color: rgba(0,116, 238,1);
+}
+
+.forumData{
+    display: inline-block;
+}
+.forumTitle{
+    font-family: 'Roboto';
+    font-weight: bold;
+    font-size: 1.1em;
+}
+
+.forumSubTitle{
+    color: #888;
+    font-family: 'Ronoto Mono';
+    font-size: 0.8em;
+}
+
+.forumDescription{
+    color: #555;
+    font-family: 'Roboto';
+}
+
+.forumLogo{
+    border-radius: 3px;
+    float: left;
+    margin-right: 20px;
+    height: 40px;
+    width: 40px;
+    background-color: #ddd;
+    border: 1px solid #555;
+    background-size: 100%;
+}
+
+.forumPostCount{
+    color: #888;
+    font-family: 'Roboto Mono';
+    font-size: 0.9em;
+}
+
+.forumMemberCount {
+    color: #888;
+    font-family: 'Roboto Mono';
+    font-size: 0.9em;
+}
+
+.forumIndexContent {
+    padding-bottom: 60px;
+    background-color: white;
+}
+
+.noPosts{
+    text-align: center;
+    padding-top: 30px;
+    font-family: 'Roboto Mono';
+}
+
+/*Create Post*/
+.createPostSection{
+    background-color: #fff;
+    padding: 24px;
+}
+
+/*Custom btn*/
+.btn-back{
+    background-color: #555;
+    color: #fff !important;
+    transition: ease-in 0.1s;
+    border-radius: 0px !important;
+}
+
+.btn-back:hover {
+    transition: ease-in 0.1s;
+    background-color: #1E88E5 !important;
+}
+
+.btn-newReply {
+    background-color: #5C6BC0 !important;
+    color: #fff !important;
+    transition: ease-in 0.1s;
+    border-radius: 0px !important;
+}
+
+.btn-newReply:hover {
+    transition: ease-in 0.1s;
+    background-color: #9FA8DA !important;
+}
+
+.btn-file {
+    background-color: #4FC3F7;
+    color: white;
+    width: 100%;
+    transition: ease 0.3s;
+}
+
+.btn-file:hover {
+    transition: ease 0.3s;
+    background-color: #039BE5;
+}
+
+.btn-newPost {
+    background-color: #c62828 !important;
+    color: #fff !important;
+    border-radius: 0px !important;
+    transition: ease-in 0.1s;
+}
+
+.btn-newPost:hover {
+    transition: ease-in 0.1s;
+    background-color: #e53935 !important;
+    color: #fff !important;
+}
+
+.btn-submitPost {
+    background-color: #c62828 !important;
+    color: #fff !important;
+    border-radius: 0px !important;
+    transition: ease-in 0.1s;
+}
+
+.btn-submitPost:hover {
+    transition: ease-in 0.1s;
+    background-color: #00897B !important;
+    color: #fff !important;
+}
 
 a.navbar-brand {
   white-space: normal;
@@ -8,6 +333,10 @@ a.navbar-brand {
 }
 
 /* Provide sufficient contrast against white background */
+.body-content{
+    padding-left: 15px;
+    padding-right: 15px;
+}
 a {
   color: #0366d6;
 }
@@ -24,17 +353,6 @@ a {
   border-color: #1861ac;
 }
 
-/* Sticky footer styles
--------------------------------------------------- */
-html {
-  font-size: 14px;
-}
-@media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
-}
-
 .border-top {
   border-top: 1px solid #e5e5e5;
 }
@@ -49,23 +367,4 @@ html {
 button.accept-policy {
   font-size: 1rem;
   line-height: inherit;
-}
-
-/* Sticky footer styles
--------------------------------------------------- */
-html {
-  position: relative;
-  min-height: 100%;
-}
-
-body {
-  /* Margin bottom by footer height */
-  margin-bottom: 60px;
-}
-.footer {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  white-space: nowrap;
-  line-height: 60px; /* Vertically center the text there */
 }

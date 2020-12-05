@@ -1,30 +1,33 @@
 ﻿@model SForum.Models.Forum.ForumTopicModel
 
 <h1>Welcome to the @Model.Forum.Name forum</h1>
+<span id="headingBtn">
+    <a asp-controller="Post" asp-action="Create" asp-route-id="@Model.Forum.Id" class="btn btn-newPost">Create Post</a>
+</span>
 
 @if (Model.Posts.Any())
 {
     <table class="table table-bordered table-hover">
         <tbody>
-            @foreach (var post in Model.Posts)
-            {
-                <tr>
-                    <td>
-                        <a asp-controller="Post" asp-action="Index" asp-route-id="@post.Id">
-                            @post.Title
-                        </a>
-                    </td>
-                    <td>
-                        @post.Author
-                    </td>
-                    <td>
-                        @post.DatePosted
-                    </td>
-                    <td>
-                        @post.RepliesCount
-                    </td>
-                </tr>
-            }
+        @foreach (var post in Model.Posts)
+        {
+            <tr>
+                <td>
+                    <a asp-controller="Post" asp-action="Index" asp-route-id="@post.Id">
+                        @post.Title
+                    </a>
+                </td>
+                <td>
+                    @post.Author
+                </td>
+                <td>
+                    @post.DatePosted
+                </td>
+                <td>
+                    @post.RepliesCount
+                </td>
+            </tr>
+        }
         </tbody>
     </table>
 }
@@ -33,8 +36,11 @@ else
     <div class="noPosts">
         <i class="material-icons md-72">question_answer</i>
         <h3>
-            It looks like there are no @Model.Forum.Name posts yet. <br />
-            Why not <a asp-controller="Post" asp-action="Create" asp-route-id="@Model.Forum.Id"><span>Create One?</span></a>
+            It looks like there are no @Model.Forum.Name posts yet. <br/>
+            Why not
+            <a asp-controller="Post" asp-action="Create" asp-route-id="@Model.Forum.Id">
+                <span>Create One?</span>
+            </a>
         </h3>
     </div>
 }

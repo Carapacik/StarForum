@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace SForum.Models.Post
+﻿namespace SForum.Models.Post
 {
     public class NewPostModel
     {
@@ -13,6 +8,5 @@ namespace SForum.Models.Post
         public string ForumImageUrl { get; set; }
         public string Title { get; set; }
         public string Content { get; set; }
-
     }
 }

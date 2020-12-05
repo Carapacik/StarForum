@@ -17,14 +17,10 @@ namespace SForum.Service
             _context = context;
         }
 
-        public Task Add(IPost post)
+        public async Task Add(Post post)
         {
-            throw new NotImplementedException();
-        }
-
-        public Task Add(Post post)
-        {
-            throw new NotImplementedException();
+            _context.Add(post);
+            await _context.SaveChangesAsync();
         }
 
         public Task Archive(int id)
@@ -42,9 +38,14 @@ namespace SForum.Service
             throw new NotImplementedException();
         }
 
-        public IEnumerable<IPost> GetAll(int id)
+        public IEnumerable<Post> GetAll()
         {
-            throw new NotImplementedException();
+            var posts = _context.Posts
+                .Include(post => post.User)
+                .Include(post => post.Replies)
+                .ThenInclude(reply => reply.User)
+                .Include(post => post.Forum);
+            return posts;
         }
 
         public Post GetById(int id)
@@ -55,9 +56,14 @@ namespace SForum.Service
                 .Include(post => post.Forum).First();
         }
 
-        public IEnumerable<IPost> GetFilteredPosts(string searchQuary)
+        public IEnumerable<Post> GetFilteredPosts(string searchQuery)
         {
             throw new NotImplementedException();
+        }
+
+        public IEnumerable<Post> GetLatestPosts(int numberPosts)
+        {
+            return GetAll().OrderByDescending(post => post.Created).Take(numberPosts);
         }
 
         public IEnumerable<Post> GetPostsByForum(int id)

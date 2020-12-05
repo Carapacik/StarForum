@@ -13,9 +13,9 @@ namespace SForum.Controllers
 {
     public class PostController : Controller
     {
-        private readonly IPost _postService;
-        private readonly IForum _forumService;
         private static UserManager<ApplicationUser> _userManager;
+        private readonly IForum _forumService;
+        private readonly IPost _postService;
 
         public PostController(IPost postService, IForum forumService, UserManager<ApplicationUser> userManager)
         {
@@ -39,10 +39,18 @@ namespace SForum.Controllers
                 AuthorRating = post.User.Rating,
                 Created = post.Created,
                 PostContent = post.Content,
-                Replies = replies
+                Replies = replies,
+                ForumId = post.Forum.Id,
+                ForumName = post.Forum.Title,
+                IsAuthorAdmin = IsAuthorAdmin(post.User)
             };
 
             return View(model);
+        }
+
+        private bool IsAuthorAdmin(ApplicationUser user)
+        {
+            return _userManager.GetRolesAsync(user).Result.Contains("Admin");
         }
 
         public IActionResult Create(int id)
@@ -65,20 +73,21 @@ namespace SForum.Controllers
         public async Task<IActionResult> AddPost(NewPostModel model)
         {
             var userId = _userManager.GetUserId(User);
-            var user = await _userManager.FindByIdAsync(userId);
+            var user = _userManager.FindByIdAsync(userId).Result;
             var post = BuildPost(model, user);
 
             await _postService.Add(post);
+
             // TODO Implement user rating management
 
-            return RedirectToAction("Index", "Post", post.Id);
+            return RedirectToAction("Index", "Post", new {id = post.Id});
         }
 
         private Post BuildPost(NewPostModel post, ApplicationUser user)
         {
             var forum = _forumService.GetById(post.ForumId);
 
-            return new Post 
+            return new Post
             {
                 Title = post.Title,
                 Content = post.Content,
@@ -98,7 +107,8 @@ namespace SForum.Controllers
                 AuthorImageUrl = reply.User.ProfileImage,
                 AuthorRating = reply.User.Rating,
                 Created = reply.Created,
-                ReplyContent = reply.Content
+                ReplyContent = reply.Content,
+                IsAuthorAdmin = IsAuthorAdmin(reply.User)
             });
         }
     }

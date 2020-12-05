@@ -6,15 +6,17 @@ namespace SForum.Data
 {
     public interface IPost
     {
-        Post GetById(int id);
-        IEnumerable<IPost> GetAll(int id);
-        IEnumerable<IPost> GetFilteredPosts(string searchQuary);
-        IEnumerable<Post> GetPostsByForum(int id);
-
         Task Add(Post post);
         Task Archive(int id);
         Task Delete(int id);
         Task EditPostContent(int id, string content);
+
+        Post GetById(int id);
+        IEnumerable<Post> GetAll();
+        IEnumerable<Post> GetFilteredPosts(string searchQuery);
+        IEnumerable<Post> GetPostsByForum(int id);
+        IEnumerable<Post> GetLatestPosts(int numberPosts);
+
 
         //Task AddReply(PostReply reply);
     }
