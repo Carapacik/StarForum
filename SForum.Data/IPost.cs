@@ -11,9 +11,10 @@ namespace SForum.Data
         IEnumerable<IPost> GetFilteredPosts(string searchQuary);
         IEnumerable<Post> GetPostsByForum(int id);
 
-        Task Add(IPost post);
+        Task Add(Post post);
+        Task Archive(int id);
         Task Delete(int id);
-        Task EditPostContent(int id, string newContent);
+        Task EditPostContent(int id, string content);
 
         //Task AddReply(PostReply reply);
     }

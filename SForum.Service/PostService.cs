@@ -22,6 +22,16 @@ namespace SForum.Service
             throw new NotImplementedException();
         }
 
+        public Task Add(Post post)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task Archive(int id)
+        {
+            throw new NotImplementedException();
+        }
+
         public Task Delete(int id)
         {
             throw new NotImplementedException();
