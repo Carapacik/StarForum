@@ -1,5 +1,6 @@
 ﻿body {
-    background-color: #EEE;
+    background-image: url("../images/theme/bg-01.jpg");
+    background-color: #eee;
     background-size: 100%;
     background-repeat: no-repeat;
     background-attachment: fixed;
@@ -21,19 +22,19 @@
     height: 100%;
 }
 
-.navbar li{
+.navbar li {
     font-weight: bold;
 }
 
-.sectionHeader{
-    background-color: rgba(0,0,0,0.9);
+.sectionHeader {
+    background-color: rgba(0, 0, 0, 0.9);
     padding: 8px 0 24px 24px;
 }
 
-.sectionHeading{
-    color:white;
+.sectionHeading {
+    color: white;
     font-size: 1.3em;
-    font-family: 'Roboto';
+    font-family: "Roboto";
     padding: 16px 0 16px 0;
     border-bottom: 1px solid #335;
     margin-bottom: 12px;
@@ -42,76 +43,79 @@
 .postHeading {
     color: white;
     font-size: 1.1em;
-    font-family: 'Roboto';
+    font-family: "Roboto";
     padding: 16px 0 16px 0;
 }
 
-.sectionInfo{
+.sectionInfo {
     height: 400px;
     background-color: white;
 }
 
-.fronPageSplash {
-    background-image: url(/images/theme/front-splash.jpg);
+.frontPageSplash {
+    background-image: url(../images/theme/front-splash.jpg);
     background-repeat: no-repeat;
+    background-size: 100%;
     background-position: right;
 }
 
-.frontPageLearn{
-    font-family: 'Roboto';
+.frontPageLearn {
+    font-family: "Roboto";
     padding: 12px 0 0 32px;
     height: 360px;
 }
 
-.sectionDescription{
-    color: #EEE;
+.sectionDescription {
+    color: #eee;
 }
 
-.frontPageHeading{
+.frontPageHeading {
     font-size: 3.2em;
     margin: 16px 0;
+    color: #d1ecf1;
 }
 
-.frontPageSubHeading{
+.frontPageSubHeading {
     font-size: 2em;
+    color: #d1ecf1;
 }
 
 .frontPageTopContainer {
     padding: 40px 80px 42px 40px;
     border: 1px solid #999;
-    background-color: #2569D5;
-    font-family: 'Roboto';
+    background-color: #2569d5;
+    font-family: "Roboto";
 }
 
-.homeSearch{
+.homeSearch {
     width: 100%;
     margin-top: 8px;
-    background: rgba(0,0,0,0.1);
+    background: rgba(0, 0, 0, 0.1);
     padding: 8px;
     border: 0px;
     height: 2.3em;
     font-size: 2.1em;
-    font-family: 'Roboto Mono';
+    font-family: "Roboto Mono";
     font-weight: bold;
     transition: ease-in 0.2s;
 }
 
-.homeSearch:focus{
+.homeSearch:focus {
     border: none !important;
     outline: none !important;
     transition: ease-in 0.2s;
-    color: #03A9F4;
-    background-color: rgba(0,0,0,0.7);
+    color: #03a9f4;
+    background-color: rgba(0, 0, 0, 0.7);
     box-shadow: 0 5px 4px -6px #000;
 }
 
-.frontPageContent{
-    background-color: rgba(255,255,255, 0.9);
+.frontPageContent {
+    background-color: rgba(255, 255, 255, 0.9);
     padding: 16px;
 }
 
-#latestPosts{
-    font-size:1.2em;
+#latestPosts {
+    font-size: 1.2em;
     font-weight: bold;
     color: #333;
     margin: 4px 0 16px 0;
@@ -119,27 +123,27 @@
 
 /*Post page*/
 .postTitle {
-    font-family: 'Roboto';
+    font-family: "Roboto";
     font-weight: bold;
 }
 
 .postSubTitle {
     color: #888;
-    font-family: 'Roboto Mono';
+    font-family: "Roboto Mono";
     font-size: 0.8em;
 }
 
-.postData{
+.postData {
     display: inline-block;
 }
 
 .postDate {
     color: #888;
-    font-family: 'Roboto Mono';
+    font-family: "Roboto Mono";
     font-size: 0.8em;
 }
 
-.postLogo{
+.postLogo {
     display: inline-block;
     border-radius: 3px;
     margin-right: 20px;
@@ -148,82 +152,81 @@
     background-color: #ddd;
 }
 
-.postAuthorImage{
+.postAuthorImage {
     height: 80px;
     width: 80px;
     background-size: 100%;
 }
 
-.postAuthorContainer{
+.postAuthorContainer {
     padding: 12px;
     color: #444;
-    font-family: 'Roboto';
+    font-family: "Roboto";
     width: 190px;
 }
 
-.postIndexTitle{
+.postIndexTitle {
     font-size: 1.4em;
-
 }
 
-.postHeader{
+.postHeader {
     background-color: #212121;
-    padding:  8px 0 24px 24px;
+    padding: 8px 0 24px 24px;
 }
 
-#headingBtn{
-    float:right;
+#headingBtn {
+    float: right;
     margin-right: 20px;
 }
 
-.postContentContainer{
-    font-family:'Roboto';
+.postContentContainer {
+    font-family: "Roboto";
     color: #222;
     padding: 22px;
     border-left: 1px solid #ddd;
 }
 
-.postAuthorRating{
-    font-size: 0.9em;   
+.postAuthorRating {
+    font-size: 0.9em;
     color: #159;
-    font-family: 'Roboro Mono';
+    font-family: "Roboro Mono";
 }
 
-#postIndexContent{
+#postIndexContent {
     background-color: white;
-    box-shadow: 0 10px 20px rgba(0,0,0,0.2), 0 6px 6px rgba(0,0,0,0.3); 
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2), 0 6px 6px rgba(0, 0, 0, 0.3);
 }
 
 /*Forum index*/
-#forumIndexTable td{
-    background-color: rgba(255,255,255, 0.9);
+#forumIndexTable td {
+    background-color: rgba(255, 255, 255, 0.9);
 }
 
-#forumIndexTable tr:hover{
-    background-color: rgba(0,116, 238,1);
+#forumIndexTable tr:hover {
+    background-color: rgba(0, 116, 238, 1);
 }
 
-.forumData{
+.forumData {
     display: inline-block;
 }
-.forumTitle{
-    font-family: 'Roboto';
+.forumTitle {
+    font-family: "Roboto";
     font-weight: bold;
     font-size: 1.1em;
 }
 
-.forumSubTitle{
+.forumSubTitle {
     color: #888;
-    font-family: 'Ronoto Mono';
+    font-family: "Ronoto Mono";
     font-size: 0.8em;
 }
 
-.forumDescription{
+.forumDescription {
     color: #555;
-    font-family: 'Roboto';
+    font-family: "Roboto";
 }
 
-.forumLogo{
+.forumLogo {
     border-radius: 3px;
     float: left;
     margin-right: 20px;
@@ -234,15 +237,15 @@
     background-size: 100%;
 }
 
-.forumPostCount{
+.forumPostCount {
     color: #888;
-    font-family: 'Roboto Mono';
+    font-family: "Roboto Mono";
     font-size: 0.9em;
 }
 
 .forumMemberCount {
     color: #888;
-    font-family: 'Roboto Mono';
+    font-family: "Roboto Mono";
     font-size: 0.9em;
 }
 
@@ -251,20 +254,20 @@
     background-color: white;
 }
 
-.noPosts{
+.noPosts {
     text-align: center;
     padding-top: 30px;
-    font-family: 'Roboto Mono';
+    font-family: "Roboto Mono";
 }
 
 /*Create Post*/
-.createPostSection{
+.createPostSection {
     background-color: #fff;
     padding: 24px;
 }
 
 /*Custom btn*/
-.btn-back{
+.btn-back {
     background-color: #555;
     color: #fff !important;
     transition: ease-in 0.1s;
@@ -273,11 +276,11 @@
 
 .btn-back:hover {
     transition: ease-in 0.1s;
-    background-color: #1E88E5 !important;
+    background-color: #1e88e5 !important;
 }
 
 .btn-newReply {
-    background-color: #5C6BC0 !important;
+    background-color: #5c6bc0 !important;
     color: #fff !important;
     transition: ease-in 0.1s;
     border-radius: 0px !important;
@@ -285,11 +288,11 @@
 
 .btn-newReply:hover {
     transition: ease-in 0.1s;
-    background-color: #9FA8DA !important;
+    background-color: #9fa8da !important;
 }
 
 .btn-file {
-    background-color: #4FC3F7;
+    background-color: #4fc3f7;
     color: white;
     width: 100%;
     transition: ease 0.3s;
@@ -297,7 +300,7 @@
 
 .btn-file:hover {
     transition: ease 0.3s;
-    background-color: #039BE5;
+    background-color: #039be5;
 }
 
 .btn-newPost {
@@ -322,49 +325,50 @@
 
 .btn-submitPost:hover {
     transition: ease-in 0.1s;
-    background-color: #00897B !important;
+    background-color: #00897b !important;
     color: #fff !important;
 }
 
 a.navbar-brand {
-  white-space: normal;
-  text-align: center;
-  word-break: break-all;
+    white-space: normal;
+    text-align: center;
+    word-break: break-all;
 }
 
 /* Provide sufficient contrast against white background */
-.body-content{
+.body-content {
     padding-left: 15px;
     padding-right: 15px;
 }
 a {
-  color: #0366d6;
+    color: #0366d6;
 }
 
 .btn-primary {
-  color: #fff;
-  background-color: #1b6ec2;
-  border-color: #1861ac;
+    color: #fff;
+    background-color: #1b6ec2;
+    border-color: #1861ac;
 }
 
-.nav-pills .nav-link.active, .nav-pills .show > .nav-link {
-  color: #fff;
-  background-color: #1b6ec2;
-  border-color: #1861ac;
+.nav-pills .nav-link.active,
+.nav-pills .show > .nav-link {
+    color: #fff;
+    background-color: #1b6ec2;
+    border-color: #1861ac;
 }
 
 .border-top {
-  border-top: 1px solid #e5e5e5;
+    border-top: 1px solid #e5e5e5;
 }
 .border-bottom {
-  border-bottom: 1px solid #e5e5e5;
+    border-bottom: 1px solid #e5e5e5;
 }
 
 .box-shadow {
-  box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
+    box-shadow: 0 0.25rem 0.75rem rgba(0, 0, 0, 0.05);
 }
 
 button.accept-policy {
-  font-size: 1rem;
-  line-height: inherit;
+    font-size: 1rem;
+    line-height: inherit;
 }

@@ -6,7 +6,9 @@
             <span class="postIndexTitle">
                 @Model.Title
             </span>
-            <span id="headingBtn"><a asp-controller="Forum" asp-action="Topic" asp-route-id="@Model.ForumId" class="btn btn-back">Back to @Model.ForumName</a></span>
+            <span id="headingBtn">
+                <a asp-controller="Forum" asp-action="Topic" asp-route-id="@Model.ForumId" class="btn btn-back">Back to @Model.ForumName</a>
+            </span>
         </div>
     </div>
 
@@ -15,16 +17,16 @@
             <div class="postAuthorImage" style="background-image: url(@Model.AuthorImageUrl); background-size: 100%;"></div>
             <a asp-controller="Profile" asp-action="Detail" asp-route-id="@Model.AuthorId">
                 <strong>@Model.AuthorName</strong>
-            </a> (<span class="postAuthorRating">@Model.AuthorRating</span>) <br />
+            </a> (<span class="postAuthorRating">@Model.AuthorRating</span>) <br/>
             <span class="postDate">@Model.Created</span>
-            @if (@Model.IsAuthorAdmin)
+            @if (Model.IsAuthorAdmin)
             {
                 <span class="isAdmin smaller">Admin</span>
             }
         </div>
         <div class="col-md-9 postContentContainer">
             <div class="postContent">
-                @Html.Raw(@Model.PostContent)
+                @Html.Raw(Model.PostContent)
             </div>
         </div>
     </div>
@@ -33,7 +35,9 @@
     @if (Context.User.Identity.IsAuthenticated)
     {
         <div class="row" id="replyRow">
-            <span><a asp-controller="Reply" asp-action="Create" asp-route-id="@Model.Id" class="btn btn-newReply">Post Reply</a></span>
+            <span>
+                <a asp-controller="Reply" asp-action="Create" asp-route-id="@Model.Id" class="btn btn-newReply">Post Reply</a>
+            </span>
         </div>
     }
     @if (Model.Replies.Any())
@@ -45,17 +49,17 @@
                     <div class="postAuthorImage" style="background-image: url(@reply.AuthorImageUrl); background-size: 100%;"></div>
                     <a asp-controller="Profile" asp-action="Detail" asp-route-id="@reply.AuthorId">
                         <strong>@reply.AuthorName</strong>
-                    </a> (<span class="postAuthorRating">@reply.AuthorRating</span>) <br />
-                    @if (@reply.IsAuthorAdmin)
+                    </a> (<span class="postAuthorRating">@reply.AuthorRating</span>) <br/>
+                    @if (reply.IsAuthorAdmin)
                     {
                         <div class="isAdmin profileLabel smaller">Admin</div>
-                        <br />
+                        <br/>
                     }
                     <span class="postDate">@reply.Created</span>
                 </div>
                 <div class="col-md-9 replyContentContainer">
                     <div class="postContent">
-                        @Html.Raw(@reply.ReplyContent)
+                        @Html.Raw(reply.ReplyContent)
                     </div>
                 </div>
             </div>
@@ -65,7 +69,7 @@
     {
         <div class="noPosts">
             <h3>
-                There are no replies to this post.<br />
+                There are no replies to this post.<br/>
             </h3>
         </div>
     }
