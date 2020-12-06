@@ -121,6 +121,22 @@
     margin: 4px 0 16px 0;
 }
 
+/*Forum Topic*/
+.searchBar {
+    padding: 3px 5px 2px 12px;
+    margin: 8px;
+    background-color: #333;
+    width: 10%;
+    transition: ease 0.5s;
+    border: none;
+}
+
+.searchBar:focus{
+    color: black;
+    width: 60%;
+    background-color: #fff;
+}
+
 /*Post page*/
 .postTitle {
     font-family: "Roboto";
@@ -329,19 +345,28 @@
     color: #fff !important;
 }
 
-a.navbar-brand {
-    white-space: normal;
-    text-align: center;
-    word-break: break-all;
+.btn-forumSearch {
+    background: none !important;
+    border: none;
+    padding: 0 !important;
+    font: inherit;
 }
+
 
 /* Provide sufficient contrast against white background */
 .body-content {
     padding-left: 15px;
     padding-right: 15px;
 }
+
 a {
     color: #0366d6;
+}
+
+a.navbar-brand {
+    white-space: normal;
+    text-align: center;
+    word-break: break-all;
 }
 
 .btn-primary {
