@@ -1,6 +1,7 @@
-﻿@using Microsoft.AspNetCore.Identity
+﻿@using SForum.Data.Models
+@using Microsoft.AspNetCore.Identity
 @model SForum.Models.ApplicationUser.ProfileModel 
-@inject UserManager<SForum.Data.Models.ApplicationUser> UserManager 
+@inject UserManager<ApplicationUser> UserManager
 
 <div class="container body-content">
     <div class="row sectionHeader">
@@ -20,7 +21,7 @@
                 <form method="post" enctype="multipart/form-data" asp-controller="Profile" asp-action="UploadProfileImage">
                     <div id="upload">
                         <label class="btn btn-default btn-file">
-                            Browser <input type="file" name="file" style="display: none" />
+                            Browser <input type="file" name="file" style="display: none"/>
 
                         </label>
                         <button type="submit" id="btn-profile" class="btn btn-default">Sumbit</button>
@@ -31,12 +32,12 @@
     </div>
     <div class="col-md-8">
         <span id="userName">@Model.Username</span>
-        @if (@Model.IsAdmin)
-        {   
+        @if (Model.IsAdmin)
+        {
             <span class="isAdmin">Admin</span>
         }
         <span id="userRating">Current Rating: @Model.UserRating</span>
         <span id="userEmailLabel">Email: @Model.Email</span>
         <span id="userCreatedLabel">Member Since: @Model.MemberSince</span>
-        </div>
     </div>
+</div>

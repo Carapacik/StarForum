@@ -1,8 +1,7 @@
-﻿using SForum.Data.Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
+using SForum.Data.Models;
 
 namespace SForum.Data
 {
@@ -13,6 +12,5 @@ namespace SForum.Data
 
         Task SetProfileImage(string id, Uri uri);
         Task IncrementRating(string id, Type type);
-
     }
 }

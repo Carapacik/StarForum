@@ -1,10 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using SForum.Data;
 
 namespace SForum.Service
 {
-    class UploadService
+    public class UploadService : IUpload
     {
     }
 }

@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace SForum.Data
+﻿namespace SForum.Data
 {
     public interface IUpload
     {

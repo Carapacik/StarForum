@@ -31,6 +31,8 @@ namespace SForum
             services.AddRazorPages();
             services.AddScoped<IForum, ForumService>();
             services.AddScoped<IPost, PostService>();
+            services.AddScoped<IUpload, UploadService>();
+            services.AddScoped<IApplicationUser, ApplicationUserService>();
             services.AddTransient<DataSeeder>();
         }
 
@@ -48,6 +50,7 @@ namespace SForum
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
+
             dataSeeder.SeedSuperUser();
 
             app.UseHttpsRedirection();

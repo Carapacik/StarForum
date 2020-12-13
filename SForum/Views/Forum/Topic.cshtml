@@ -27,7 +27,7 @@
                 Please read the Forum Guidelines before creating a new post.
                 @if (!User.Identity.IsAuthenticated)
                 {
-                    <span>You must be a <a asp-controller="Account" asp-action="Register">registered member</a> to create a new post.</span>
+                    <span>You must be a <a asp-area="Identity" asp-page="/Account/Register">registered member</a> to create a new post.</span>
                 }
             </p>
         </div>
