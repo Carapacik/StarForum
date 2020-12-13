@@ -32,8 +32,8 @@ namespace SForum.Controllers
                 Username = user.UserName,
                 UserRating = user.Rating.ToString(),
                 Email = user.Email,
-                ProfileImageUrl = user.ProfileImage,
-                MemberSince = user.MemberSicne,
+                ProfileImageUrl = user.ProfileImageUrl,
+                MemberSince = user.MemberSince,
                 IsAdmin = userRoles.Contains("Admin")
 
             } ;

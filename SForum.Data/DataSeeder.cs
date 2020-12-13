@@ -24,8 +24,8 @@ namespace SForum.Data
             var userStore = new UserStore<ApplicationUser>(_context);
             var user = new ApplicationUser
             {
-                UserName = "ForumAdmin",
-                NormalizedUserName = "forumadmin",
+                UserName = "admin@example.com",
+                NormalizedUserName = "admin@example.com",
                 Email = "admin@example.com",
                 EmailConfirmed = true,
                 LockoutEnabled = false,
