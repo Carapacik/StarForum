@@ -26,6 +26,7 @@ namespace SForum.Data
                 NormalizedUserName = "forumadmin",
                 Email = "admin@example.com",
                 NormalizedEmail = "admin@example.com",
+                IsAdmin = true,
                 EmailConfirmed = true,
                 LockoutEnabled = false,
                 SecurityStamp = Guid.NewGuid().ToString()
