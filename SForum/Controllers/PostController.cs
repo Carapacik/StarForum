@@ -55,7 +55,6 @@ namespace SForum.Controllers
 
         public IActionResult Create(int id)
         {
-            //id == Forum.id
             var forum = _forumService.GetById(id);
 
             var model = new NewPostModel
@@ -78,7 +77,6 @@ namespace SForum.Controllers
 
             await _postService.Add(post);
 
-            // TODO Implement user rating management
 
             return RedirectToAction("Index", "Post", new {id = post.Id});
         }

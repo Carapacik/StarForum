@@ -36,7 +36,7 @@ namespace SForum.Data
             user.PasswordHash = hashedPassword;
 
 
-            var hasAdminRole = _context.Roles.Any(roles => roles.Name == "Admin");
+            var hasAdminRole = _context.Roles.Any(r => r.Name == "Admin");
             if (!hasAdminRole) roleStore.CreateAsync(new IdentityRole {Name = "Admin", NormalizedName = "admin"});
 
             var hasSuperUser = _context.Users.Any(u => u.NormalizedUserName == user.UserName);

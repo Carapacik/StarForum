@@ -353,6 +353,32 @@
     font: inherit;
 }
 
+/*Profile*/
+.user-Profile{
+    padding: 32px 0 64px 24px;
+    background-color:#fff;
+}
+
+#userProfileImage{
+    display: inline-block;
+    width: 200px;
+    height: 200px;
+    background-color: #ddd;
+}
+
+#userEmailLabel, #userBioLabel, #userCreatedLabel, #userRating, #userActiveLabel{
+    display: block;
+    color: #444;
+    font-family: 'Roboto';
+    padding-top: 3px;
+}
+
+#userName{
+    display: block;
+    color: #2569d5;
+    font-size: 1.7em;
+    font-family: 'Roboto';
+}
 
 /* Provide sufficient contrast against white background */
 .body-content {

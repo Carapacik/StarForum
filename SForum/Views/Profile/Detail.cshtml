@@ -1,43 +1,46 @@
 ﻿@using SForum.Data.Models
 @using Microsoft.AspNetCore.Identity
-@model SForum.Models.ApplicationUser.ProfileModel 
+@model SForum.Models.ApplicationUser.ProfileModel
 @inject UserManager<ApplicationUser> UserManager
 
 <div class="container body-content">
     <div class="row sectionHeader">
-        <div class="sectionHeading">
+        <div class="sectionHeading noBorder">
             User Profile
         </div>
         @if (User.IsInRole("Admin"))
         {
-            //<button> Deactivate  User</button>
+            <form method="post" asp-controller="Profile" asp-action="Deactivate" asp-route-id="@Model.UserId">
+                <div>
+                    <button class="btn btn-danger" active="@Model.IsActive">Deactivate User</button>
+                </div>
+            </form>
         }
     </div>
     <div class="row userProfile">
         <div class="col-md-4 ">
-            <div id="userProfileImage" style="background-image: url(@Model.ProfileImageUrl)"></div>
+            <div id="userProfileImage" style="background-image: url(@Model.ProfileImageUrl); background-size: 100%"></div>
             @if (User.Identity.Name == Model.Username)
             {
                 <form method="post" enctype="multipart/form-data" asp-controller="Profile" asp-action="UploadProfileImage">
                     <div id="upload">
                         <label class="btn btn-default btn-file">
-                            Browser <input type="file" name="file" style="display: none"/>
-
+                            Browse <input type="file" name="file" style="display: none"/>
                         </label>
-                        <button type="submit" id="btn-profile" class="btn btn-default">Sumbit</button>
                     </div>
+                    <button type="submit" id="btn-profile" class="btn btn-default">Sumbit</button>
                 </form>
             }
         </div>
-    </div>
-    <div class="col-md-8">
-        <span id="userName">@Model.Username</span>
-        @if (Model.IsAdmin)
-        {
-            <span class="isAdmin">Admin</span>
-        }
-        <span id="userRating">Current Rating: @Model.UserRating</span>
-        <span id="userEmailLabel">Email: @Model.Email</span>
-        <span id="userCreatedLabel">Member Since: @Model.MemberSince</span>
+        <div class="col-md-8">
+            <span id="userName">@Model.Username</span>
+            @if (Model.IsAdmin)
+            {
+                <span class="isAdmin">Admin</span>
+            }
+            <span id="userRating">Current Rating: @Model.UserRating</span>
+            <span id="userEmailLabel">Email: @Model.Email</span>
+            <span id="userCreatedLabel">Member Since: @Model.MemberSince</span>
+        </div>
     </div>
 </div>
