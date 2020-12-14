@@ -20,20 +20,19 @@ namespace SForum.Data
         {
             var roleStore = new RoleStore<IdentityRole>(_context);
             var userStore = new UserStore<ApplicationUser>(_context);
+
             var user = new ApplicationUser
             {
                 UserName = "ForumAdmin",
                 NormalizedUserName = "forumadmin",
                 Email = "admin@example.com",
                 NormalizedEmail = "admin@example.com",
-                IsAdmin = true,
                 EmailConfirmed = true,
                 LockoutEnabled = false,
                 SecurityStamp = Guid.NewGuid().ToString()
             };
             var hasher = new PasswordHasher<ApplicationUser>();
             var hashedPassword = hasher.HashPassword(user, "admin");
-
             user.PasswordHash = hashedPassword;
 
 
@@ -41,7 +40,6 @@ namespace SForum.Data
             if (!hasAdminRole) roleStore.CreateAsync(new IdentityRole {Name = "Admin", NormalizedName = "admin"});
 
             var hasSuperUser = _context.Users.Any(u => u.NormalizedUserName == user.UserName);
-
             if (!hasSuperUser)
             {
                 userStore.CreateAsync(user);
