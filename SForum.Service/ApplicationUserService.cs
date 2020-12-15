@@ -48,28 +48,21 @@ namespace SForum.Service
             await _context.SaveChangesAsync();
         }
 
-        private int CalculateUserRating(Type type, int userRating)
-        {
-            var inc= 0;
-            if(type == typeof(Post))
-            {
-                inc = 1;
-            }
-            if (type == typeof(PostReply))
-            {
-                inc = 3;
-            }
-
-            return userRating + inc;
-
-        }
-
         public async Task SetProfileImage(string id, Uri uri)
         {
             var user = GetById(id);
             user.ProfileImageUrl = uri.AbsoluteUri;
             _context.Update(user);
             await _context.SaveChangesAsync();
+        }
+
+        private int CalculateUserRating(Type type, int userRating)
+        {
+            var inc = 0;
+            if (type == typeof(Post)) inc = 1;
+            if (type == typeof(PostReply)) inc = 3;
+
+            return userRating + inc;
         }
     }
 }

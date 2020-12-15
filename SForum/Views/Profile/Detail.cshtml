@@ -19,7 +19,7 @@
     </div>
     <div class="row userProfile">
         <div class="col-md-4 ">
-            <div id="userProfileImage" style="background-image: url(@Model.ProfileImageUrl); background-size: 100%"></div>
+            <div id="userProfileImage" style="background-image: url(@Model.ProfileImageUrl)"></div>
             @if (User.Identity.Name == Model.Username)
             {
                 <form method="post" enctype="multipart/form-data" asp-controller="Profile" asp-action="UploadProfileImage">

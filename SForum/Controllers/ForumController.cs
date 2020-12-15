@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
@@ -16,12 +15,13 @@ namespace SForum.Controllers
 {
     public class ForumController : Controller
     {
+        private readonly IConfiguration _configuration;
         private readonly IForum _forumService;
         private readonly IPost _postService;
         private readonly IUpload _uploadService;
-        private readonly IConfiguration _configuration;
 
-        public ForumController(IForum forumService, IPost postService, IUpload uploadService, IConfiguration configuration)
+        public ForumController(IForum forumService, IPost postService, IUpload uploadService,
+            IConfiguration configuration)
         {
             _forumService = forumService;
             _postService = postService;
@@ -36,12 +36,16 @@ namespace SForum.Controllers
                 {
                     Id = forum.Id,
                     Name = forum.Title,
-                    Description = forum.Description
+                    Description = forum.Description,
+                    NumberOfPosts = forum.Posts?.Count() ?? 0,
+                    NumberOfUsers = _forumService.GetActiveUsers(forum.Id).Count(),
+                    ImageUrl = forum.ImageUrl,
+                    HasRecentPosts = _forumService.HasRecentPost(forum.Id)
                 });
 
             var model = new ForumIndexModel
             {
-                ForumList = forums
+                ForumList = forums.OrderBy(f => f.Name)
             };
             return View(model);
         }
@@ -49,9 +53,7 @@ namespace SForum.Controllers
         public IActionResult Topic(int id, string searchQuery)
         {
             var forum = _forumService.GetById(id);
-
-            var posts = new List<Post>();
-            posts = _postService.GetFilteredPosts(forum, searchQuery).ToList();
+            var posts = _postService.GetFilteredPosts(forum, searchQuery).ToList();
 
             var postListings = posts.Select(post => new PostListingModel
             {
@@ -89,8 +91,7 @@ namespace SForum.Controllers
         [HttpPost]
         public async Task<IActionResult> AddForum(AddForumModel model)
         {
-            var imageUri = "/images/users/default.png"; ;
-
+            var imageUri = "/images/theme/defaultForum.png";
             if (model.ImageUpload != null)
             {
                 var blockBlob = UploadForumImage(model.ImageUpload);
@@ -102,10 +103,9 @@ namespace SForum.Controllers
                 Title = model.Title,
                 Description = model.Description,
                 Created = DateTime.Now,
-                ImageUrl = imageUri,
-
+                ImageUrl = imageUri
             };
-             
+
             await _forumService.Create(forum);
             return RedirectToAction("Index", "Forum");
         }
@@ -113,10 +113,11 @@ namespace SForum.Controllers
         private CloudBlockBlob UploadForumImage(IFormFile file)
         {
             var connectionString = _configuration.GetConnectionString("AzureStorageAccount");
-            var container = _uploadService.GetBlobContainer(connectionString);
+            var container = _uploadService.GetBlobContainer(connectionString, "forum-images");
             var contentDisposition = ContentDispositionHeaderValue.Parse(file.ContentDisposition);
             var filename = contentDisposition.FileName.Trim('"');
             var blockBlob = container.GetBlockBlobReference(filename);
+            blockBlob.UploadFromStreamAsync(file.OpenReadStream()).Wait();
 
             return blockBlob;
         }

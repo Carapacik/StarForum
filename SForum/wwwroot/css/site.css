@@ -8,10 +8,6 @@
     font-family: 'Roboto', sans-serif;
 }
 
-.navbar {
-    box-shadow: 0 5px 4px -6px #000;
-}
-
 .navLogo {
     background-image: url("../images/app-logo-s.png");
     background-size: 100%;
@@ -20,7 +16,7 @@
     padding-right: 16px;
     width: 150px;
     margin-right: 12px;
-    height: 100%;
+    min-height: 40px;
 }
 
 .navbar li {
@@ -214,6 +210,11 @@
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2), 0 6px 6px rgba(0, 0, 0, 0.3);
 }
 
+#replyDivider{
+    height: 2px;
+    margin-bottom: 12px;
+}
+
 /*Forum index*/
 #forumIndexTable td {
     background-color: rgba(255, 255, 255, 0.9);
@@ -278,9 +279,71 @@
 }
 
 /*Create Post*/
+
 .createPostSection {
     background-color: #fff;
     padding: 24px;
+}
+
+.authorBlock{
+    padding: 18px;
+    border: 1px dashed #00AFCF;
+    margin-bottom: 8px;
+}
+
+.noBorder{
+    border: none;
+}
+
+/*User profile*/
+.userProfilePic{
+    height: 140px;
+    width: 140px;
+    background-size: 100%;
+}
+
+/*Reply*/
+.replyContent{
+    display: table;
+    background-color: #fff;
+    border-bottom: 1px solid #aaa;
+}
+
+#postReplyRow{
+    background-color: #3F51B5;
+    padding: 8px;
+}
+
+.replyContentContainer, .replyAuthorContainer{
+    display: table-cell;
+    padding: 12px;
+}
+
+.isAdmin{
+    display: inline-block;
+    padding: 3px;
+    background-color: #FFEB3B;
+    color: #000;
+    font-family: 'Roboto Mono';
+}
+
+.smaller{
+    font-size: 0.8em;
+}
+
+#originalPost{
+    background-color: #fff;
+    padding: 12px;
+    margin-bottom: 8px;
+}
+
+.hasRecentPost{
+    padding: 2px;
+    background-color: #db7213;
+    color: #fff;
+    text-align: center;
+    border-radius: 1px;
+    width: 30px;
 }
 
 /*Custom btn*/
@@ -288,7 +351,7 @@
     background-color: #555;
     color: #fff !important;
     transition: ease-in 0.1s;
-    border-radius: 0px !important;
+    border-radius: 0 !important;
 }
 
 .btn-back:hover {
@@ -364,6 +427,7 @@
     width: 200px;
     height: 200px;
     background-color: #ddd;
+    background-size: 100%;
 }
 
 #userEmailLabel, #userBioLabel, #userCreatedLabel, #userRating, #userActiveLabel{

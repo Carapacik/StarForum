@@ -9,11 +9,10 @@ namespace SForum.Data
     {
         ApplicationUser GetById(string id);
         IEnumerable<ApplicationUser> GetAll();
-
         Task Add(ApplicationUser user);
         Task Deactivate(ApplicationUser user);
         Task SetProfileImage(string id, Uri uri);
-        Task BumpRating(string userId, Type type);
         Task UpdateUserRating(string id, Type type);
+        Task BumpRating(string userId, Type type);
     }
 }

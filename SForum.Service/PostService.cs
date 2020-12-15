@@ -27,7 +27,7 @@ namespace SForum.Service
         {
             _context.PostReplies.Add(reply);
             await _context.SaveChangesAsync();
-        }   
+        }
 
         public Task Archive(int id)
         {

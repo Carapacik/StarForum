@@ -17,14 +17,25 @@ namespace SForum.Service
             _context = context;
         }
 
-        public Task Create(Forum forum)
+        public bool HasRecentPost(int id)
         {
-            throw new NotImplementedException();
+            const int hoursAgo = 12;
+            var windows = DateTime.Now.AddHours(-hoursAgo);
+
+            return GetById(id).Posts.Any(post => post.Created > windows);
         }
 
-        public Task Delete(int forumId)
+        public async Task Create(Forum forum)
         {
-            throw new NotImplementedException();
+            _context.Add(forum);
+            await _context.SaveChangesAsync();
+        }
+
+        public async Task Delete(int forumId)
+        {
+            var forum = GetById(forumId);
+            _context.Remove(forum);
+            await _context.SaveChangesAsync();
         }
 
         public IEnumerable<Forum> GetAll()
@@ -32,9 +43,17 @@ namespace SForum.Service
             return _context.Forums.Include(forum => forum.Posts);
         }
 
-        public IEnumerable<ApplicationUser> GetAllActiveUsers()
+        public IEnumerable<ApplicationUser> GetActiveUsers(int id)
         {
-            throw new NotImplementedException();
+            var posts = GetById(id).Posts;
+            if (posts != null || !posts.Any())
+            {
+                var postUsers = posts.Select(p => p.User);
+                var replyUsers = posts.SelectMany(r => r.Replies).Select(p => p.User);
+                return postUsers.Union(replyUsers).Distinct();
+            }
+
+            return new List<ApplicationUser>();
         }
 
         public Forum GetById(int id)

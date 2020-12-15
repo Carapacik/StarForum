@@ -21,7 +21,12 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="wwwroot\images\forum\" />
+    <_ContentIncludedByDefault Remove="wwwroot\images\forum\games.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\images\forum\movies.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\images\forum\other.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\images\forum\PersonalData.json" />
+    <_ContentIncludedByDefault Remove="wwwroot\images\forum\programming.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\images\forum\suggestions.png" />
   </ItemGroup>
 
 </Project>

@@ -6,11 +6,13 @@
             <div class="sectionHeading">
                 Reply | @Model.PostTitle
                 <div class="forumLogo" style="background-image: url(@Model.ForumImageUrl)"></div>
-                <span id="headingBtn"><a asp-controller="Post" asp-action="Index" asp-route-id="@Model.PostId" class="btn btn-back">Back to Post</a></span>
+                <span id="headingBtn">
+                    <a asp-controller="Post" asp-action="Index" asp-route-id="@Model.PostId" class="btn btn-back">Back to Post</a>
+                </span>
             </div>
         </div>
         <div class="row">
-            <div id="postReply">
+            <div id="originalPost">
                 <h3>
                     @Model.PostTitle
                 </h3>
@@ -33,12 +35,12 @@
                         <textarea asp-for="ReplyContent" rows="20" class="form-control" placeholder="Your reply here..."></textarea>
                         <span asp-validation-for="ReplyContent" class="text-danger"></span>
                     </div>
-                    <button type="submit" id="submitReplyBtn" class="btn btn-submitPost">Submit Reply</button>                
-                    <input asp-for="AuthorId" type="hidden" />
-                    <input asp-for="PostId" type="hidden" />
-                    <input asp-for="ForumId" type="hidden" />
+                    <button type="submit" id="submitReplyBtn" class="btn btn-submitPost">Submit Reply</button>
+                    <input asp-for="AuthorId" type="hidden"/>
+                    <input asp-for="PostId" type="hidden"/>
+                    <input asp-for="ForumId" type="hidden"/>
                 </form>
             </div>
         </div>
-    </div> 
+    </div>
 </div>

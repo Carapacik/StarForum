@@ -1,22 +1,21 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using System;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using SForum.Data;
 using SForum.Data.Models;
 using SForum.Models.Reply;
-using System;
-using System.Threading.Tasks;
 
 namespace SForum.Controllers
 {
-
     public class ReplyController : Controller
     {
         private readonly IPost _postService;
-        private readonly IApplicationUser _userService;
         private readonly UserManager<ApplicationUser> _userManager;
+        private readonly IApplicationUser _userService;
 
-        public ReplyController(IPost postService, IApplicationUser userService, UserManager<ApplicationUser> userManager)
+        public ReplyController(IPost postService, IApplicationUser userService,
+            UserManager<ApplicationUser> userManager)
         {
             _postService = postService;
             _userService = userService;
@@ -37,13 +36,13 @@ namespace SForum.Controllers
                 AuthorId = user.Id,
                 AuthorName = User.Identity.Name,
                 AuthorImageUrl = user.ProfileImageUrl,
-                IsAuthorAdmin =  User.IsInRole("Admin"),
+                IsAuthorAdmin = User.IsInRole("Admin"),
 
                 ForumId = post.Forum.Id,
                 ForumName = post.Forum.Title,
                 ForumImageUrl = post.Forum.ImageUrl,
 
-                Created = DateTime.Now,
+                Created = DateTime.Now
             };
 
             return View(model);
@@ -59,14 +58,15 @@ namespace SForum.Controllers
             await _postService.AddReply(reply);
             await _userService.UpdateUserRating(userId, typeof(PostReply));
 
-            return RedirectToAction("Index", "Post", new {id = model.PostId });
+            return RedirectToAction("Index", "Post", new {id = model.PostId});
         }
 
         private PostReply BuildReply(PostReplyModel model, ApplicationUser user)
         {
             var post = _postService.GetById(model.PostId);
 
-            return new PostReply{
+            return new PostReply
+            {
                 Post = post,
                 Content = model.ReplyContent,
                 Created = DateTime.Now,

@@ -1,4 +1,5 @@
-﻿using System.Net.Http.Headers;
+﻿using System.Linq;
+using System.Net.Http.Headers;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
@@ -26,6 +27,23 @@ namespace SForum.Controllers
             _configuration = configuration;
         }
 
+        public IActionResult Index(string id)
+        {
+            var profiles = _userService.GetAll().OrderByDescending(user => user.Rating).Select(u => new ProfileModel
+            {
+                Email = u.Email,
+                Username = u.UserName, ProfileImageUrl = u.ProfileImageUrl,
+                UserRating = u.Rating.ToString(), MemberSince = u.MemberSince
+            });
+            var model = new ProfileListModel
+            {
+                Profiles = profiles
+            };
+
+            return View(model);
+        }
+
+
         public IActionResult Detail(string id)
         {
             var user = _userService.GetById(id);
@@ -48,7 +66,7 @@ namespace SForum.Controllers
         {
             var userId = _userManager.GetUserId(User);
             var connectionString = _configuration.GetConnectionString("AzureStorageAccount");
-            var container = _uploadService.GetBlobContainer(connectionString);
+            var container = _uploadService.GetBlobContainer(connectionString, "profile-images");
             var contentDisposition = ContentDispositionHeaderValue.Parse(file.ContentDisposition);
             var filename = contentDisposition.FileName.Trim('"');
             var blockBlob = container.GetBlockBlobReference(filename);

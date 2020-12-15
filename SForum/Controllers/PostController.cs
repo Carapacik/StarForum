@@ -18,7 +18,8 @@ namespace SForum.Controllers
         private readonly IPost _postService;
         private readonly IApplicationUser _userService;
 
-        public PostController(IPost postService, IForum forumService, IApplicationUser userService, UserManager<ApplicationUser> userManager)
+        public PostController(IPost postService, IForum forumService, IApplicationUser userService,
+            UserManager<ApplicationUser> userManager)
         {
             _postService = postService;
             _forumService = forumService;
