@@ -23,14 +23,22 @@ namespace SForum.Service
             await _context.SaveChangesAsync();
         }
 
+        public async Task AddReply(PostReply reply)
+        {
+            _context.PostReplies.Add(reply);
+            await _context.SaveChangesAsync();
+        }   
+
         public Task Archive(int id)
         {
             throw new NotImplementedException();
         }
 
-        public Task Delete(int id)
+        public async Task Delete(int id)
         {
-            throw new NotImplementedException();
+            var post = GetById(id);
+            _context.Remove(post);
+            await _context.SaveChangesAsync();
         }
 
         public Task EditPostContent(int id, string newContent)

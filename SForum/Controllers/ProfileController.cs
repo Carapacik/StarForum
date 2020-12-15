@@ -49,16 +49,11 @@ namespace SForum.Controllers
             var userId = _userManager.GetUserId(User);
             var connectionString = _configuration.GetConnectionString("AzureStorageAccount");
             var container = _uploadService.GetBlobContainer(connectionString);
-
             var contentDisposition = ContentDispositionHeaderValue.Parse(file.ContentDisposition);
             var filename = contentDisposition.FileName.Trim('"');
-
             var blockBlob = container.GetBlockBlobReference(filename);
-
             await blockBlob.UploadFromStreamAsync(file.OpenReadStream());
-
             await _userService.SetProfileImage(userId, blockBlob.Uri);
-
             return RedirectToAction("Detail", "Profile", new {id = userId});
         }
     }

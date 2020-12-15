@@ -16,11 +16,13 @@ namespace SForum.Controllers
         private static UserManager<ApplicationUser> _userManager;
         private readonly IForum _forumService;
         private readonly IPost _postService;
+        private readonly IApplicationUser _userService;
 
-        public PostController(IPost postService, IForum forumService, UserManager<ApplicationUser> userManager)
+        public PostController(IPost postService, IForum forumService, IApplicationUser userService, UserManager<ApplicationUser> userManager)
         {
             _postService = postService;
             _forumService = forumService;
+            _userService = userService;
             _userManager = userManager;
         }
 
@@ -76,7 +78,7 @@ namespace SForum.Controllers
             var post = BuildPost(model, user);
 
             await _postService.Add(post);
-
+            await _userService.UpdateUserRating(userId, typeof(Post));
 
             return RedirectToAction("Index", "Post", new {id = post.Id});
         }
