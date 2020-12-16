@@ -3,16 +3,20 @@
 <div class="container body-content">
     <div class="row frontPageSplash">
         <div class="col-md-6 frontPageLearn">
-            <div class="frontPageHeading">Learn, Collaborate, Share Knowledge</div>
-            <p class="frontPageSubHeading">SForum - это великий форум, который всё ещё создаётся</p>
+            <div class="frontPageHeading">Добро пожаловать</div>
+            <div>
+                <p class="frontPageSubHeading">SForum - это место обсуждения интересных вещей</p>
+            </div>
             <div>
                 <form asp-controller="Search" asp-action="Search" method="post">
-                    <input asp-for="SearchQuery" type="text" class="homeSearch" placeholder="Search....."/>
+                    <input asp-for="SearchQuery" type="text" class="homeSearch" placeholder="Поиск..."/>
                 </form>
             </div>
         </div>
-        <div class="col-md-6"></div>
+        <div class="col-md-6">
+        </div>
     </div>
+
     <div class="row frontPageContent">
         <h3 id="latestPosts">Latest Posts</h3>
         <table class="table table-hover" id="latestPostsTable">

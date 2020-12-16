@@ -52,14 +52,13 @@
 .frontPageSplash {
     background-image: url(../images/theme/front-splash.jpg);
     background-repeat: no-repeat;
-    background-size: 100%;
+    background-size: cover;
     background-position: right;
 }
 
 .frontPageLearn {
     font-family: "Roboto";
     padding: 12px 0 0 32px;
-    height: 360px;
 }
 
 .sectionDescription {
@@ -68,28 +67,23 @@
 
 .frontPageHeading {
     font-size: 3.2em;
-    margin: 16px 0;
+    margin: 16px 0 15px 40px;
     color: #d1ecf1;
 }
 
 .frontPageSubHeading {
     font-size: 2em;
+    margin: 0 0 30px 40px;
     color: #d1ecf1;
 }
 
-.frontPageTopContainer {
-    padding: 40px 80px 42px 40px;
-    border: 1px solid #999;
-    background-color: #2569d5;
-    font-family: "Roboto";
-}
-
 .homeSearch {
-    width: 100%;
-    margin-top: 8px;
-    background: rgba(0, 0, 0, 0.1);
-    padding: 8px;
-    border: 0px;
+    width: 80%;
+    margin: 10px;
+    background: rgba(0, 0, 0, 0.3);
+    padding: 10px;
+    margin: 0 0 30px 40px;
+    border: 0;
     height: 2.3em;
     font-size: 2.1em;
     font-family: "Roboto Mono";
@@ -101,11 +95,39 @@
     border: none !important;
     outline: none !important;
     transition: ease-in 0.2s;
+    width: 100%;
     color: #03a9f4;
     background-color: rgba(0, 0, 0, 0.7);
     box-shadow: 0 5px 4px -6px #000;
 }
 
+
+@media screen and (max-width: 425px){
+    .frontPageHeading {
+        font-size: 2em;
+        text-align: center;
+        margin: 0;
+    }
+
+    .frontPageSubHeading {
+        font-size: 1.4em;
+        text-align: left;
+        margin: 10px 0 10px 0;
+    }
+
+    .homeSearch {
+        width: 100%;
+        padding: 20px;
+        margin: 0 0 20px 0;
+    }
+}
+
+.frontPageTopContainer {
+    padding: 40px 80px 42px 40px;
+    border: 1px solid #999;
+    background-color: #2569d5;
+    font-family: "Roboto";
+}
 .frontPageContent {
     background-color: rgba(255, 255, 255, 0.9);
     padding: 16px;
@@ -166,9 +188,11 @@
 }
 
 .postAuthorImage {
+    background-repeat: no-repeat;
+    background-image: url(/images/theme/default.png);
+    background-size: 100%;
     height: 80px;
     width: 80px;
-    background-size: 100%;
 }
 
 .postAuthorContainer {
@@ -299,6 +323,7 @@
 .userProfilePic{
     height: 140px;
     width: 140px;
+    background-repeat: no-repeat;
     background-size: 100%;
 }
 
@@ -422,12 +447,13 @@
     background-color:#fff;
 }
 
-#userProfileImage{
+#userProfileImage {
     display: inline-block;
+    background-image: url(/images/theme/default.png);
+    background-size: 100%;
     width: 200px;
     height: 200px;
-    background-color: #ddd;
-    background-size: 100%;
+    background-repeat: no-repeat;
 }
 
 #userEmailLabel, #userBioLabel, #userCreatedLabel, #userRating, #userActiveLabel{
