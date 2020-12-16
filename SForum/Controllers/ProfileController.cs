@@ -1,6 +1,7 @@
 ﻿using System.Linq;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -11,6 +12,7 @@ using SForum.Models.ApplicationUser;
 
 namespace SForum.Controllers
 {
+    [Authorize]
     public class ProfileController : Controller
     {
         private readonly IConfiguration _configuration;
@@ -27,6 +29,7 @@ namespace SForum.Controllers
             _configuration = configuration;
         }
 
+        [Authorize(Roles = "Admin")]
         public IActionResult Index(string id)
         {
             var profiles = _userService.GetAll().OrderByDescending(user => user.Rating).Select(u => new ProfileModel
@@ -42,7 +45,6 @@ namespace SForum.Controllers
 
             return View(model);
         }
-
 
         public IActionResult Detail(string id)
         {

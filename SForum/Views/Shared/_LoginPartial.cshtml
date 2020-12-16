@@ -9,22 +9,22 @@
         <li class="nav-item">
             <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello, @UserManager.GetUserName(User)</a>
         </li>
-        <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Settings<span class="caret"></span></a>
+        <li class="nav-item dropdown">
+            <a href="#" class="nav-link dropdown-toggle text-dark" style="text-decoration: none" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Settings<span class="caret"></span></a>
             <ul class="dropdown-menu">
                 <li role="separator" class="divider"></li>
                 <li class="dropdown-header">Profile</li>
-                <li>
-                    <a asp-controller="Profile" asp-action="Detail" asp-route-id="@UserManager.GetUserName(User)">My Profile</a>
+                <li class="dropdown-item">
+                    <a asp-controller="Profile" asp-action="Detail" asp-route-id="@UserManager.GetUserId(User)">My Profile</a>
                 </li>
                 @if (User.IsInRole("Admin"))
                 {
                     <li role="separator" class="divider"></li>
                     <li class="dropdown-header">Admin</li>
-                    <li>
+                    <li class="dropdown-item">
                         <a asp-controller="Forum" asp-action="Create">Create Forum</a>
                     </li>
-                    <li>
+                    <li class="dropdown-item">
                         <a asp-controller="Profile" asp-action="Index">View Users</a>
                     </li>
                 }

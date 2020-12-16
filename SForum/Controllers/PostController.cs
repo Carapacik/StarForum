@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using SForum.Data;
@@ -51,11 +52,7 @@ namespace SForum.Controllers
             return View(model);
         }
 
-        private bool IsAuthorAdmin(ApplicationUser user)
-        {
-            return _userManager.GetRolesAsync(user).Result.Contains("Admin");
-        }
-
+        [Authorize]
         public IActionResult Create(int id)
         {
             var forum = _forumService.GetById(id);
@@ -72,6 +69,7 @@ namespace SForum.Controllers
         }
 
         [HttpPost]
+        [Authorize]
         public async Task<IActionResult> AddPost(NewPostModel model)
         {
             var userId = _userManager.GetUserId(User);
@@ -82,6 +80,11 @@ namespace SForum.Controllers
             await _userService.UpdateUserRating(userId, typeof(Post));
 
             return RedirectToAction("Index", "Post", new {id = post.Id});
+        }
+
+        private bool IsAuthorAdmin(ApplicationUser user)
+        {
+            return _userManager.GetRolesAsync(user).Result.Contains("Admin");
         }
 
         private Post BuildPost(NewPostModel post, ApplicationUser user)

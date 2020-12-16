@@ -1,7 +1,6 @@
 ﻿using System.Diagnostics;
 using System.Linq;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
 using SForum.Data;
 using SForum.Data.Models;
 using SForum.Models;
@@ -13,12 +12,10 @@ namespace SForum.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
         private readonly IPost _postService;
 
-        public HomeController(ILogger<HomeController> logger, IPost postService)
+        public HomeController(IPost postService)
         {
-            _logger = logger;
             _postService = postService;
         }
 
@@ -26,6 +23,17 @@ namespace SForum.Controllers
         {
             var model = BuildHomeIndexModel();
             return View(model);
+        }
+
+        public IActionResult Privacy()
+        {
+            return View();
+        }
+
+        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
+        public IActionResult Error()
+        {
+            return View(new ErrorViewModel {RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier});
         }
 
         private HomeIndexModel BuildHomeIndexModel()
@@ -60,17 +68,6 @@ namespace SForum.Controllers
                 ImageUrl = forum.ImageUrl,
                 Id = forum.Id
             };
-        }
-
-        public IActionResult Privacy()
-        {
-            return View();
-        }
-
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
-        {
-            return View(new ErrorViewModel {RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier});
         }
     }
 }
