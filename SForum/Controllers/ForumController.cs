@@ -55,7 +55,7 @@ namespace SForum.Controllers
         {
             var forum = _forumService.GetById(id);
             var posts = _postService.GetFilteredPosts(forum, searchQuery).ToList();
-
+            var emptySearchResults = posts.Count == 0 && searchQuery != null;
             var postListings = posts.Select(post => new PostListingModel
             {
                 Id = post.Id,
@@ -71,7 +71,9 @@ namespace SForum.Controllers
             var model = new ForumTopicModel
             {
                 Posts = postListings,
-                Forum = BuildForumListing(forum)
+                Forum = BuildForumListing(forum),
+                EmptySearchResults = emptySearchResults,
+                SearchQuery = searchQuery
             };
 
             return View(model);

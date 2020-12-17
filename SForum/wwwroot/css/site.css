@@ -2,7 +2,7 @@
     background-image: url("../images/theme/bg-01.jpg");
     background-color: #eee;
     background-size: cover;
-    background-repeat: no-repeat;   
+    background-repeat: no-repeat;
     background-attachment: fixed;
     background-position: center;
     font-family: 'Roboto', sans-serif;
@@ -23,6 +23,10 @@
     font-weight: bold;
 }
 
+#account{
+    padding: 2em 1em 0;
+}
+
 .sectionHeader {
     background-color: rgba(0, 0, 0, 0.85);
     padding: 10px 20px;
@@ -34,7 +38,7 @@
 .sectionHeading {
     color: white;
     font-size: 1.3em;
-    font-family: "Roboto";
+    font-family: "Roboto", sans-serif;
     padding: 16px 0 4px;
     margin: 0 0 20px;
     border-bottom: 1px solid #676794;
@@ -43,8 +47,9 @@
 .postHeading {
     color: white;
     font-size: 1.1em;
-    font-family: "Roboto";
+    font-family: "Roboto", sans-serif;
     padding: 16px 0;
+    width: 100%;
 }
 
 .sectionInfo {
@@ -61,11 +66,11 @@
 }
 
 .frontPageLearn {
-    font-family: "Roboto";
+    font-family: "Roboto", sans-serif;
     padding: 12px 0 0 32px;
 }
 
-.dropdownLeft{
+.dropdownLeft {
     top: 3em !important;
     left: -5.1em !important;
 }
@@ -88,7 +93,6 @@
 
 .homeSearch {
     width: 80%;
-    margin: 10px;
     background: rgba(0, 0, 0, 0.3);
     padding: 10px;
     margin: 0 0 30px 40px;
@@ -110,56 +114,65 @@
     box-shadow: 0 5px 4px -6px #000;
 }
 
-@media screen and (max-width: 425px){
-    #userProfileImage{
+@media screen and (max-width: 425px) {
+    #userProfileImage {
         width: 100% !important;
         min-height: 15em;
     }
+    
+    .forumLogo{
+        display: none;
+    }
 }
 
-@media screen and (max-width: 768px){
+@media screen and (max-width: 768px) {
     .frontPageHeading {
         font-size: 2em;
         text-align: center;
         margin: 0;
     }
-
     .frontPageSubHeading {
         font-size: 1.4em;
         text-align: left;
         margin: 10px 0 10px 0;
     }
-
     .homeSearch {
         width: 100%;
         padding: 20px;
         margin: 0 0 20px 0;
     }
-    
-    .btn-file{
-        width: 100% !important; 
-    }
-
-    .btn-submitPost{
+    .btn-file {
         width: 100% !important;
     }
-    
-    #userProfileImage{
+    .btn-submitPost {
         width: 100% !important;
     }
-    
-    .userProfile{
+    .userProfile {
         padding: 20px 5px !important;
         min-height: 300px;
     }
+    
+    #userProfileImage {
+        width: 100% !important;
+    }
+
+    .tdDisplayNone{
+        display: none;
+    }
+    
+    #forumIndexTable td{
+
+        padding: 6px;
+    }    
 }
 
 .frontPageTopContainer {
     padding: 40px 80px 42px 40px;
     border: 1px solid #999;
     background-color: #2569d5;
-    font-family: "Roboto";
+    font-family: "Roboto", sans-serif;
 }
+
 .frontPageContent {
     background-color: rgba(255, 255, 255, 0.9);
     padding: 16px;
@@ -173,25 +186,31 @@
     margin: 4px 0 16px 0;
 }
 
+
 /*Forum Topic*/
+
 .searchBar {
-    padding: 3px 5px 2px 12px;
-    margin: 8px;
+    padding: 5px 5px 5px 12px;
     background-color: #333;
     width: 10%;
+    min-width: 60px;
     transition: ease 0.5s;
     border: none;
+    font-family: "Roboto Mono";
+    margin-bottom: 20px;
 }
 
-.searchBar:focus{
+.searchBar:focus {
     color: black;
     width: 60%;
     background-color: #fff;
 }
 
+
 /*Post page*/
+
 .postTitle {
-    font-family: "Roboto";
+    font-family: "Roboto", sans-serif;
     font-weight: bold;
 }
 
@@ -231,7 +250,7 @@
 .postAuthorContainer {
     padding: 12px;
     color: #444;
-    font-family: "Roboto";
+    font-family: "Roboto", sans-serif;
     width: 190px;
 }
 
@@ -246,11 +265,11 @@
 
 #headingBtn {
     float: right;
-    margin-right: 20px;
+    margin: 0 20px 10px 0;
 }
 
 .postContentContainer {
-    font-family: "Roboto";
+    font-family: "Roboto", sans-serif;
     color: #222;
     padding: 22px;
     border-left: 1px solid #ddd;
@@ -267,12 +286,18 @@
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2), 0 6px 6px rgba(0, 0, 0, 0.3);
 }
 
-#replyDivider{
+#replyDivider {
     height: 2px;
     margin-bottom: 12px;
 }
 
+
 /*Forum index*/
+
+#forumIndexTable{
+    margin: 0 !important;
+}
+
 #forumIndexTable td {
     background-color: rgba(255, 255, 255, 0.9);
 }
@@ -284,8 +309,9 @@
 .forumData {
     display: inline-block;
 }
+
 .forumTitle {
-    font-family: "Roboto";
+    font-family: "Roboto", sans-serif;
     font-weight: bold;
     font-size: 1.1em;
 }
@@ -298,15 +324,15 @@
 
 .forumDescription {
     color: #555;
-    font-family: "Roboto";
+    font-family: "Roboto", sans-serif;
 }
 
 .forumLogo {
     border-radius: 3px;
     float: left;
     margin-right: 20px;
-    height: 40px;
-    width: 40px;
+    height: 50px;
+    width: 50px;
     background-color: #ddd;
     border: 1px solid #555;
     background-size: 100%;
@@ -331,22 +357,27 @@
 
 .noPosts {
     text-align: center;
-    padding-top: 30px;
+    width: 100%;
+    padding: 30px 20px;
     font-family: "Roboto Mono";
 }
 
+
 /*Create Forum*/
 
-#createForumSection{
+#createForumSection {
     width: 80%;
     margin: 20px auto;
 }
-#createReply{   
+
+#createReply {
     margin-top: 10px;
     width: 100%;
     background-color: #fff;
     padding: 24px;
 }
+
+
 /*Create Post*/
 
 .createPostSection {
@@ -356,52 +387,57 @@
     padding: 24px;
 }
 
-.authorBlock{
+.authorBlock {
     padding: 18px;
     border: 1px dashed #00AFCF;
     margin-bottom: 8px;
 }
 
-.noBorder{
+.noBorder {
     border: none;
     margin-bottom: 8px;
 }
 
+
 /*User profile*/
-.userProfilePic{
+
+.userProfilePic {
     height: 140px;
     width: 140px;
     background-repeat: no-repeat;
     background-size: 100%;
 }
 
-.userProfileBlock{
+.userProfileBlock {
     display: block;
 }
 
+
 /*Reply*/
-.replyContent{
+
+.replyContent {
     display: table;
     background-color: #fff;
     border-bottom: 1px solid #aaa;
 }
 
-#postReplyRow{
+#postReplyRow {
     background-color: #3F51B5;
     padding: 8px;
 }
 
-.replyContentContainer{
+.replyContentContainer {
     border-left: 1px solid #ddd;
     display: table-cell;
     padding: 12px;
 }
-.replyAuthorContainer{
+
+.replyAuthorContainer {
     display: table-cell;
-    padding: 12px; 
+    padding: 12px;
 }
 
-.isAdmin{
+.isAdmin {
     display: inline-block;
     padding: 3px;
     background-color: #FFEB3B;
@@ -409,19 +445,19 @@
     font-family: 'Roboto Mono';
 }
 
-.smaller{
+.smaller {
     font-size: 0.8em;
 }
 
-#originalPost{
+#originalPost {
     width: 100%;
-    background: rgb(255,255,255);
-    background: linear-gradient(90deg, rgba(255,255,255,1) 0%, rgba(255,255,255,1) 73%, rgba(0,212,255,0) 100%);
+    background: rgb(255, 255, 255);
+    background: linear-gradient(90deg, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 1) 73%, rgba(0, 212, 255, 0) 100%);
     padding: 24px;
     margin: 10px 0;
 }
 
-.hasRecentPost{
+.hasRecentPost {
     padding: 2px;
     background-color: #db7213;
     color: #fff;
@@ -430,28 +466,18 @@
     width: 30px;
 }
 
-.form-control{
+.form-control {
     margin-bottom: 0.7em;
 }
 
-/*Custom btn*/
-.btn-back {
-    background-color: #555;
-    color: #fff !important;
-    transition: ease-in 0.1s;
-    border-radius: 0 !important;
-}
 
-.btn-back:hover {
-    transition: ease-in 0.1s;
-    background-color: #1e88e5 !important;
-}
+/*Custom btn*/
 
 .btn-newReply {
     background-color: #5c6bc0 !important;
     color: #fff !important;
     transition: ease-in 0.1s;
-    border-radius: 0px !important;
+    border-radius: 0 !important;
 }
 
 .btn-newReply:hover {
@@ -464,27 +490,28 @@
     border: 2px solid #5e538c !important;
     color: #d1ecf1 !important;
     width: 30%;
-    transition: cubic-bezier(.28,1.7,.68,-0.27) 0.5s;
+    transition: cubic-bezier(.28, 1.7, .68, -0.27) 0.5s;
 }
 
 .btn-file:hover {
     background-color: #b5adc8 !important;
     border: 2px dotted #cdc9e0 !important;
     color: #4c0b7a !important;
-    transition: cubic-bezier(.28,1.7,.68,-0.27) 0.5s;
+    transition: cubic-bezier(.28, 1.7, .68, -0.27) 0.5s;
 }
 
-.btn-newPost {
-    background-color: #c62828 !important;
-    color: #fff !important;
-    border-radius: 0px !important;
-    transition: ease-in 0.1s;
+.btn-newPost, .btn-back {
+    background-color: #4e36a0 !important;
+    border: 2px solid #5e538c !important;
+    color: #d1ecf1 !important;
+    transition: cubic-bezier(.28, 1.7, .68, -0.27) 0.5s;
 }
 
-.btn-newPost:hover {
-    transition: ease-in 0.1s;
-    background-color: #e53935 !important;
-    color: #fff !important;
+.btn-newPost, .btn-back:hover {
+    background-color: #b5adc8 !important;
+    border: 2px dotted #cdc9e0 !important;
+    color: #4c0b7a !important;
+    transition: cubic-bezier(.28, 1.7, .68, -0.27) 0.5s;
 }
 
 .btn-submitPost {
@@ -492,30 +519,31 @@
     border: 2px solid #5e538c !important;
     max-width: 200px;
     color: #d1ecf1 !important;
-    transition: cubic-bezier(.28,1.7,.68,-0.27) 0.5s;
+    transition: cubic-bezier(.28, 1.7, .68, -0.27) 0.5s;
 }
 
 .btn-submitPost:hover {
     background-color: #b5adc8 !important;
     border: 2px dotted #cdc9e0 !important;
     color: #4c0b7a !important;
-    transition: cubic-bezier(.28,1.7,.68,-0.27) 0.5s;
+    transition: cubic-bezier(.28, 1.7, .68, -0.27) 0.5s;
 }
 
 .btn-forumSearch {
     background: none !important;
-    border: none;
-    padding: 0 !important;
+    border: none !important;
+    padding: 2px !important;
     font: inherit;
 }
 
-.material-icons{
+.material-icons {
     color: #fff;
 }
 
+
 /*Upload*/
 
-#upload{
+#upload {
     margin: 1em 0;
     display: flex;
     flex-direction: column;
@@ -523,10 +551,11 @@
 
 
 /*Profile*/
-.userProfile{
+
+.userProfile {
     margin-top: 10px;
     padding: 32px 0 64px 24px;
-    background-color:#fff;
+    background-color: #fff;
 }
 
 #userProfileImage {
@@ -538,21 +567,27 @@
     background-repeat: no-repeat;
 }
 
-#userEmailLabel, #userBioLabel, #userCreatedLabel, #userRating, #userActiveLabel{
+#userEmailLabel,
+#userBioLabel,
+#userCreatedLabel,
+#userRating,
+#userActiveLabel {
     display: block;
     color: #444;
-    font-family: 'Roboto';
+    font-family: 'Roboto', sans-serif;
     padding-top: 3px;
 }
 
-#userName{
+#userName {
     display: block;
     color: #2569d5;
     font-size: 1.7em;
-    font-family: 'Roboto';
+    font-family: 'Roboto', sans-serif;
 }
 
+
 /* Provide sufficient contrast against white background */
+
 .body-content {
     padding-left: 15px;
     padding-right: 15px;
@@ -575,7 +610,7 @@ a.navbar-brand {
 }
 
 .nav-pills .nav-link.active,
-.nav-pills .show > .nav-link {
+.nav-pills .show>.nav-link {
     color: #fff;
     background-color: #1b6ec2;
     border-color: #1861ac;
@@ -584,6 +619,7 @@ a.navbar-brand {
 .border-top {
     border-top: 1px solid #e5e5e5;
 }
+
 .border-bottom {
     border-bottom: 1px solid #e5e5e5;
 }

@@ -1,59 +1,60 @@
 ﻿@model SForum.Models.Home.HomeIndexModel
+@{
+ViewData["Title"] = "Главная";
+}
 
 <div class="container body-content">
-    <div class="row frontPageSplash">
-        <div class="col-md-6 frontPageLearn">
-            <div class="frontPageHeading">Добро пожаловать</div>
-            <div>
-                <p class="frontPageSubHeading">SForum - это место обсуждения интересных вещей</p>
-            </div>
-            <div>
-                <form asp-controller="Search" asp-action="Search" method="post">
-                    <input asp-for="SearchQuery" type="text" class="homeSearch" placeholder="Поиск..."/>
-                </form>
-            </div>
-        </div>
-        <div class="col-md-6">
-        </div>
-    </div>
-
-    <div class="row frontPageContent">
-        <h3 id="latestPosts">Latest Posts</h3>
-        <table class="table table-hover" id="latestPostsTable">
-            <tbody>
+   <div class="row frontPageSplash">
+      <div class="col-md-6 frontPageLearn">
+         <div class="frontPageHeading">Добро пожаловать</div>
+         <div>
+            <p class="frontPageSubHeading">SForum - это место обсуждения интересных вещей</p>
+         </div>
+         <div>
+            <form asp-controller="Search" asp-action="Search" method="post">
+               <input asp-for="SearchQuery" type="text" class="homeSearch" placeholder="Поиск..."/>
+            </form>
+         </div>
+      </div>
+      <div class="col-md-6">
+      </div>
+   </div>
+   <div class="row frontPageContent">
+      <h3 id="latestPosts">Latest Posts</h3>
+      <table class="table table-hover" id="latestPostsTable">
+         <tbody>
             @foreach (var post in Model.LatestPosts)
             {
-                <tr>
-                    <td>
-                        <div class="forumLogo" style="background-image: url(@post.Forum.ImageUrl)">
-
-                        </div>
-                        <div class="postTitle">
-                            <a asp-controller="Post" asp-action="Index" asp-route-id="@post.Id">
-                                @post.Title
-                            </a>
-                        </div>
-                        <div class="postSubTitle">
-                            @if (post.RepliesCount == 1)
-                            {
-                                <span>@post.RepliesCount Reply</span>
-                            }
-                            @if (post.RepliesCount == 0)
-                            {
-                                <span>No Replies</span>
-                            }
-                            else
-                            {
-                                <span>@post.RepliesCount Replies</span>
-                            }
-                            <span class="postUser">
-                                <a asp-controller="Profile" asp-action="Detail" asp-route-id="@post.AuthorId">@post.Author</a>
-                            </span>
-                        </div>
-                    </td>
-                </tr>
+            <tr>
+               <td>
+                  <div class="forumLogo" style="background-image: url(@post.Forum.ImageUrl)">
+                  </div>
+                  <div class="postTitle">
+                     <a asp-controller="Post" asp-action="Index" asp-route-id="@post.Id">
+                     @post.Title
+                     </a>
+                  </div>
+                  <div class="postSubTitle">
+                     @if (post.RepliesCount == 1)
+                     {
+                     <span>@post.RepliesCount Reply</span>
+                     }
+                     @if (post.RepliesCount == 0)
+                     {
+                     <span>No Replies</span>
+                     }
+                     else
+                     {
+                     <span>@post.RepliesCount Replies</span>
+                     }
+                     <span class="postUser">
+                     <a asp-controller="Profile" asp-action="Detail" asp-route-id="@post.AuthorId">@post.Author</a>
+                     </span>
+                  </div>
+               </td>
+            </tr>
             }
-            </tbody>
-        </table>
-    </div>
+         </tbody>
+      </table>
+   </div>
 </div>

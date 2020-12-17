@@ -2,37 +2,40 @@
 @using Microsoft.AspNetCore.Identity
 @model SForum.Models.ApplicationUser.ProfileModel
 @inject UserManager<ApplicationUser> UserManager
+@{
+ViewData["Title"] = "Профиль";
+}
 
 <div class="container body-content">
-    <div class="row sectionHeader">
-        <div class="sectionHeading noBorder">
-            Профиль пользователя
-        </div>
-    </div>
-    <div class="row userProfile">
-        <div class="col-md-4 ">
-            <div id="userProfileImage" style="background-image: url(@Model.ProfileImageUrl)"></div>
-            @if (User.Identity.Name == Model.Username)
-            {
-                <form method="post" enctype="multipart/form-data" asp-controller="Profile" asp-action="UploadProfileImage">
-                    <div id="upload">
-                        <label class="btn btn-default btn-submitPost">
-                            Выбрать <input type="file" name="file" required style="display: none"/>
-                        </label>
-                        <button type="submit" id="btn-profile" class="btn btn-default btn-submitPost">Sumbit</button>
-                    </div>
-                </form>
-            }
-        </div>
-        <div class="col-md-8">
-            <span id="userName">@Model.Username</span>
-            @if (Model.IsAdmin)
-            {
-                <span class="isAdmin">Admin</span>
-            }
-            <span id="userRating">Текущий рейтинг: @Model.UserRating</span>
-            <span id="userEmailLabel">Email: @Model.Email</span>
-            <span id="userCreatedLabel">Пользователь зарегестрирован: @Model.MemberSince</span>
-        </div>
-    </div>
+   <div class="row sectionHeader">
+      <div class="sectionHeading noBorder">
+         Профиль пользователя
+      </div>
+   </div>
+   <div class="row userProfile">
+      <div class="col-md-4 ">
+         <div id="userProfileImage" style="background-image: url(@Model.ProfileImageUrl)"></div>
+         @if (User.Identity.Name == Model.Username)
+         {
+         <form method="post" enctype="multipart/form-data" asp-controller="Profile" asp-action="UploadProfileImage">
+            <div id="upload">
+               <label class="btn btn-default btn-submitPost">
+               Выбрать <input type="file" name="file" required style="display: none"/>
+               </label>
+               <button type="submit" id="btn-profile" class="btn btn-default btn-submitPost">Sumbit</button>
+            </div>
+         </form>
+         }
+      </div>
+      <div class="col-md-8">
+         <span id="userName">@Model.Username</span>
+         @if (Model.IsAdmin)
+         {
+         <span class="isAdmin">Admin</span>
+         }
+         <span id="userRating">Текущий рейтинг: @Model.UserRating</span>
+         <span id="userEmailLabel">Email: @Model.Email</span>
+         <span id="userCreatedLabel">Пользователь зарегестрирован: @Model.MemberSince</span>
+      </div>
+   </div>
 </div>
