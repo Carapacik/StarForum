@@ -6,7 +6,7 @@
 <div class="container body-content">
     <div class="row sectionHeader">
         <div class="sectionHeading noBorder">
-            User Profile
+            Профиль пользователя
         </div>
     </div>
     <div class="row userProfile">
@@ -16,11 +16,11 @@
             {
                 <form method="post" enctype="multipart/form-data" asp-controller="Profile" asp-action="UploadProfileImage">
                     <div id="upload">
-                        <label class="btn btn-default btn-file">
-                            Browse <input type="file" name="file" style="display: none"/>
+                        <label class="btn btn-default btn-submitPost">
+                            Выбрать <input type="file" name="file" required style="display: none"/>
                         </label>
+                        <button type="submit" id="btn-profile" class="btn btn-default btn-submitPost">Sumbit</button>
                     </div>
-                    <button type="submit" id="btn-profile" class="btn btn-default">Sumbit</button>
                 </form>
             }
         </div>
@@ -30,9 +30,9 @@
             {
                 <span class="isAdmin">Admin</span>
             }
-            <span id="userRating">Current Rating: @Model.UserRating</span>
+            <span id="userRating">Текущий рейтинг: @Model.UserRating</span>
             <span id="userEmailLabel">Email: @Model.Email</span>
-            <span id="userCreatedLabel">Member Since: @Model.MemberSince</span>
+            <span id="userCreatedLabel">Пользователь зарегестрирован: @Model.MemberSince</span>
         </div>
     </div>
 </div>

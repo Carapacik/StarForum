@@ -1,8 +1,8 @@
 ﻿body {
     background-image: url("../images/theme/bg-01.jpg");
     background-color: #eee;
-    background-size: 100%;
-    background-repeat: no-repeat;
+    background-size: cover;
+    background-repeat: no-repeat;   
     background-attachment: fixed;
     background-position: center;
     font-family: 'Roboto', sans-serif;
@@ -24,24 +24,27 @@
 }
 
 .sectionHeader {
-    background-color: rgba(0, 0, 0, 0.9);
-    padding: 8px 0 24px 24px;
+    background-color: rgba(0, 0, 0, 0.85);
+    padding: 10px 20px;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2), 0 6px 6px rgba(0, 0, 0, 0.3);
 }
 
 .sectionHeading {
     color: white;
     font-size: 1.3em;
     font-family: "Roboto";
-    padding: 16px 0 16px 0;
-    border-bottom: 1px solid #335;
-    margin-bottom: 12px;
+    padding: 16px 0 4px;
+    margin: 0 0 20px;
+    border-bottom: 1px solid #676794;
 }
 
 .postHeading {
     color: white;
     font-size: 1.1em;
     font-family: "Roboto";
-    padding: 16px 0 16px 0;
+    padding: 16px 0;
 }
 
 .sectionInfo {
@@ -53,12 +56,18 @@
     background-image: url(../images/theme/front-splash.jpg);
     background-repeat: no-repeat;
     background-size: cover;
-    background-position: right;
+    background-position: left;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2), 0 6px 6px rgba(0, 0, 0, 0.3);
 }
 
 .frontPageLearn {
     font-family: "Roboto";
     padding: 12px 0 0 32px;
+}
+
+.dropdownLeft{
+    top: 3em !important;
+    left: -5.1em !important;
 }
 
 .sectionDescription {
@@ -101,8 +110,14 @@
     box-shadow: 0 5px 4px -6px #000;
 }
 
-
 @media screen and (max-width: 425px){
+    #userProfileImage{
+        width: 100% !important;
+        min-height: 15em;
+    }
+}
+
+@media screen and (max-width: 768px){
     .frontPageHeading {
         font-size: 2em;
         text-align: center;
@@ -120,6 +135,23 @@
         padding: 20px;
         margin: 0 0 20px 0;
     }
+    
+    .btn-file{
+        width: 100% !important; 
+    }
+
+    .btn-submitPost{
+        width: 100% !important;
+    }
+    
+    #userProfileImage{
+        width: 100% !important;
+    }
+    
+    .userProfile{
+        padding: 20px 5px !important;
+        min-height: 300px;
+    }
 }
 
 .frontPageTopContainer {
@@ -131,6 +163,7 @@
 .frontPageContent {
     background-color: rgba(255, 255, 255, 0.9);
     padding: 16px;
+    margin-top: 10px;
 }
 
 #latestPosts {
@@ -189,7 +222,7 @@
 
 .postAuthorImage {
     background-repeat: no-repeat;
-    background-image: url(/images/theme/default.png);
+    background-image: url(../images/theme/default.png);
     background-size: 100%;
     height: 80px;
     width: 80px;
@@ -208,7 +241,7 @@
 
 .postHeader {
     background-color: #212121;
-    padding: 8px 0 24px 24px;
+    padding: 8px 10px 24px 24px;
 }
 
 #headingBtn {
@@ -291,9 +324,9 @@
     font-size: 0.9em;
 }
 
-.forumIndexContent {
-    padding-bottom: 60px;
-    background-color: white;
+#forumIndexContent {
+    margin-top: 10px;
+    background-color: #fff;
 }
 
 .noPosts {
@@ -302,9 +335,23 @@
     font-family: "Roboto Mono";
 }
 
+/*Create Forum*/
+
+#createForumSection{
+    width: 80%;
+    margin: 20px auto;
+}
+#createReply{   
+    margin-top: 10px;
+    width: 100%;
+    background-color: #fff;
+    padding: 24px;
+}
 /*Create Post*/
 
 .createPostSection {
+    margin-top: 10px;
+    width: 100%;
     background-color: #fff;
     padding: 24px;
 }
@@ -317,6 +364,7 @@
 
 .noBorder{
     border: none;
+    margin-bottom: 8px;
 }
 
 /*User profile*/
@@ -325,6 +373,10 @@
     width: 140px;
     background-repeat: no-repeat;
     background-size: 100%;
+}
+
+.userProfileBlock{
+    display: block;
 }
 
 /*Reply*/
@@ -339,9 +391,14 @@
     padding: 8px;
 }
 
-.replyContentContainer, .replyAuthorContainer{
+.replyContentContainer{
+    border-left: 1px solid #ddd;
     display: table-cell;
     padding: 12px;
+}
+.replyAuthorContainer{
+    display: table-cell;
+    padding: 12px; 
 }
 
 .isAdmin{
@@ -357,9 +414,11 @@
 }
 
 #originalPost{
-    background-color: #fff;
-    padding: 12px;
-    margin-bottom: 8px;
+    width: 100%;
+    background: rgb(255,255,255);
+    background: linear-gradient(90deg, rgba(255,255,255,1) 0%, rgba(255,255,255,1) 73%, rgba(0,212,255,0) 100%);
+    padding: 24px;
+    margin: 10px 0;
 }
 
 .hasRecentPost{
@@ -369,6 +428,10 @@
     text-align: center;
     border-radius: 1px;
     width: 30px;
+}
+
+.form-control{
+    margin-bottom: 0.7em;
 }
 
 /*Custom btn*/
@@ -397,15 +460,18 @@
 }
 
 .btn-file {
-    background-color: #4fc3f7;
-    color: white;
-    width: 100%;
-    transition: ease 0.3s;
+    background-color: #4e36a0 !important;
+    border: 2px solid #5e538c !important;
+    color: #d1ecf1 !important;
+    width: 30%;
+    transition: cubic-bezier(.28,1.7,.68,-0.27) 0.5s;
 }
 
 .btn-file:hover {
-    transition: ease 0.3s;
-    background-color: #039be5;
+    background-color: #b5adc8 !important;
+    border: 2px dotted #cdc9e0 !important;
+    color: #4c0b7a !important;
+    transition: cubic-bezier(.28,1.7,.68,-0.27) 0.5s;
 }
 
 .btn-newPost {
@@ -422,16 +488,18 @@
 }
 
 .btn-submitPost {
-    background-color: #c62828 !important;
-    color: #fff !important;
-    border-radius: 0px !important;
-    transition: ease-in 0.1s;
+    background-color: #4e36a0 !important;
+    border: 2px solid #5e538c !important;
+    max-width: 200px;
+    color: #d1ecf1 !important;
+    transition: cubic-bezier(.28,1.7,.68,-0.27) 0.5s;
 }
 
 .btn-submitPost:hover {
-    transition: ease-in 0.1s;
-    background-color: #00897b !important;
-    color: #fff !important;
+    background-color: #b5adc8 !important;
+    border: 2px dotted #cdc9e0 !important;
+    color: #4c0b7a !important;
+    transition: cubic-bezier(.28,1.7,.68,-0.27) 0.5s;
 }
 
 .btn-forumSearch {
@@ -441,15 +509,29 @@
     font: inherit;
 }
 
+.material-icons{
+    color: #fff;
+}
+
+/*Upload*/
+
+#upload{
+    margin: 1em 0;
+    display: flex;
+    flex-direction: column;
+}
+
+
 /*Profile*/
-.user-Profile{
+.userProfile{
+    margin-top: 10px;
     padding: 32px 0 64px 24px;
     background-color:#fff;
 }
 
 #userProfileImage {
     display: inline-block;
-    background-image: url(/images/theme/default.png);
+    background-image: url(../images/theme/default.png);
     background-size: 100%;
     width: 200px;
     height: 200px;

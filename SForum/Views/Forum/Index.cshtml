@@ -2,14 +2,14 @@
 
 <div class="container body-content">
     <div class="row sectionHeader">
-        <div class="sectionHeading">Browse Forums</div>
+        <div class="sectionHeading">Категории</div>
         <div class="sectionDescription">
-            <p>Welcome to <strong>SForum community</strong>. Posts are broadly categorized into separate forums by programming language or area of interest.</p>
+            <p>Добро пожаловать на <strong>SForum</strong>. Темы классифицируются на отдельные категории по интересам</p>
             <p>
-                Please read the Forum Guidelines before creating a new post.
+                Пожалуйста прочитайте правила прежде чем сделать тему.
                 @if (!User.Identity.IsAuthenticated)
                 {
-                    <span>You must be a <a asp-area="Identity" asp-page="/Account/Register">registered member</a> to create a new post.</span>
+                    <span>Вы должны быть <a asp-area="Identity" asp-page="/Account/Register">Зарегистрированным</a> пользователем, чтобы создать тему.</span>
                 }
             </p>
         </div>
@@ -36,10 +36,10 @@
                     </td>
                     <td>
                         <div class="forumPostCount">
-                            @forum.NumberOfPosts Posts
+                            @forum.NumberOfPosts Тем
                         </div>
                         <div class="forumMemberCount">
-                            @forum.NumberOfUsers Users
+                            @forum.NumberOfUsers Пользователей
                         </div>
                     </td>
                     <td>
