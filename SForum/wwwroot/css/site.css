@@ -23,7 +23,7 @@
     font-weight: bold;
 }
 
-#account{
+#account {
     padding: 2em 1em 0;
 }
 
@@ -119,8 +119,7 @@
         width: 100% !important;
         min-height: 15em;
     }
-    
-    .forumLogo{
+    .forumLogo {
         display: none;
     }
 }
@@ -151,19 +150,15 @@
         padding: 20px 5px !important;
         min-height: 300px;
     }
-    
     #userProfileImage {
         width: 100% !important;
     }
-
-    .tdDisplayNone{
+    .tdDisplayNone {
         display: none;
     }
-    
-    #forumIndexTable td{
-
+    #forumIndexTable td {
         padding: 6px;
-    }    
+    }
 }
 
 .frontPageTopContainer {
@@ -260,12 +255,12 @@
 
 .postHeader {
     background-color: #212121;
-    padding: 8px 10px 24px 24px;
+    padding: 9px 20px 24px 24px;
 }
 
 #headingBtn {
     float: right;
-    margin: 0 20px 10px 0;
+    margin-bottom: 1em;
 }
 
 .postContentContainer {
@@ -294,7 +289,7 @@
 
 /*Forum index*/
 
-#forumIndexTable{
+#forumIndexTable {
     margin: 0 !important;
 }
 
@@ -422,7 +417,7 @@
 }
 
 #postReplyRow {
-    background-color: #3F51B5;
+    background-color: #212121;
     padding: 8px;
 }
 
@@ -473,60 +468,62 @@
 
 /*Custom btn*/
 
-.btn-newReply {
-    background-color: #5c6bc0 !important;
+.btn-file {
+    background: none !important;
+    border: 2px solid #007bff !important;
+    color: #007bff !important;
+    width: 16%;
+    min-width: 160px;
+    transition: 0.8s;
+}
+
+.btn-file:hover {
+    background-color: #007bff !important;
     color: #fff !important;
-    transition: ease-in 0.1s;
+    transition: cubic-bezier(.23, 1.45, .66, .21) 1s;
+}
+
+.btn-newPost,
+.btn-back {
+    background: #eb4d4b !important;
+    border: 2px solid #eb4d4b !important;
+    color: #fff !important;
+    transition: 0.8s;
+}
+
+.btn-newPost:hover,
+.btn-back:hover {
+    background-color: #851d12 !important;
+    transition: cubic-bezier(.23, 1.45, .66, .21) 1s;
+    border: 2px solid #851d12 !important;
+}
+
+.btn-newReply {
+    background: #fff !important;
+    color: #212121 !important;
+    transition: 0.8s;
+    border: 0 !important;
     border-radius: 0 !important;
 }
 
 .btn-newReply:hover {
-    transition: ease-in 0.1s;
-    background-color: #9fa8da !important;
-}
-
-.btn-file {
-    background-color: #4e36a0 !important;
-    border: 2px solid #5e538c !important;
-    color: #d1ecf1 !important;
-    width: 30%;
-    transition: cubic-bezier(.28, 1.7, .68, -0.27) 0.5s;
-}
-
-.btn-file:hover {
-    background-color: #b5adc8 !important;
-    border: 2px dotted #cdc9e0 !important;
-    color: #4c0b7a !important;
-    transition: cubic-bezier(.28, 1.7, .68, -0.27) 0.5s;
-}
-
-.btn-newPost, .btn-back {
-    background-color: #4e36a0 !important;
-    border: 2px solid #5e538c !important;
-    color: #d1ecf1 !important;
-    transition: cubic-bezier(.28, 1.7, .68, -0.27) 0.5s;
-}
-
-.btn-newPost, .btn-back:hover {
-    background-color: #b5adc8 !important;
-    border: 2px dotted #cdc9e0 !important;
-    color: #4c0b7a !important;
-    transition: cubic-bezier(.28, 1.7, .68, -0.27) 0.5s;
+    background-color: #95a5a6 !important;
+    color: #fff !important;
+    transition: cubic-bezier(.23, 1.45, .66, .21) 1s;
 }
 
 .btn-submitPost {
-    background-color: #4e36a0 !important;
-    border: 2px solid #5e538c !important;
-    max-width: 200px;
-    color: #d1ecf1 !important;
-    transition: cubic-bezier(.28, 1.7, .68, -0.27) 0.5s;
+    background: none !important;
+    border: 2px solid #007bff !important;
+    color: #007bff !important;
+    transition: 0.8s;
+    min-width: 160px;
 }
 
 .btn-submitPost:hover {
-    background-color: #b5adc8 !important;
-    border: 2px dotted #cdc9e0 !important;
-    color: #4c0b7a !important;
-    transition: cubic-bezier(.28, 1.7, .68, -0.27) 0.5s;
+    background-color: #007bff !important;
+    color: #fff !important;
+    transition: cubic-bezier(.23, 1.45, .66, .21) 1s;
 }
 
 .btn-forumSearch {
@@ -537,7 +534,7 @@
 }
 
 .material-icons {
-    color: #fff;
+    color: #eb4d4b;
 }
 
 
@@ -562,8 +559,8 @@
     display: inline-block;
     background-image: url(../images/theme/default.png);
     background-size: 100%;
-    width: 200px;
-    height: 200px;
+    width: 240px;
+    height: 240px;
     background-repeat: no-repeat;
 }
 
