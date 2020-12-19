@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
@@ -25,13 +24,16 @@ namespace SForum.Service
 
         public async Task AddReply(PostReply reply)
         {
-            _context.PostReplies.Add(reply);
+            await _context.PostReplies.AddAsync(reply);
             await _context.SaveChangesAsync();
         }
 
-        public Task Archive(int id)
+        public async Task Archive(int id)
         {
-            throw new NotImplementedException();
+            var post = GetById(id);
+            post.IsArchived = true;
+            _context.Update(post);
+            await _context.SaveChangesAsync();
         }
 
         public async Task Delete(int id)
@@ -41,9 +43,12 @@ namespace SForum.Service
             await _context.SaveChangesAsync();
         }
 
-        public Task EditPostContent(int id, string newContent)
+        public async Task EditPostContent(int id, string content)
         {
-            throw new NotImplementedException();
+            var post = GetById(id);
+            post.Content = content;
+            _context.Posts.Update(post);
+            await _context.SaveChangesAsync();
         }
 
         public IEnumerable<Post> GetAll()
@@ -60,16 +65,19 @@ namespace SForum.Service
         {
             return _context.Posts.Where(post => post.Id == id)
                 .Include(post => post.User)
-                .Include(post => post.Replies).ThenInclude(reply => reply.User)
+                .Include(post => post.Replies)
+                .ThenInclude(reply => reply.User)
                 .Include(post => post.Forum).First();
         }
 
         public IEnumerable<Post> GetFilteredPosts(Forum forum, string searchQuery)
         {
+            var query = searchQuery.ToLower();
+
             return string.IsNullOrEmpty(searchQuery)
                 ? forum.Posts
                 : forum.Posts
-                    .Where(post => post.Title.Contains(searchQuery) || post.Content.Contains(searchQuery));
+                    .Where(post => post.Title.ToLower().Contains(query) || post.Content.ToLower().Contains(query));
         }
 
         public IEnumerable<Post> GetFilteredPosts(string searchQuery)
@@ -86,9 +94,25 @@ namespace SForum.Service
             return GetAll().OrderByDescending(post => post.Created).Take(numberPosts);
         }
 
-        public IEnumerable<Post> GetPostsByForum(int id)
+        public IEnumerable<Post> GetPostsByForumId(int id)
         {
             return _context.Forums.Where(forum => forum.Id == id).First().Posts;
+        }
+
+        public IEnumerable<Post> GetPostsByUserId(int id)
+        {
+            return _context.Posts.Where(post => post.User.Id == id.ToString());
+        }
+
+        public string GetForumImageUrl(int id)
+        {
+            var post = GetById(id);
+            return post.Forum.ImageUrl;
+        }
+
+        public int GetReplyCount(int id)
+        {
+            return GetById(id).Replies.Count();
         }
     }
 }

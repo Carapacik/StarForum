@@ -16,19 +16,17 @@ namespace SForum.Service
             _context = context;
         }
 
-        public Task Add(ApplicationUser user)
+        public async Task Add(ApplicationUser user)
         {
-            throw new NotImplementedException();
+            _context.Add(user);
+            await _context.SaveChangesAsync();
         }
 
-        public Task BumpRating(string userId, Type type)
+        public async Task Deactivate(ApplicationUser user)
         {
-            throw new NotImplementedException();
-        }
-
-        public Task Deactivate(ApplicationUser user)
-        {
-            throw new NotImplementedException();
+            user.IsActive = false;
+            _context.Update(user);
+            await _context.SaveChangesAsync();
         }
 
         public IEnumerable<ApplicationUser> GetAll()
@@ -56,7 +54,7 @@ namespace SForum.Service
             await _context.SaveChangesAsync();
         }
 
-        private int CalculateUserRating(Type type, int userRating)
+        private static int CalculateUserRating(Type type, int userRating)
         {
             var inc = 0;
             if (type == typeof(Post)) inc = 1;

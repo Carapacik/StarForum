@@ -268,6 +268,9 @@ namespace SForum.Data.Migrations
                 b.Property<int?>("ForumId")
                     .HasColumnType("int");
 
+                b.Property<bool>("IsArchived")
+                    .HasColumnType("bit");
+
                 b.Property<string>("Title")
                     .HasColumnType("nvarchar(max)");
 

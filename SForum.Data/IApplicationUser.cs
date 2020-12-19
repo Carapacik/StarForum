@@ -13,6 +13,5 @@ namespace SForum.Data
         Task Deactivate(ApplicationUser user);
         Task SetProfileImage(string id, Uri uri);
         Task UpdateUserRating(string id, Type type);
-        Task BumpRating(string userId, Type type);
     }
 }

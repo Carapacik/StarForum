@@ -65,14 +65,22 @@ namespace SForum.Service
             return forum;
         }
 
-        public Task UpdateForumDescription(int forumId, string newDescription)
+        public async Task UpdateForumDescription(int forumId, string newDescription)
         {
-            throw new NotImplementedException();
+            var forum = GetById(forumId);
+            forum.Description = newDescription;
+
+            _context.Update(forum);
+            await _context.SaveChangesAsync();
         }
 
-        public Task UpdateForumTitle(int forumId, string newTitle)
+        public async Task UpdateForumTitle(int forumId, string newTitle)
         {
-            throw new NotImplementedException();
+            var forum = GetById(forumId);
+            forum.Title = newTitle;
+
+            _context.Update(forum);
+            await _context.SaveChangesAsync();
         }
     }
 }

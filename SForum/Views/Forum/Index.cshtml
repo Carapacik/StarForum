@@ -1,58 +1,58 @@
 ﻿@model SForum.Models.Forum.ForumIndexModel
 @{
-ViewData["Title"] = "Категории";
+    ViewData["Title"] = "Категории";
 }
 
 <div class="container body-content">
-   <div class="row sectionHeader">
-      <div class="sectionHeading">Категории</div>
-      <div class="sectionDescription">
-         <p>Добро пожаловать на <strong>SForum</strong>. Темы классифицируются на отдельные категории по интересам</p>
-         <p>
-            Пожалуйста прочитайте правила прежде чем сделать тему.
-            @if (!User.Identity.IsAuthenticated)
-            {
-            <span>Вы должны быть <a asp-area="Identity" asp-page="/Account/Register">Зарегистрированным</a> пользователем, чтобы создать тему.</span>
-            }
-         </p>
-      </div>
-   </div>
-   <div class="row" id="forumIndexContent">
-      <table class="table table-hover table-bordered" id="forumIndexTable">
-         <tbody>
+    <div class="row sectionHeader">
+        <div class="sectionHeading">Категории</div>
+        <div class="sectionDescription">
+            <p>Добро пожаловать на <strong>SForum</strong>. Темы классифицируются на отдельные категории по интересам</p>
+            <p>
+                Пожалуйста прочитайте правила прежде чем сделать тему.
+                @if (!User.Identity.IsAuthenticated)
+                {
+                    <span>Вы должны быть <a asp-area="Identity" asp-page="/Account/Register">Зарегистрированным</a> пользователем, чтобы создать тему.</span>
+                }
+            </p>
+        </div>
+    </div>
+    <div class="row" id="forumIndexContent">
+        <table class="table table-hover table-bordered" id="forumIndexTable">
+            <tbody>
             @foreach (var forum in Model.ForumList)
             {
-            <tr>
-               <td>
-                  <div class="forumLogo" style="background-image: url(@forum.ImageUrl)"></div>
-                  <div class="forumData">
-                     <div class="forumTitle">
-                        <a asp-controller="Forum" asp-action="Topic" asp-route-id="@forum.Id">@forum.Name</a>
-                     </div>
-                     <div class="forumSubTitle">
-                        @if (forum.HasRecentPosts)
-                        {
-                        <div class="hasRecentPost">Hot</div>
-                        }
-                     </div>
-                  </div>
-               </td>
-               <td>
-                  <div class="forumPostCount">
-                     @forum.NumberOfPosts Тем
-                  </div>
-                  <div class="forumMemberCount">
-                     @forum.NumberOfUsers Пользователей
-                  </div>
-               </td>
-               <td class="tdDisplayNone">
-                  <div class="forumDescription">
-                     @forum.Description
-                  </div>
-               </td>
-            </tr>
+                <tr>
+                    <td>
+                        <div class="forumLogo" style="background-image: url(@forum.ImageUrl)"></div>
+                        <div class="forumData">
+                            <div class="forumTitle">
+                                <a asp-controller="Forum" asp-action="Topic" asp-route-id="@forum.Id">@forum.Name</a>
+                            </div>
+                            <div class="forumSubTitle">
+                                @if (forum.HasRecentPosts)
+                                {
+                                    <div class="hasRecentPost">Hot</div>
+                                }
+                            </div>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="forumPostCount">
+                            @forum.NumberOfPosts Тем
+                        </div>
+                        <div class="forumMemberCount">
+                            @forum.NumberOfUsers Пользователей
+                        </div>
+                    </td>
+                    <td class="tdDisplayNone">
+                        <div class="forumDescription">
+                            @forum.Description
+                        </div>
+                    </td>
+                </tr>
             }
-         </tbody>
-      </table>
-   </div>
+            </tbody>
+        </table>
+    </div>
 </div>

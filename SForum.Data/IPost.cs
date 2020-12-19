@@ -7,15 +7,20 @@ namespace SForum.Data
     public interface IPost
     {
         Task Add(Post post);
+        Task AddReply(PostReply reply);
         Task Archive(int id);
         Task Delete(int id);
         Task EditPostContent(int id, string content);
+
+        int GetReplyCount(int id);
         Post GetById(int id);
+
         IEnumerable<Post> GetAll();
+        IEnumerable<Post> GetPostsByUserId(int id);
+        IEnumerable<Post> GetPostsByForumId(int id);
         IEnumerable<Post> GetFilteredPosts(Forum forum, string searchQuery);
         IEnumerable<Post> GetFilteredPosts(string searchQuery);
-        IEnumerable<Post> GetPostsByForum(int id);
         IEnumerable<Post> GetLatestPosts(int numberPosts);
-        Task AddReply(PostReply reply);
+        string GetForumImageUrl(int id);
     }
 }

@@ -24,9 +24,9 @@ namespace SForum.Data
             var user = new ApplicationUser
             {
                 UserName = "ForumAdmin",
-                NormalizedUserName = "forumadmin",
-                Email = "admin@example.com",
-                NormalizedEmail = "admin@example.com",
+                NormalizedUserName = "FORUMADMIN",
+                Email = "admin@sforum.com",
+                NormalizedEmail = "ADMIN@SFORUM.COM",
                 EmailConfirmed = true,
                 LockoutEnabled = false,
                 SecurityStamp = Guid.NewGuid().ToString()
