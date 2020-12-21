@@ -34,9 +34,12 @@ namespace SForum.Controllers
         {
             var profiles = _userService.GetAll().OrderByDescending(user => user.Rating).Select(u => new ProfileModel
             {
+                UserId = u.Id,
                 Email = u.Email,
-                Username = u.UserName, ProfileImageUrl = u.ProfileImageUrl,
-                UserRating = u.Rating.ToString(), MemberSince = u.MemberSince
+                Username = u.UserName,  
+                ProfileImageUrl = u.ProfileImageUrl,
+                UserRating = u.Rating.ToString(), 
+                MemberSince = u.MemberSince
             });
             var model = new ProfileListModel
             {

@@ -82,7 +82,7 @@ namespace SForum.Controllers
             return RedirectToAction("Index", "Post", new {id = post.Id});
         }
 
-        private bool IsAuthorAdmin(ApplicationUser user)
+        private static bool IsAuthorAdmin(ApplicationUser user)
         {
             return _userManager.GetRolesAsync(user).Result.Contains("Admin");
         }
@@ -101,7 +101,7 @@ namespace SForum.Controllers
             };
         }
 
-        private IEnumerable<PostReplyModel> BuildPostReplies(IEnumerable<PostReply> replies)
+        private static IEnumerable<PostReplyModel> BuildPostReplies(IEnumerable<PostReply> replies)
         {
             return replies.Select(reply => new PostReplyModel
             {

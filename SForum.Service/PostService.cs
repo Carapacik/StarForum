@@ -72,12 +72,11 @@ namespace SForum.Service
 
         public IEnumerable<Post> GetFilteredPosts(Forum forum, string searchQuery)
         {
-            var query = searchQuery.ToLower();
-
             return string.IsNullOrEmpty(searchQuery)
                 ? forum.Posts
                 : forum.Posts
-                    .Where(post => post.Title.ToLower().Contains(query) || post.Content.ToLower().Contains(query));
+                    .Where(post =>
+                        post.Title.ToLower().Contains(searchQuery) || post.Content.ToLower().Contains(searchQuery));
         }
 
         public IEnumerable<Post> GetFilteredPosts(string searchQuery)
@@ -96,7 +95,7 @@ namespace SForum.Service
 
         public IEnumerable<Post> GetPostsByForumId(int id)
         {
-            return _context.Forums.Where(forum => forum.Id == id).First().Posts;
+            return _context.Forums.First(forum => forum.Id == id).Posts;
         }
 
         public IEnumerable<Post> GetPostsByUserId(int id)
