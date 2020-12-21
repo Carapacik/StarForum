@@ -30,21 +30,71 @@ namespace SForum.Controllers
         }
 
         [Authorize(Roles = "Admin")]
-        public IActionResult Index(string id)
+        public IActionResult Index(string typeQuery = "rating")
         {
-            var profiles = _userService.GetAll().OrderByDescending(user => user.Rating).Select(u => new ProfileModel
+            var model = new ProfileListModel();
+
+            switch (typeQuery)
             {
-                UserId = u.Id,
-                Email = u.Email,
-                Username = u.UserName,  
-                ProfileImageUrl = u.ProfileImageUrl,
-                UserRating = u.Rating.ToString(), 
-                MemberSince = u.MemberSince
-            });
-            var model = new ProfileListModel
-            {
-                Profiles = profiles
-            };
+                case "memberSince":
+                {
+                    var profiles = _userService.GetAll().OrderByDescending(user => user.MemberSince).Select(u =>
+                        new ProfileModel
+                        {
+                            UserId = u.Id,
+                            Email = u.Email,
+                            Username = u.UserName,
+                            ProfileImageUrl = u.ProfileImageUrl,
+                            UserRating = u.Rating.ToString(),
+                            MemberSince = u.MemberSince
+                        });
+                    model = new ProfileListModel
+                    {
+                        Profiles = profiles,
+                        TypeQuery = typeQuery
+                    };
+                    break;
+                }
+                case "userName":
+                {
+                    var profiles = _userService.GetAll().OrderBy(user => user.NormalizedUserName).Select(u =>
+                        new ProfileModel
+                        {
+                            UserId = u.Id,
+                            Email = u.Email,
+                            Username = u.UserName,
+                            ProfileImageUrl = u.ProfileImageUrl,
+                            UserRating = u.Rating.ToString(),
+                            MemberSince = u.MemberSince
+                        });
+                    model = new ProfileListModel
+                    {
+                        Profiles = profiles,
+                        TypeQuery = typeQuery
+                    };
+                    break;
+                }
+                default:
+                {
+                    var profiles = _userService.GetAll().OrderByDescending(user => user.Rating).Select(u =>
+                        new ProfileModel
+                        {
+                            UserId = u.Id,
+                            Email = u.Email,
+                            Username = u.UserName,
+                            ProfileImageUrl = u.ProfileImageUrl,
+                            UserRating = u.Rating.ToString(),
+                            MemberSince = u.MemberSince
+                        });
+                    model = new ProfileListModel
+                    {
+                        Profiles = profiles,
+                        TypeQuery = typeQuery
+                    };
+                    break;
+                }
+            }
+
 
             return View(model);
         }

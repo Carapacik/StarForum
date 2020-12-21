@@ -8,6 +8,15 @@
     font-family: 'Roboto', sans-serif;
 }
 
+.linkDecorationNone{
+    text-decoration: none;
+    color: #000 !important;    
+}
+
+.linkDecorationNone:hover{
+    text-decoration: none;
+}
+
 .navLogo {
     background-image: url("../images/app-logo-s.png");
     background-size: 100%;
@@ -533,10 +542,9 @@
     font: inherit;
 }
 
-.material-icons {
+.searchBtnRed{
     color: #eb4d4b;
 }
-
 
 /*Upload*/
 

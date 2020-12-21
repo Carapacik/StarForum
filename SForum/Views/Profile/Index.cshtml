@@ -15,16 +15,34 @@
                     Изображение
                 </th>
                 <th>
-                    Имя
+                    <a asp-controller="Profile" asp-action="Index" asp-route-typeQuery="userName" class="linkDecorationNone">
+                        Имя
+                        @if (Model.TypeQuery == "userName")
+                        {
+                            <i class="material-icons">arrow_drop_down</i>
+                        }
+                    </a>
                 </th>
                 <th>
                     E-mail
                 </th>
                 <th>
-                    Дата регистрации
+                    <a asp-controller="Profile" asp-action="Index" asp-route-typeQuery="memberSince" class="linkDecorationNone">
+                        Дата регистрации
+                        @if (Model.TypeQuery == "memberSince")
+                        {
+                            <i class="material-icons">arrow_drop_down</i>
+                        }
+                    </a>
                 </th>
                 <th>
-                    Рейтинг
+                    <a asp-controller="Profile" asp-action="Index" asp-route-typeQuery="" class="linkDecorationNone">
+                        Рейтинг
+                        @if (Model.TypeQuery == "rating")
+                        {
+                            <i class="material-icons">arrow_drop_down</i>
+                        }
+                    </a>
                 </th>
             </tr>
             </thead>
