@@ -51,6 +51,43 @@ namespace SForum.Controllers
             return View(model);
         }
 
+        [Authorize(Roles = "Admin")]
+        public IActionResult Edit(int id)
+        {
+            var forum = _forumService.GetById(id);
+            var model = new EditForumModel
+            {
+                Id = id,
+                Description = forum.Description,
+                Title = forum.Title
+            };
+            return View(model);
+        }
+
+        [HttpPost]
+        [Authorize(Roles = "Admin")]
+        public async Task<IActionResult> EditForum(EditForumModel model)
+        {
+            var imageUri = "";
+
+            if (model.ImageUpload != null)
+            {
+                var blockBlob = UploadForumImage(model.ImageUpload);
+                imageUri = blockBlob.Uri.AbsoluteUri;
+            }
+
+            var forum = new Forum
+            {
+                Id = model.Id,
+                Title = model.Title,
+                Description = model.Description,
+                ImageUrl = imageUri
+            };
+
+            await _forumService.Edit(forum);
+            return RedirectToAction("Index", "Forum");
+        }
+
         public IActionResult Topic(int id, string searchQuery)
         {
             var forum = _forumService.GetById(id);

@@ -11,6 +11,7 @@ namespace SForum.Data
         IEnumerable<ApplicationUser> GetActiveUsers(int id);
         bool HasRecentPost(int id);
         Task Create(Forum forum);
+        Task Edit(Forum forum);
         Task Delete(int forumId);
         Task UpdateForumTitle(int forumId, string newTitle);
         Task UpdateForumDescription(int forumId, string newDescription);

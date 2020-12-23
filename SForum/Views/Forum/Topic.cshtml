@@ -7,7 +7,7 @@
     <div class="row sectionHeader">
         <div class="sectionHeading">
             <span id="results">Тема | @Model.Forum.Name</span>
-            @if (Context.User.Identity.IsAuthenticated)
+            @if (User.Identity.IsAuthenticated)
             {
                 <span id="headingBtn">
                     <a asp-controller="Post" asp-action="Create" asp-route-id="@Model.Forum.Id" class="btn btn-newPost">Создать тему</a>

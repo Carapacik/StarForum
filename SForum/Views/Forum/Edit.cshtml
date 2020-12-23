@@ -1,0 +1,37 @@
+@model SForum.Models.Forum.EditForumModel
+@{
+    ViewData["Title"] = "Изменить";
+}
+
+<div class="container body-content">
+    <div class="row sectionHeader">
+        <div class="sectionHeading">
+            Изменить категорию на форуме
+        </div>
+    </div>
+    <div class="row frontPageContent">
+        <div id="createForumSection">
+            <form asp-action="EditForum" method="post" id="createForumForm" enctype="multipart/form-data">
+                <div asp-validation-summary="All" class="text-danger"> </div>
+                <div class="form-group">
+                    <label asp-for="Title">Категория</label>
+                    <input asp-for="Title" class="form-control" required placeholder="Изменить заголовок категории" value="@Model.Title"/>
+                    <span asp-validation-for="Title" class="text-danger"></span>
+                </div>
+                <div class="form-group>">
+                    <label asp-for="Description">Описание</label>
+                    <input asp-for="Description" class="form-control" required placeholder="Изменить описание категории" value="@Model.Description"/>
+                    <span asp-validation-for="Description" class="text-danger"></span>
+                </div>
+                <div id="upload">
+                    <label>Изменить изображение категории</label><br/>
+                    <label class="btn btn-default btn-file">
+                        Выбрать <input asp-for="ImageUpload" typeof="file" style="display:none"/>
+                    </label>
+                </div>
+                <input asp-for="Id" type="hidden"/>
+                <button type="submit" id="newFormBtn" class="btn btn-submitPost">Изменить</button>
+            </form>
+        </div>
+    </div>
+</div>

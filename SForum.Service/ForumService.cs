@@ -38,6 +38,17 @@ namespace SForum.Service
             await _context.SaveChangesAsync();
         }
 
+        public async Task Edit(Forum forum)
+        {
+            var forumOld = GetById(forum.Id);
+            forumOld.Description = forum.Description;
+            forumOld.Title = forum.Title;
+            if (forum.ImageUrl != "") forumOld.ImageUrl = forum.ImageUrl;
+
+            _context.Forums.Update(forumOld);
+            await _context.SaveChangesAsync();
+        }
+
         public IEnumerable<Forum> GetAll()
         {
             return _context.Forums.Include(forum => forum.Posts);
