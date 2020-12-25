@@ -12,11 +12,13 @@ namespace SForum.Controllers
 {
     public class HomeController : Controller
     {
+        private readonly IForum _forumService;
         private readonly IPost _postService;
 
-        public HomeController(IPost postService)
+        public HomeController(IPost postService, IForum forumService)
         {
             _postService = postService;
+            _forumService = forumService;
         }
 
         public IActionResult Index()
@@ -39,7 +41,6 @@ namespace SForum.Controllers
         private HomeIndexModel BuildHomeIndexModel()
         {
             var latestPosts = _postService.GetLatestPosts(10);
-
             var posts = latestPosts.Select(post => new PostListingModel
             {
                 Id = post.Id,
@@ -52,14 +53,29 @@ namespace SForum.Controllers
                 Forum = GetForumListingForPost(post)
             });
 
+            var popularForums = _forumService.GetPopularForums(5);
+
+            var forums = popularForums
+                .Select(forum => new ForumListingModel
+                {
+                    Id = forum.Id,
+                    Name = forum.Title,
+                    Description = forum.Description,
+                    NumberOfPosts = forum.Posts?.Count() ?? 0,
+                    NumberOfUsers = _forumService.GetActiveUsers(forum.Id).Count(),
+                    ImageUrl = forum.ImageUrl,
+                    HasRecentPosts = _forumService.HasRecentPost(forum.Id)
+                });
+
             return new HomeIndexModel
             {
                 LatestPosts = posts,
+                PopularForums = forums,
                 SearchQuery = ""
             };
         }
 
-        private ForumListingModel GetForumListingForPost(Post post)
+        private static ForumListingModel GetForumListingForPost(Post post)
         {
             var forum = post.Forum;
             return new ForumListingModel

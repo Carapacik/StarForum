@@ -183,7 +183,7 @@
     margin-top: 10px;
 }
 
-#latestPosts {
+#latestPosts, #popularForums {
     font-size: 1.2em;
     font-weight: bold;
     color: #333;

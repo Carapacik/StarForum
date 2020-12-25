@@ -20,7 +20,43 @@
         </div>
     </div>
     <div class="row frontPageContent">
-        <h3 id="latestPosts">Последние темы</h3>
+        <h3 id="popularForums">ТОП 5 ПОПУЛЯРНЫХ КАТЕГОРИЙ</h3>
+        <table class="table table-hover" id="popularForumsTable">
+            <tbody>
+            @foreach (var forum in Model.PopularForums)
+            {
+                <tr>
+                    <td>
+                        <div class="forumLogo" style="background-image: url(@forum.ImageUrl)"></div>
+                        <div class="forumData">
+                            <div class="forumTitle">
+                                <a asp-controller="Forum" asp-action="Topic" asp-route-id="@forum.Id">@forum.Name</a>
+                            </div>
+                            <div class="forumSubTitle">
+                                @if (forum.HasRecentPosts)
+                                {
+                                    <div class="hasRecentPost">Hot</div>
+                                }
+                            </div>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="forumPostCount">
+                            @forum.NumberOfPosts Тем
+                        </div>
+                    </td>
+                    <td class="tdDisplayNone">
+                        <div class="forumDescription">
+                            @forum.Description
+                        </div>
+                    </td>
+                </tr>
+            }
+            </tbody>
+        </table>
+    </div>
+    <div class="row frontPageContent">
+        <h3 id="latestPosts">ПОСЛЕДНИЕ ТЕМЫ</h3>
         <table class="table table-hover" id="latestPostsTable">
             <tbody>
             @foreach (var post in Model.LatestPosts)

@@ -38,6 +38,11 @@ namespace SForum.Service
             await _context.SaveChangesAsync();
         }
 
+        public IEnumerable<Forum> GetPopularForums(int numberForums)
+        {
+            return GetAll().OrderByDescending(forum => forum.Posts.Count()).Take(numberForums);
+        }
+
         public async Task Edit(Forum forum)
         {
             var forumOld = GetById(forum.Id);
@@ -74,24 +79,6 @@ namespace SForum.Service
                 .Include(f => f.Posts).ThenInclude(p => p.Replies).ThenInclude(r => r.User).FirstOrDefault();
 
             return forum;
-        }
-
-        public async Task UpdateForumDescription(int forumId, string newDescription)
-        {
-            var forum = GetById(forumId);
-            forum.Description = newDescription;
-
-            _context.Update(forum);
-            await _context.SaveChangesAsync();
-        }
-
-        public async Task UpdateForumTitle(int forumId, string newTitle)
-        {
-            var forum = GetById(forumId);
-            forum.Title = newTitle;
-
-            _context.Update(forum);
-            await _context.SaveChangesAsync();
         }
     }
 }

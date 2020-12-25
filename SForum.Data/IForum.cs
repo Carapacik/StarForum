@@ -13,7 +13,6 @@ namespace SForum.Data
         Task Create(Forum forum);
         Task Edit(Forum forum);
         Task Delete(int forumId);
-        Task UpdateForumTitle(int forumId, string newTitle);
-        Task UpdateForumDescription(int forumId, string newDescription);
+        public IEnumerable<Forum> GetPopularForums(int numberForums);
     }
 }
