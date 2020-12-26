@@ -40,8 +40,7 @@
                             <div class="forumSubTitle">
                                 @if (User.IsInRole("Admin"))
                                 {
-                                    <a asp-controller="Forum" asp-action="Edit" asp-route-id="@forum.Id">Изменить</a>                                    
-                                }
+                                    <a asp-controller="Forum" asp-action="Edit" asp-route-id="@forum.Id">Изменить</a>                                }
                                 @if (forum.HasRecentPosts)
                                 {
                                     <div class="hasRecentPost">Hot</div>

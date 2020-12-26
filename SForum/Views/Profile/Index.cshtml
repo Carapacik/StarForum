@@ -15,32 +15,54 @@
                     Изображение
                 </th>
                 <th>
-                    <a asp-controller="Profile" asp-action="Index" asp-route-typeQuery="userName" class="linkDecorationNone">
+                    <a asp-controller="Profile" asp-action="Index" asp-route-typeQuery="userName" asp-route-oldTypeQuery="@Model.OldTypeQuery" class="linkDecorationNone">
                         Имя
-                        @if (Model.TypeQuery == "userName")
+                        @if (Model.TypeQuery == "userName" && Model.OldTypeQuery == Model.TypeQuery)
                         {
                             <i class="material-icons">arrow_drop_down</i>
+                        }
+                        else if (Model.TypeQuery == "userName")
+                        {
+                            <i class="material-icons">arrow_drop_up</i>
                         }
                     </a>
                 </th>
                 <th>
-                    E-mail
+                    <a asp-controller="Profile" asp-action="Index" asp-route-typeQuery="email" asp-route-oldTypeQuery="@Model.OldTypeQuery" class="linkDecorationNone">
+                        E-mail
+                        @if (Model.TypeQuery == "email" && Model.OldTypeQuery == Model.TypeQuery)
+                        {
+                            <i class="material-icons">arrow_drop_down</i>
+                        }
+                        else if (Model.TypeQuery == "email")
+                        {
+                            <i class="material-icons">arrow_drop_up</i>
+                        }
+                    </a>
                 </th>
                 <th>
-                    <a asp-controller="Profile" asp-action="Index" asp-route-typeQuery="memberSince" class="linkDecorationNone">
+                    <a asp-controller="Profile" asp-action="Index" asp-route-typeQuery="memberSince" asp-route-oldTypeQuery="@Model.OldTypeQuery" class="linkDecorationNone">
                         Дата регистрации
-                        @if (Model.TypeQuery == "memberSince")
+                        @if (Model.TypeQuery == "memberSince" && Model.OldTypeQuery == Model.TypeQuery)
                         {
                             <i class="material-icons">arrow_drop_down</i>
+                        }
+                        else if (Model.TypeQuery == "memberSince")
+                        {
+                            <i class="material-icons">arrow_drop_up</i>
                         }
                     </a>
                 </th>
                 <th>
-                    <a asp-controller="Profile" asp-action="Index" asp-route-typeQuery="" class="linkDecorationNone">
+                    <a asp-controller="Profile" asp-action="Index" asp-route-typeQuery="" asp-route-oldTypeQuery="@Model.OldTypeQuery" class="linkDecorationNone">
                         Рейтинг
-                        @if (Model.TypeQuery == "rating")
+                        @if (Model.TypeQuery == "rating" && Model.OldTypeQuery == Model.TypeQuery)
                         {
                             <i class="material-icons">arrow_drop_down</i>
+                        }
+                        else if (Model.TypeQuery == "rating")
+                        {
+                            <i class="material-icons">arrow_drop_up</i>
                         }
                     </a>
                 </th>
