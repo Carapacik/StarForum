@@ -21,7 +21,6 @@ namespace SForum.Service
         {
             const int hoursAgo = 12;
             var windows = DateTime.Now.AddHours(-hoursAgo);
-
             return GetById(id).Posts.Any(post => post.Created > windows);
         }
 
@@ -48,8 +47,7 @@ namespace SForum.Service
             var forumOld = GetById(forum.Id);
             forumOld.Description = forum.Description;
             forumOld.Title = forum.Title;
-            if (forum.ImageUrl != "") forumOld.ImageUrl = forum.ImageUrl;
-
+            if (!string.IsNullOrEmpty(forum.ImageUrl)) forumOld.ImageUrl = forum.ImageUrl;
             _context.Forums.Update(forumOld);
             await _context.SaveChangesAsync();
         }
@@ -62,22 +60,21 @@ namespace SForum.Service
         public IEnumerable<ApplicationUser> GetActiveUsers(int id)
         {
             var posts = GetById(id).Posts;
-            if (posts != null || !posts.Any())
-            {
-                var postUsers = posts.Select(p => p.User);
-                var replyUsers = posts.SelectMany(r => r.Replies).Select(p => p.User);
-                return postUsers.Union(replyUsers).Distinct();
-            }
-
-            return new List<ApplicationUser>();
+            if (posts == null && posts.Any()) return new List<ApplicationUser>();
+            var postUsers = posts.Select(p => p.User);
+            var replyUsers = posts.SelectMany(r => r.Replies).Select(p => p.User);
+            return postUsers.Union(replyUsers).Distinct();
         }
 
         public Forum GetById(int id)
         {
             var forum = _context.Forums.Where(f => f.Id == id)
-                .Include(f => f.Posts).ThenInclude(f => f.User)
-                .Include(f => f.Posts).ThenInclude(p => p.Replies).ThenInclude(r => r.User).FirstOrDefault();
-
+                .Include(f => f.Posts)
+                .ThenInclude(f => f.User)
+                .Include(f => f.Posts)
+                .ThenInclude(p => p.Replies)
+                .ThenInclude(r => r.User)
+                .FirstOrDefault();
             return forum;
         }
     }

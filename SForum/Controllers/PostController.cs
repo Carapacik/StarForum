@@ -56,7 +56,6 @@ namespace SForum.Controllers
         public IActionResult Create(int id)
         {
             var forum = _forumService.GetById(id);
-
             var model = new NewPostModel
             {
                 ForumName = forum.Title,
@@ -64,7 +63,6 @@ namespace SForum.Controllers
                 ForumImageUrl = forum.ImageUrl,
                 AuthorName = User.Identity.Name
             };
-
             return View(model);
         }
 

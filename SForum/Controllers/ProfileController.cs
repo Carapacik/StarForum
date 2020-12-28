@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
+using Microsoft.WindowsAzure.Storage.Blob;
 using SForum.Data;
 using SForum.Data.Models;
 using SForum.Models.ApplicationUser;
@@ -156,7 +157,6 @@ namespace SForum.Controllers
                 TypeQuery = typeQuery,
                 OldTypeQuery = oldTypeQuery
             };
-
             return View(model);
         }
 
@@ -172,9 +172,50 @@ namespace SForum.Controllers
                 Email = user.Email,
                 ProfileImageUrl = user.ProfileImageUrl,
                 MemberSince = user.MemberSince,
+                UserDescription = user.UserDescription,
                 IsAdmin = userRoles.Contains("Admin")
             };
             return View(model);
+        }
+
+        [Authorize]
+        public IActionResult Edit(string id)
+        {
+            var user = _userService.GetById(id);
+            var userRoles = _userManager.GetRolesAsync(user).Result;
+            var model = new ProfileModel
+            {
+                UserId = user.Id,
+                Username = user.UserName,
+                Email = user.Email,
+                UserDescription = user.UserDescription,
+                ProfileImageUrl = user.ProfileImageUrl,
+                IsAdmin = userRoles.Contains("Admin"),
+                MemberSince = user.MemberSince
+            };
+            return View(model);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> EditProfile(ProfileModel model)
+        {
+            var userId = _userManager.GetUserId(User);
+            var imageUri = "";
+            if (model.ImageUpload != null)
+            {
+                var blockBlob = UploadProfileImage1(model.ImageUpload);
+                imageUri = blockBlob.Uri.AbsoluteUri;
+            }
+
+            var forum = new ApplicationUser
+            {
+                Id = model.UserId,
+                UserDescription = model.UserDescription,
+                UserName = model.Username,
+                ProfileImageUrl = imageUri
+            };
+            await _userService.Edit(forum);
+            return RedirectToAction("Edit", "Profile", new {id = userId});
         }
 
         [HttpPost]
@@ -192,6 +233,21 @@ namespace SForum.Controllers
             await blockBlob.UploadFromStreamAsync(file.OpenReadStream());
             await _userService.SetProfileImage(userId, blockBlob.Uri);
             return RedirectToAction("Detail", "Profile", new {id = userId});
+        }
+
+        private CloudBlockBlob UploadProfileImage1(IFormFile file)
+        {
+            if (file.Length > 4 * 1024 * 1024 && !file.ContentType.Contains("image"))
+                return null;
+            var connectionString = _configuration.GetConnectionString("AzureStorageAccount");
+            var container = _uploadService.GetBlobContainer(connectionString, "forum-images");
+            var contentDisposition = ContentDispositionHeaderValue.Parse(file.ContentDisposition);
+            var filename = contentDisposition.FileName.Trim('"');
+            var blockBlob =
+                container.GetBlockBlobReference(Guid.NewGuid() + filename.Substring(filename.Length - 5, 4));
+            blockBlob.UploadFromStreamAsync(file.OpenReadStream()).Wait();
+
+            return blockBlob;
         }
     }
 }

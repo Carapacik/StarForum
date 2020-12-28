@@ -10,6 +10,7 @@ namespace SForum.Data
         ApplicationUser GetById(string id);
         IEnumerable<ApplicationUser> GetAll();
         Task Add(ApplicationUser user);
+        Task Edit(ApplicationUser user);
         Task Deactivate(ApplicationUser user);
         Task SetProfileImage(string id, Uri uri);
         Task UpdateUserRating(string id, Type type);

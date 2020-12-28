@@ -160,17 +160,16 @@ namespace SForum.Controllers
             var filename = contentDisposition.FileName.Trim('"');
             var blockBlob = container.GetBlockBlobReference(filename);
             blockBlob.UploadFromStreamAsync(file.OpenReadStream()).Wait();
-
             return blockBlob;
         }
 
-        private ForumListingModel BuildForumListing(Post post)
+        private static ForumListingModel BuildForumListing(Post post)
         {
             var forum = post.Forum;
             return BuildForumListing(forum);
         }
 
-        private ForumListingModel BuildForumListing(Forum forum)
+        private static ForumListingModel BuildForumListing(Forum forum)
         {
             return new ForumListingModel
             {

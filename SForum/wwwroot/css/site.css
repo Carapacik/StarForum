@@ -131,6 +131,17 @@
     .forumLogo {
         display: none;
     }
+
+    #userProfileEditImage{
+        margin: 0 auto;
+        min-width: 200px !important;
+        min-height: 200px !important;
+        background-size: 100%;
+    }
+    
+    #userProfileAdmin{
+        min-width: 200px !important;
+    }
 }
 
 @media screen and (max-width: 768px) {
@@ -402,7 +413,6 @@
     margin-bottom: 8px;
 }
 
-
 /*User profile*/
 
 .userProfilePic {
@@ -416,6 +426,17 @@
     display: block;
 }
 
+#editProfileSection{
+    margin-top: 10px;
+    width: 100%;
+    background-color: #fff;
+    padding: 24px;
+}
+
+.editProfileSection{
+    width: 70%;
+    margin: 20px auto;    
+}
 
 /*Reply*/
 
@@ -449,6 +470,11 @@
     font-family: 'Roboto Mono';
 }
 
+.isAdminEdit{
+    width: 100%;
+    text-align: center;
+}
+
 .smaller {
     font-size: 0.8em;
 }
@@ -476,6 +502,10 @@
 
 
 /*Custom btn*/
+
+.edit-btn{
+    margin-top: 10px;
+}
 
 .btn-file {
     background: none !important;
@@ -561,6 +591,19 @@
     margin-top: 10px;
     padding: 32px 0 64px 24px;
     background-color: #fff;
+}
+
+#userProfileEditImage{
+    margin: 0 auto;
+    min-width: 300px;
+    min-height: 300px;
+    background-size: 100%;
+}
+
+#userProfileAdmin{
+    
+    min-width: 300px;
+    margin: 0 auto;
 }
 
 #userProfileImage {

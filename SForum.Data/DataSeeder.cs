@@ -20,7 +20,6 @@ namespace SForum.Data
         {
             var roleStore = new RoleStore<IdentityRole>(_context);
             var userStore = new UserStore<ApplicationUser>(_context);
-
             var user = new ApplicationUser
             {
                 UserName = "ForumAdmin",
@@ -34,11 +33,8 @@ namespace SForum.Data
             var hasher = new PasswordHasher<ApplicationUser>();
             var hashedPassword = hasher.HashPassword(user, "admin");
             user.PasswordHash = hashedPassword;
-
-
             var hasAdminRole = _context.Roles.Any(r => r.Name == "Admin");
             if (!hasAdminRole) roleStore.CreateAsync(new IdentityRole {Name = "Admin", NormalizedName = "admin"});
-
             var hasSuperUser = _context.Users.Any(u => u.NormalizedUserName == user.UserName);
             if (!hasSuperUser)
             {
@@ -47,7 +43,6 @@ namespace SForum.Data
             }
 
             _context.SaveChangesAsync();
-
             return Task.CompletedTask;
         }
     }

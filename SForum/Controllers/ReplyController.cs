@@ -28,25 +28,20 @@ namespace SForum.Controllers
         {
             var post = _postService.GetById(id);
             var user = await _userManager.FindByNameAsync(User.Identity.Name);
-
             var model = new PostReplyModel
             {
                 PostId = post.Id,
                 PostContent = post.Content,
                 PostTitle = post.Title,
-
                 AuthorId = user.Id,
                 AuthorName = User.Identity.Name,
                 AuthorImageUrl = user.ProfileImageUrl,
                 IsAuthorAdmin = User.IsInRole("Admin"),
-
                 ForumId = post.Forum.Id,
                 ForumName = post.Forum.Title,
                 ForumImageUrl = post.Forum.ImageUrl,
-
                 Created = DateTime.Now
             };
-
             return View(model);
         }
 
@@ -56,17 +51,14 @@ namespace SForum.Controllers
             var userId = _userManager.GetUserId(User);
             var user = await _userManager.FindByIdAsync(userId);
             var reply = BuildReply(model, user);
-
             await _postService.AddReply(reply);
             await _userService.UpdateUserRating(userId, typeof(PostReply));
-
             return RedirectToAction("Index", "Post", new {id = model.PostId});
         }
 
         private PostReply BuildReply(PostReplyModel model, ApplicationUser user)
         {
             var post = _postService.GetById(model.PostId);
-
             return new PostReply
             {
                 Post = post,

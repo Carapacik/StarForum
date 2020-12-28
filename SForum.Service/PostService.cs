@@ -82,7 +82,6 @@ namespace SForum.Service
         public IEnumerable<Post> GetFilteredPosts(string searchQuery)
         {
             var query = searchQuery.ToLower();
-
             return GetAll().Where(post =>
                 post.Title.ToLower().Contains(query)
                 || post.Content.ToLower().Contains(query));

@@ -22,6 +22,17 @@ namespace SForum.Service
             await _context.SaveChangesAsync();
         }
 
+        public async Task Edit(ApplicationUser user)
+        {
+            var userOld = GetById(user.Id);
+            userOld.UserDescription = user.UserDescription;
+            userOld.UserName = user.UserName;
+            userOld.NormalizedUserName = user.UserName.Normalize();
+            if (!string.IsNullOrEmpty(user.ProfileImageUrl)) userOld.ProfileImageUrl = user.ProfileImageUrl;
+            _context.ApplicationUsers.Update(userOld);
+            await _context.SaveChangesAsync();
+        }
+
         public async Task Deactivate(ApplicationUser user)
         {
             user.IsActive = false;
@@ -59,7 +70,6 @@ namespace SForum.Service
             var inc = 0;
             if (type == typeof(Post)) inc = 1;
             if (type == typeof(PostReply)) inc = 3;
-
             return userRating + inc;
         }
     }

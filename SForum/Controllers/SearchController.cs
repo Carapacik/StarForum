@@ -31,7 +31,6 @@ namespace SForum.Controllers
                 DatePosted = post.Created.ToString(),
                 RepliesCount = post.Replies.Count()
             }).OrderByDescending(post => post.DatePosted);
-
             var areNoResults = !string.IsNullOrEmpty(searchQuery) && !posts.Any();
             var model = new SearchResultModel
             {
@@ -39,7 +38,6 @@ namespace SForum.Controllers
                 Posts = postListings,
                 SearchQuery = searchQuery
             };
-
             return View(model);
         }
 

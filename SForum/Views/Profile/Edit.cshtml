@@ -1,0 +1,53 @@
+﻿@using SForum.Data.Models
+@using Microsoft.AspNetCore.Identity
+@model SForum.Models.ApplicationUser.ProfileModel
+@inject UserManager<ApplicationUser> UserManager
+@{
+    ViewData["Title"] = "Изменить";
+}
+
+<div class="container body-content">
+    <div class="row sectionHeader">
+        <div class="sectionHeading noBorder">
+            Изменить профиль
+        </div>
+    </div>
+    <div id="editProfileSection">
+        <div class="row">
+            <div id="userProfileEditImage" style="background-image: url(@Model.ProfileImageUrl)"></div>
+        </div>
+        <div class="row">
+            <div id="userProfileAdmin">
+                @if (Model.IsAdmin)
+                {
+                    <span class="isAdmin isAdminEdit">Admin</span>
+                }
+            </div>
+        </div>
+        <div class="row">
+            <div class="editProfileSection">
+                <form asp-action="EditProfile" method="post" id="editProfileForm" enctype="multipart/form-data">
+                    <div asp-validation-summary="All" class="text-danger"> </div>
+                    <div id="upload">
+                        <label>Прикрепить другой аватар</label><br/>
+                        <label class="btn btn-default btn-file">
+                            Выбрать <input asp-for="ImageUpload" typeof="file" style="display:none"/>
+                        </label>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Username">Имя пользователя</label>
+                        <input asp-for="Username" class="form-control" required placeholder="Имя пользователя" value="@Model.Username"/>
+                        <span asp-validation-for="Username" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="UserDescription">Статус/Описание</label>
+                        <input asp-for="UserDescription" class="form-control" required placeholder="Статус" value="@Model.UserDescription"/>
+                        <span asp-validation-for="UserDescription" class="text-danger"></span>
+                    </div>
+                    <input asp-for="UserId" type="hidden"/>
+                    <button type="submit" id="newFormBtn" class="btn btn-submitPost">Изменить</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
