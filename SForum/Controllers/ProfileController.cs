@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
@@ -156,7 +157,6 @@ namespace SForum.Controllers
                 OldTypeQuery = oldTypeQuery
             };
 
-
             return View(model);
         }
 
@@ -181,11 +181,14 @@ namespace SForum.Controllers
         public async Task<IActionResult> UploadProfileImage(IFormFile file)
         {
             var userId = _userManager.GetUserId(User);
+            if (file.Length > 4 * 1024 * 1024 && !file.ContentType.Contains("image"))
+                return RedirectToAction("Detail", "Profile", new {id = userId});
             var connectionString = _configuration.GetConnectionString("AzureStorageAccount");
             var container = _uploadService.GetBlobContainer(connectionString, "profile-images");
             var contentDisposition = ContentDispositionHeaderValue.Parse(file.ContentDisposition);
             var filename = contentDisposition.FileName.Trim('"');
-            var blockBlob = container.GetBlockBlobReference(filename);
+            var blockBlob =
+                container.GetBlockBlobReference(Guid.NewGuid() + filename.Substring(filename.Length - 5, 4));
             await blockBlob.UploadFromStreamAsync(file.OpenReadStream());
             await _userService.SetProfileImage(userId, blockBlob.Uri);
             return RedirectToAction("Detail", "Profile", new {id = userId});

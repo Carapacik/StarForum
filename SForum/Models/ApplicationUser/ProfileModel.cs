@@ -12,7 +12,6 @@ namespace SForum.Models.ApplicationUser
         public string ProfileImageUrl { get; set; }
         public bool IsActive { get; set; }
         public bool IsAdmin { get; set; }
-
         public DateTime MemberSince { get; set; }
         public IFormFile ImageUpload { get; set; }
     }
