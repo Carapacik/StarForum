@@ -214,7 +214,7 @@ namespace SForum.Controllers
                 UserName = model.Username,
                 ProfileImageUrl = imageUri
             };
-            
+
             await _userService.Edit(forum);
             return RedirectToAction("Detail", "Profile", new {id = userId});
         }
