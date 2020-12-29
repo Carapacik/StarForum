@@ -34,7 +34,7 @@
                     </div>
                     <div class="form-group">
                         <label asp-for="ReplyContent">Ответ: </label>
-                        <textarea asp-for="ReplyContent" rows="10" class="form-control" required placeholder="Написать ответ..."></textarea>
+                        <textarea asp-for="ReplyContent" rows="10" class="form-control" required placeholder="Написать ответ..." maxlength="300"></textarea>
                         <span asp-validation-for="ReplyContent" class="text-danger"></span>
                     </div>
                     <button type="submit" id="submitReplyBtn" class="btn btn-submitPost">Отправить ответ</button>

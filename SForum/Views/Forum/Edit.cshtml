@@ -15,12 +15,12 @@
                 <div asp-validation-summary="All" class="text-danger"> </div>
                 <div class="form-group">
                     <label asp-for="Title">Категория</label>
-                    <input asp-for="Title" class="form-control" required placeholder="Изменить заголовок категории" value="@Model.Title"/>
+                    <input asp-for="Title" class="form-control" required placeholder="Изменить заголовок категории" maxlength="25" value="@Model.Title"/>
                     <span asp-validation-for="Title" class="text-danger"></span>
                 </div>
                 <div class="form-group>">
                     <label asp-for="Description">Описание</label>
-                    <input asp-for="Description" class="form-control" required placeholder="Изменить описание категории" value="@Model.Description"/>
+                    <input asp-for="Description" class="form-control" required placeholder="Изменить описание категории" maxlength="100" value="@Model.Description"/>
                     <span asp-validation-for="Description" class="text-danger"></span>
                 </div>
                 <div id="upload">

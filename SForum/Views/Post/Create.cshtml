@@ -24,12 +24,12 @@
                     <div asp-validation-summary="All" class="text-danger"></div>
                     <div class="form-group">
                         <label asp-for="Title">Заголовок</label>
-                        <input asp-for="Title" class="form-control" required placeholder="Заголовок"/>
+                        <input asp-for="Title" class="form-control" required placeholder="Заголовок" maxlength="40"/>
                         <span asp-validation-for="Title" class="text-danger"></span>
                     </div>
                     <div class="form-group">
                         <label asp-for="Content">Описание</label>
-                        <textarea asp-for="Content" rows="10" class="form-control" required placeholder="Опишите пост здесь..."></textarea>
+                        <textarea asp-for="Content" rows="10" class="form-control" required placeholder="Опишите пост здесь..."maxlength="250"></textarea>
                         <span asp-validation-for="Content" class="text-danger"></span>
                     </div>
                     <button type="submit" id="registerBtn" class="btn btn-submitPost">Отправить пост</button>

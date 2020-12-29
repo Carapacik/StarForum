@@ -154,7 +154,7 @@
         margin: 0 auto;
         min-width: 200px !important;
         min-height: 200px !important;
-        background-size: 100%;
+        background-size: cover;
     }
     
     #userProfileAdmin{
@@ -618,7 +618,7 @@
     margin: 0 auto;
     min-width: 300px;
     min-height: 300px;
-    background-size: 100%;
+    background-size: cover;
 }
 
 #userProfileAdmin{

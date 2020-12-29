@@ -17,7 +17,7 @@
         <div class="sectionDescription">
             <form asp-controller="Forum" asp-action="Search" method="post">
                 <div class="searchForm">
-                    <input asp-for="SearchQuery" type="text" placeholder="Поиск..." required class="searchBar" onfocus="clearThis(this)">
+                    <input asp-for="SearchQuery" type="text" placeholder="Поиск..." required class="searchBar" maxlength="40" onfocus="clearThis(this)">
                     <button type="submit" class="btn btn-forumSearch">
                         <i class="material-icons searchBtnRed">search</i>
                     </button>

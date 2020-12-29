@@ -38,12 +38,12 @@
                         </div>
                         <div class="form-group">
                             <label asp-for="Username">Имя пользователя</label>
-                            <input asp-for="Username" class="form-control" required placeholder="Имя пользователя" value="@Model.Username"/>
+                            <input asp-for="Username" class="form-control" required placeholder="Имя пользователя" value="@Model.Username" maxlength="30"/>
                             <span asp-validation-for="Username" class="text-danger"></span>
                         </div>
                         <div class="form-group">
                             <label asp-for="UserDescription">Статус/Описание</label>
-                            <input asp-for="UserDescription" class="form-control" placeholder="Статус" value="@Model.UserDescription"/>
+                            <input asp-for="UserDescription" class="form-control" placeholder="Статус" value="@Model.UserDescription" maxlength="100"/>
                             <span asp-validation-for="UserDescription" class="text-danger"></span>
                         </div>
                         <input asp-for="UserId" type="hidden"/>
