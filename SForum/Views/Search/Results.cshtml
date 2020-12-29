@@ -6,7 +6,7 @@
 <div class="container body-content">
     <div class="row sectionHeader">
         <div class="sectionHeading">
-            <span id="results">Results for: @Model.SearchQuery</span>
+            <span id="results">Результаты поиска по "@Model.SearchQuery"</span>
             <form asp-controller="Search" asp-action="Search" method="post">
                 <div class="searchForm">
                     <input asp-for="SearchQuery" type="text" placeholder="Search..." class="searchBar" onfocus="clearThis(this)">

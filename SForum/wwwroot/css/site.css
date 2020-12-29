@@ -42,7 +42,7 @@
     min-height: 40px;
 }
 
-.navLogo:hover{
+.navLogo:hover{ 
     background-image: url("../images/theme/sforum-logo.gif");
 }
 
