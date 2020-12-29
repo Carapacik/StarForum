@@ -20,6 +20,7 @@ namespace SForum.Controllers
 
         public IActionResult Results(string searchQuery)
         {
+            if (searchQuery == null) return RedirectToAction("Index", "Home");
             var posts = _postService.GetFilteredPosts(searchQuery);
             var postListings = posts.Select(post => new PostListingModel
             {

@@ -214,8 +214,9 @@ namespace SForum.Controllers
                 UserName = model.Username,
                 ProfileImageUrl = imageUri
             };
+            
             await _userService.Edit(forum);
-            return RedirectToAction("Edit", "Profile", new {id = userId});
+            return RedirectToAction("Detail", "Profile", new {id = userId});
         }
 
         private CloudBlockBlob UploadProfileImage1(IFormFile file)

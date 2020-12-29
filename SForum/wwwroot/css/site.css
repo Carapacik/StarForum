@@ -328,10 +328,9 @@
     margin-bottom: 12px;
 }
 
-
 /*Forum index*/
 
-#forumIndexTable {
+#forumIndexTable, #searchIndexTable {
     margin: 0 !important;
 }
 
