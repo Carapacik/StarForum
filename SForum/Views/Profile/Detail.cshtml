@@ -23,7 +23,7 @@
                 <span class="isAdmin">Admin</span>
             }
             <span id="userRating">Текущий рейтинг: @Model.UserRating</span>
-            @if (Model.IsAdmin)
+            @if (User.Identity.Name == Model.Username || User.IsInRole("Admin"))
             {
                 <span id="userEmailLabel">Email: @Model.Email</span>
             }
@@ -32,7 +32,7 @@
             {
                 <span id="userDescription">Статус: @Model.UserDescription</span>
             }
-            @if (User.Identity.Name == Model.Username)
+            @if (User.Identity.Name == Model.Username || User.IsInRole("Admin"))
             {
                 <div class="edit-btn">
                     <a class="btn btn-default btn-submitPost" asp-controller="Profile" asp-action="Edit" asp-route-id="@Model.UserId">Изменить профиль</a>

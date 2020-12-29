@@ -10,7 +10,6 @@ namespace SForum.Models.Post
         public int AuthorRating { get; set; }
         public string AuthorId { get; set; }
         public string DatePosted { get; set; }
-
         public ForumListingModel Forum { get; set; }
         public int RepliesCount { get; set; }
     }

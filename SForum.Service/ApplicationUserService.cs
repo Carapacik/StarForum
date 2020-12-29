@@ -57,14 +57,6 @@ namespace SForum.Service
             await _context.SaveChangesAsync();
         }
 
-        public async Task SetProfileImage(string id, Uri uri)
-        {
-            var user = GetById(id);
-            user.ProfileImageUrl = uri.AbsoluteUri;
-            _context.Update(user);
-            await _context.SaveChangesAsync();
-        }
-
         private static int CalculateUserRating(Type type, int userRating)
         {
             var inc = 0;

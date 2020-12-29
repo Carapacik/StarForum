@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Globalization;
+using System.Linq;
 using Microsoft.AspNetCore.Mvc;
 using SForum.Data;
 using SForum.Data.Models;
@@ -28,7 +29,7 @@ namespace SForum.Controllers
                 AuthorId = post.User.Id,
                 AuthorRating = post.User.Rating,
                 Title = post.Title,
-                DatePosted = post.Created.ToString(),
+                DatePosted = post.Created.ToString(CultureInfo.InvariantCulture),
                 RepliesCount = post.Replies.Count()
             }).OrderByDescending(post => post.DatePosted);
             var areNoResults = !string.IsNullOrEmpty(searchQuery) && !posts.Any();

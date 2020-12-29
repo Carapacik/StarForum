@@ -12,7 +12,6 @@ namespace SForum.Data
         Task Add(ApplicationUser user);
         Task Edit(ApplicationUser user);
         Task Deactivate(ApplicationUser user);
-        Task SetProfileImage(string id, Uri uri);
         Task UpdateUserRating(string id, Type type);
     }
 }

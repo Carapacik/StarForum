@@ -171,7 +171,7 @@ namespace SForum.Controllers
 
         private static ForumListingModel BuildForumListing(Forum forum)
         {
-            return new ForumListingModel
+            return new()
             {
                 Id = forum.Id,
                 Name = forum.Title,

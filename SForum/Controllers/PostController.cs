@@ -58,10 +58,11 @@ namespace SForum.Controllers
             var forum = _forumService.GetById(id);
             var model = new NewPostModel
             {
+                AuthorName = User.Identity.Name,
+                Created = DateTime.Now,
                 ForumName = forum.Title,
                 ForumId = forum.Id,
-                ForumImageUrl = forum.ImageUrl,
-                AuthorName = User.Identity.Name
+                ForumImageUrl = forum.ImageUrl
             };
             return View(model);
         }
