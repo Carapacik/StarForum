@@ -1,4 +1,5 @@
 ﻿using System.Diagnostics;
+using System.Globalization;
 using System.Linq;
 using Microsoft.AspNetCore.Mvc;
 using SForum.Data;
@@ -40,7 +41,7 @@ namespace SForum.Controllers
 
         private HomeIndexModel BuildHomeIndexModel()
         {
-            var latestPosts = _postService.GetLatestPosts(10);
+            var latestPosts = _postService.GetLatestPosts(7);
             var posts = latestPosts.Select(post => new PostListingModel
             {
                 Id = post.Id,
@@ -48,7 +49,7 @@ namespace SForum.Controllers
                 AuthorId = post.User.Id,
                 Author = post.User.UserName,
                 AuthorRating = post.User.Rating,
-                DatePosted = post.Created.ToString(),
+                DatePosted = post.Created.ToString(CultureInfo.InvariantCulture),
                 RepliesCount = post.Replies.Count(),
                 Forum = GetForumListingForPost(post)
             });

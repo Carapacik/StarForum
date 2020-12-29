@@ -17,15 +17,33 @@
     text-decoration: none;
 }
 
+.paddingBlock{
+    padding: 0 !important;
+    text-align: center;
+}
+
+.cardNew{
+    padding: 0 0 0.6em 0 !important;
+}
+
+.cardHeaderNewTabs{
+    margin-right: 0 !important;
+    margin-left: 0 !important;
+}
+
 .navLogo {
-    background-image: url("../images/app-logo-s.png");
+    background-image: url("../images/theme/sforum-logo.png");
     background-size: 100%;
     background-repeat: no-repeat;
     background-position: center;
     padding-right: 16px;
-    width: 150px;
+    width: 138px;
     margin-right: 12px;
     min-height: 40px;
+}
+
+.navLogo:hover{
+    background-image: url("../images/theme/sforum-logo.gif");
 }
 
 .navbar li {
