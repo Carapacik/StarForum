@@ -55,7 +55,6 @@ namespace SForum.Controllers
             });
 
             var popularForums = _forumService.GetPopularForums(5);
-
             var forums = popularForums
                 .Select(forum => new ForumListingModel
                 {

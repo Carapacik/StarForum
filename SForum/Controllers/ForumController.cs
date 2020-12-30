@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Globalization;
 using System.Linq;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
@@ -100,7 +101,7 @@ namespace SForum.Controllers
                 AuthorRating = post.User.Rating,
                 Author = post.User.UserName,
                 Title = post.Title,
-                DatePosted = post.Created.ToString(),
+                DatePosted = post.Created.ToString(CultureInfo.InvariantCulture),
                 RepliesCount = post.Replies.Count(),
                 Forum = BuildForumListing(post)
             });
@@ -157,8 +158,10 @@ namespace SForum.Controllers
             var connectionString = _configuration.GetConnectionString("AzureStorageAccount");
             var container = _uploadService.GetBlobContainer(connectionString, "forum-images");
             var contentDisposition = ContentDispositionHeaderValue.Parse(file.ContentDisposition);
+            if (contentDisposition.FileName == null) return null;
             var filename = contentDisposition.FileName.Trim('"');
-            var blockBlob = container.GetBlockBlobReference(filename);
+            var blockBlob =
+                container.GetBlockBlobReference(Guid.NewGuid() + filename.Substring(filename.Length - 5, 5));
             blockBlob.UploadFromStreamAsync(file.OpenReadStream()).Wait();
             return blockBlob;
         }

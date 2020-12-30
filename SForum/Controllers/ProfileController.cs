@@ -229,7 +229,7 @@ namespace SForum.Controllers
             if (contentDisposition.FileName == null) return null;
             var filename = contentDisposition.FileName.Trim('"');
             var blockBlob =
-                container.GetBlockBlobReference(Guid.NewGuid() + filename.Substring(filename.Length - 5, 4));
+                container.GetBlockBlobReference(Guid.NewGuid() + filename.Substring(filename.Length - 5, 5));
             blockBlob.UploadFromStreamAsync(file.OpenReadStream()).Wait();
 
             return blockBlob;
