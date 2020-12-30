@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
@@ -229,7 +230,7 @@ namespace SForum.Controllers
             if (contentDisposition.FileName == null) return null;
             var filename = contentDisposition.FileName.Trim('"');
             var blockBlob =
-                container.GetBlockBlobReference(Guid.NewGuid() + filename.Substring(filename.Length - 5, 5));
+                container.GetBlockBlobReference(Guid.NewGuid() + Path.GetExtension(filename));
             blockBlob.UploadFromStreamAsync(file.OpenReadStream()).Wait();
 
             return blockBlob;
