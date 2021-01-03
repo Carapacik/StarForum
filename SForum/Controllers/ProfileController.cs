@@ -232,9 +232,9 @@ namespace SForum.Controllers
             var container = _uploadService.GetBlobContainer(connectionString, "profile-images");
             var contentDisposition = ContentDispositionHeaderValue.Parse(file.ContentDisposition);
             if (contentDisposition.FileName == null) return null;
-            var filename = contentDisposition.FileName.Trim('"');
             var blockBlob =
-                container.GetBlockBlobReference(Guid.NewGuid() + Path.GetExtension(filename));
+                container.GetBlockBlobReference(Guid.NewGuid() +
+                                                Path.GetExtension(contentDisposition.FileName.Trim('"')));
             blockBlob.UploadFromStreamAsync(file.OpenReadStream()).Wait();
 
             return blockBlob;

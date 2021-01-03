@@ -292,8 +292,9 @@
 
 .postAuthorImage {
     background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
     background-image: url(../images/theme/default.png);
-    background-size: 100%;
     height: 80px;
     width: 80px;
 }
@@ -384,9 +385,12 @@
     margin-right: 20px;
     height: 50px;
     width: 50px;
-    background-color: #ddd;
-    border: 1px solid #555;
-    background-size: 100%;
+    border: 1px solid #696969;
+    background-color: #fff;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    background-image: url(../images/theme/defaultForum.png);
 }
 
 .forumPostCount {
@@ -458,7 +462,8 @@
     height: 140px;
     width: 140px;
     background-repeat: no-repeat;
-    background-size: 100%;
+    background-size: cover;
+    background-position: center;
 }
 
 .userProfileBlock {
@@ -653,7 +658,10 @@
     margin: 0 auto;
     min-width: 300px;
     min-height: 300px;
+    background-repeat: no-repeat;
     background-size: cover;
+    background-position: center;
+    background-image: url(../images/theme/default.png);
 }
 
 #userProfileAdmin {
@@ -663,11 +671,12 @@
 
 #userProfileImage {
     display: inline-block;
-    background-image: url(../images/theme/default.png);
-    background-size: 100%;
+    background-image: url(../images/theme/default.png);    
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
     width: 240px;
     height: 240px;
-    background-repeat: no-repeat;
 }
 
 #userEmailLabel,
