@@ -51,6 +51,14 @@ namespace SForum.Service
             await _context.SaveChangesAsync();
         }
 
+        public async Task EditPostTitle(int id, string title)
+        {
+            var post = GetById(id);
+            post.Title = title;
+            _context.Posts.Update(post);
+            await _context.SaveChangesAsync();
+        }
+
         public IEnumerable<Post> GetAll()
         {
             var posts = _context.Posts

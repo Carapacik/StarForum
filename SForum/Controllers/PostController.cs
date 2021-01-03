@@ -81,6 +81,30 @@ namespace SForum.Controllers
             return RedirectToAction("Index", "Post", new {id = post.Id});
         }
 
+        [Authorize]
+        public IActionResult Edit(int id)
+        {
+            var post = _postService.GetById(id);
+            var model = new EditPostModel
+            {
+                PostId = post.Id,
+                Content = post.Content,
+                Title = post.Title,
+                AuthorName = post.User.UserName,
+                IsAdmin = post.User.IsAdmin
+            };
+            return View(model);
+        }
+
+        [Authorize]
+        [HttpPost]
+        public async Task<IActionResult> EditPost(EditPostModel model)
+        {
+            await _postService.EditPostContent(model.PostId, model.Content);
+            await _postService.EditPostTitle(model.PostId, model.Title);
+            return RedirectToAction("Index", "Post", new { id = model.PostId });
+        }
+
         private static bool IsAuthorAdmin(ApplicationUser user)
         {
             return _userManager.GetRolesAsync(user).Result.Contains("Admin");

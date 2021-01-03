@@ -1,0 +1,41 @@
+﻿@model SForum.Models.Reply.EditPostReplyModel
+@{
+    ViewData["Title"] = "Редактировать";
+}
+
+<div class="container body-content">
+    @if (User.Identity.Name == Model.AuthorName || User.IsInRole("Admin"))
+    {
+        <div class="container body-content">
+            <div class="row sectionHeader">
+                <div class="sectionHeading">
+                    Редактировать сообщение
+                    <span id="headingBtn">
+                        <a asp-controller="Post" asp-action="Index" asp-route-id="@Model.PostId" class="btn btn-back">Назад в @Model.PostTitle</a>
+                    </span>
+                </div>
+            </div>
+            <div class="row">
+                <div id="editReply">
+                    <form asp-action="EditReply" method="post" id="addPostForum">
+                        <div asp-validation-summary="All" class="text-danger">
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Content">Сообщение: </label>
+                            <textarea asp-for="Content" rows="10" class="form-control" required placeholder="Написать ответ..." value="@Model.Content" maxlength="300"></textarea>
+                            <span asp-validation-for="Content" class="text-danger"></span>
+                        </div>
+                        <input asp-for="ReplyId" type="hidden" />
+                        <input asp-for="PostId" type="hidden" />
+                        <button type="submit" id="submitReplyBtn" class="btn btn-submitPost">Отправить ответ</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    }
+    else
+    {
+        <h1 class="text-danger">Error.</h1>
+        <h2 class="text-danger">У вас нет доступа к этому профилю</h2>
+    }
+</div>

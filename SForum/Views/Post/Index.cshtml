@@ -19,14 +19,18 @@
             <div class="postAuthorImage" style="background-image: url(@Model.AuthorImageUrl); background-size: 100%;"></div>
             <a asp-controller="Profile" asp-action="Detail" asp-route-id="@Model.AuthorId">
                 <strong>@Model.AuthorName</strong>
-            </a> (<span class="postAuthorRating">@Model.AuthorRating</span>) <br/>
+            </a> (<span class="postAuthorRating">@Model.AuthorRating</span>) <br />
             @if (Model.IsAuthorAdmin)
             {
                 <span class="isAdmin smaller">Admin</span>
-                <br/>
+                <br />
             }
             <span class="postDate">@Model.Created</span>
-        </div>
+            @if (User.Identity.Name == Model.AuthorName || User.IsInRole("Admin"))
+            {
+                <a asp-controller="Post" asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-newReply">Редактировать</a>
+            }
+            </div>
         <div class="col-md-9 postContentContainer">
             <div class="postContent">
                 @Html.Raw(Model.PostContent)
@@ -51,13 +55,17 @@
                     <div class="postAuthorImage" style="background-image: url(@reply.AuthorImageUrl); background-size: 100%;"></div>
                     <a asp-controller="Profile" asp-action="Detail" asp-route-id="@reply.AuthorId">
                         <strong>@reply.AuthorName</strong>
-                    </a> (<span class="postAuthorRating">@reply.AuthorRating</span>) <br/>
+                    </a> (<span class="postAuthorRating">@reply.AuthorRating</span>) <br />
                     @if (reply.IsAuthorAdmin)
                     {
                         <div class="isAdmin profileLabel smaller">Admin</div>
-                        <br/>
+                        <br />
                     }
                     <span class="postDate">@reply.Created</span>
+                    @if (User.Identity.Name == reply.AuthorName || User.IsInRole("Admin"))
+                    {
+                        <a asp-controller="Reply" asp-action="Edit" asp-route-id="@reply.Id" class="btn btn-newReply">Редактировать</a>
+                    }
                 </div>
                 <div class="col-md-9 replyContentContainer">
                     <div class="postContent">

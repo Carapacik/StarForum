@@ -11,6 +11,7 @@ namespace SForum.Data
         Task Archive(int id);
         Task Delete(int id);
         Task EditPostContent(int id, string content);
+        Task EditPostTitle(int id, string title);
         int GetReplyCount(int id);
         Post GetById(int id);
         IEnumerable<Post> GetAll();

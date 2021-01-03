@@ -5,6 +5,7 @@ using System.Linq;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -23,14 +24,16 @@ namespace SForum.Controllers
         private readonly IUpload _uploadService;
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly IApplicationUser _userService;
+        private readonly IWebHostEnvironment _webHostEnvironment;
 
         public ProfileController(UserManager<ApplicationUser> userManager, IApplicationUser userService,
-            IUpload uploadService, IConfiguration configuration)
+            IUpload uploadService, IConfiguration configuration, IWebHostEnvironment hostEnvironment)
         {
             _userManager = userManager;
             _userService = userService;
             _uploadService = uploadService;
             _configuration = configuration;
+            _webHostEnvironment = hostEnvironment;
         }
 
         [Authorize(Roles = "Admin")]
@@ -204,8 +207,8 @@ namespace SForum.Controllers
             var imageUri = "";
             if (model.ImageUpload != null)
             {
-                var blockBlob = UploadProfileImage1(model.ImageUpload);
-                imageUri = blockBlob.Uri.AbsoluteUri;
+                imageUri = UploadProfileImage(model.ImageUpload);
+                //imageUri = blockBlob.Uri.AbsoluteUri;
             }
 
             var forum = new ApplicationUser
@@ -234,6 +237,25 @@ namespace SForum.Controllers
             blockBlob.UploadFromStreamAsync(file.OpenReadStream()).Wait();
 
             return blockBlob;
+        }
+
+        private string UploadProfileImage(IFormFile file)
+        {
+            if (file.Length > 4 * 1024 * 1024 && !file.ContentType.Contains("image"))
+                return null;
+            string wwwRootPath = _webHostEnvironment.WebRootPath;
+            var contentDisposition = ContentDispositionHeaderValue.Parse(file.ContentDisposition);
+            if (contentDisposition.FileName == null) return null;
+            var filename = contentDisposition.FileName.Trim('"');
+            string uniqueFileName = (Guid.NewGuid() + Path.GetExtension(filename));
+
+            string path = Path.Combine(wwwRootPath + "/images/", filename);
+
+            using (var fileStream = new FileStream(path, FileMode.Create))
+            {
+                file.CopyTo(fileStream);
+            }
+            return uniqueFileName;
         }
     }
 }
