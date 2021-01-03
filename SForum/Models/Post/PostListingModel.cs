@@ -12,5 +12,6 @@ namespace SForum.Models.Post
         public string DatePosted { get; set; }
         public ForumListingModel Forum { get; set; }
         public int RepliesCount { get; set; }
+        public bool IsPostArchived { get; set; }
     }
 }

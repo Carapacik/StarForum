@@ -47,6 +47,12 @@
                             <div class="postData">
                                 <div class="postTitle">
                                     <a asp-controller="Post" asp-action="Index" asp-route-id="@post.Id">@post.Title</a>
+                                    @if (post.IsPostArchived)
+                                    {
+                                        <span class="lockIcon material-icons">
+                                            lock
+                                        </span>
+                                    }
                                 </div>
                                 <div class="forumSubTitle">
                                     <div>

@@ -8,25 +8,25 @@
     font-family: 'Roboto', sans-serif;
 }
 
-.linkDecorationNone{
+.linkDecorationNone {
     text-decoration: none;
-    color: #000 !important;    
+    color: #000 !important;
 }
 
-.linkDecorationNone:hover{
+.linkDecorationNone:hover {
     text-decoration: none;
 }
 
-.paddingBlock{
+.paddingBlock {
     padding: 0 !important;
     text-align: center;
 }
 
-.cardNew{
+.cardNew {
     padding: 0 0 0.6em 0 !important;
 }
 
-.cardHeaderNewTabs{
+.cardHeaderNewTabs {
     margin-right: 0 !important;
     margin-left: 0 !important;
 }
@@ -145,24 +145,21 @@
     .forumLogo {
         display: none;
     }
-
-    #userProfileEditImage{
+    #userProfileEditImage {
         margin: 0 auto;
         min-width: 200px !important;
         min-height: 200px !important;
         background-size: cover;
     }
-    
-    #userProfileAdmin{
+    #userProfileAdmin {
         min-width: 200px !important;
     }
 }
 
 @media screen and (max-width: 768px) {
-    html{
+    html {
         font-size: 16px;
     }
-    
     .frontPageHeading {
         font-size: 2em;
         text-align: center;
@@ -212,7 +209,8 @@
     margin-top: 10px;
 }
 
-#latestPosts, #popularForums {
+#latestPosts,
+#popularForums {
     font-size: 1.2em;
     font-weight: bold;
     color: #333;
@@ -221,6 +219,12 @@
 
 
 /*Forum Topic*/
+
+.lockIcon {
+    color: grey;
+    opacity: 0.6;
+    font-size: 0.9em !important;
+}
 
 .searchBar {
     padding: 5px 5px 5px 12px;
@@ -241,6 +245,18 @@
 
 
 /*Post page*/
+
+.archiveTextBlock {
+    color: #fff;
+    font-family: "Roboto Mono";
+    text-align: center;
+    padding: 10px;
+    background-color: #212121;
+}
+
+.archiveText {
+    margin: 0 auto;
+}
 
 .postTitle {
     font-family: "Roboto", sans-serif;
@@ -324,9 +340,11 @@
     margin-bottom: 12px;
 }
 
+
 /*Forum index*/
 
-#forumIndexTable, #searchIndexTable {
+#forumIndexTable,
+#searchIndexTable {
     margin: 0 !important;
 }
 
@@ -402,7 +420,9 @@
     margin: 20px auto;
 }
 
-#createReply, #editPost, #editReply {
+#createReply,
+#editPost,
+#editReply {
     margin-top: 10px;
     width: 100%;
     background-color: #fff;
@@ -430,6 +450,7 @@
     margin-bottom: 8px;
 }
 
+
 /*User profile*/
 
 .userProfilePic {
@@ -443,17 +464,18 @@
     display: block;
 }
 
-#editProfileSection{
+#editProfileSection {
     margin-top: 10px;
     width: 100%;
     background-color: #fff;
     padding: 24px;
 }
 
-.editProfileSection{
+.editProfileSection {
     width: 70%;
-    margin: 20px auto;    
+    margin: 20px auto;
 }
+
 
 /*Reply*/
 
@@ -487,17 +509,17 @@
     font-family: 'Roboto Mono';
 }
 
-.isAdminEdit{
+.isAdminEdit {
     width: 100%;
     text-align: center;
 }
 
-.editIcon{
+.editIcon {
     color: grey;
     opacity: 0.6;
 }
 
-.editForum{
+.editForum {
     font-size: 0.9em;
 }
 
@@ -529,7 +551,7 @@
 
 /*Custom btn*/
 
-.edit-btn{
+.edit-btn {
     margin-top: 10px;
 }
 
@@ -549,7 +571,8 @@
 }
 
 .btn-newPost,
-.btn-back {
+.btn-back,
+.btn-archive {
     background: #eb4d4b !important;
     border: 2px solid #eb4d4b !important;
     color: #fff !important;
@@ -557,10 +580,15 @@
 }
 
 .btn-newPost:hover,
-.btn-back:hover {
+.btn-back:hover,
+.btn-archive:hover {
     background-color: #851d12 !important;
     transition: cubic-bezier(.23, 1.45, .66, .21) 1s;
     border: 2px solid #851d12 !important;
+}
+
+.btn-center {
+    margin: 0 auto;
 }
 
 .btn-newReply {
@@ -598,9 +626,10 @@
     font: inherit;
 }
 
-.searchBtnRed{
+.searchBtnRed {
     color: #eb4d4b;
 }
+
 
 /*Upload*/
 
@@ -619,15 +648,14 @@
     background-color: #fff;
 }
 
-#userProfileEditImage{
+#userProfileEditImage {
     margin: 0 auto;
     min-width: 300px;
     min-height: 300px;
     background-size: cover;
 }
 
-#userProfileAdmin{
-    
+#userProfileAdmin {
     min-width: 300px;
     margin: 0 auto;
 }
