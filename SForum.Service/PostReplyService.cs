@@ -34,7 +34,7 @@ namespace SForum.Service
         public async Task Edit(int id, string message)
         {
             var reply = GetById(id);
-            await _context.SaveChangesAsync();
+            reply.Content = message;
             _context.Update(reply);
             await _context.SaveChangesAsync();
         }

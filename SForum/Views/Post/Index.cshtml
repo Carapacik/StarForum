@@ -31,6 +31,16 @@
             <div class="postContent">
                 @Html.Raw(Model.PostContent)
             </div>
+            <div class="edit-btn">
+                @if (User.Identity.Name == Model.AuthorName || User.IsInRole("Admin"))
+                {
+                    <a asp-controller="Post" asp-action="Edit" asp-route-id="@Model.Id">
+                        <span class="material-icons editIcon">
+                            edit
+                        </span>
+                    </a>
+                }
+            </div>
         </div>
     </div>
     <div class="row" id="replyDivider"></div>
@@ -38,7 +48,7 @@
     {
         <div class="row" id="postReplyRow">
             <span>
-                <a asp-controller="Reply" asp-action="Create" asp-route-id="@Model.Id" class="btn btn-newReply">Ответить</a>
+                <a asp-controller="Reply" asp-action="Create" asp-route-id="@Model.Id">Ответить</a>
             </span>
         </div>
     }
@@ -62,6 +72,16 @@
                 <div class="col-md-9 replyContentContainer">
                     <div class="postContent">
                         @Html.Raw(reply.ReplyContent)
+                    </div>
+                    <div class="edit-btn">
+                        @if (User.Identity.Name == reply.AuthorName || User.IsInRole("Admin"))
+                        {
+                            <a asp-controller="Reply" asp-action="Edit" asp-route-id="@reply.Id">
+                                <span class="material-icons editIcon">
+                                    edit
+                                </span>
+                            </a>
+                        }
                     </div>
                 </div>
             </div>

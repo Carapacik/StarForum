@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Globalization;
+using System.IO;
 using System.Linq;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
@@ -21,14 +23,16 @@ namespace SForum.Controllers
         private readonly IForum _forumService;
         private readonly IPost _postService;
         private readonly IUpload _uploadService;
+        private readonly IWebHostEnvironment _webHostEnvironment;
 
         public ForumController(IForum forumService, IPost postService, IUpload uploadService,
-            IConfiguration configuration)
+            IConfiguration configuration, IWebHostEnvironment webHostEnvironment)
         {
             _forumService = forumService;
             _postService = postService;
             _uploadService = uploadService;
             _configuration = configuration;
+            _webHostEnvironment = webHostEnvironment;
         }
 
         public IActionResult Index()
@@ -73,7 +77,8 @@ namespace SForum.Controllers
 
             if (model.ImageUpload != null)
             {
-                var blockBlob = UploadForumImage(model.ImageUpload);
+                //imageUri = UploadForumImage(model.ImageUpload); без Azure
+                var blockBlob = UploadForumImageForAzure(model.ImageUpload);
                 imageUri = blockBlob.Uri.AbsoluteUri;
             }
 
@@ -137,7 +142,8 @@ namespace SForum.Controllers
             var imageUri = "/images/theme/defaultForum.png";
             if (model.ImageUpload != null)
             {
-                var blockBlob = UploadForumImage(model.ImageUpload);
+                //imageUri = UploadForumImage(model.ImageUpload); без Azure
+                var blockBlob = UploadForumImageForAzure(model.ImageUpload);
                 imageUri = blockBlob.Uri.AbsoluteUri;
             }
 
@@ -151,19 +157,6 @@ namespace SForum.Controllers
 
             await _forumService.Create(forum);
             return RedirectToAction("Index", "Forum");
-        }
-
-        private CloudBlockBlob UploadForumImage(IFormFile file)
-        {
-            var connectionString = _configuration.GetConnectionString("AzureStorageAccount");
-            var container = _uploadService.GetBlobContainer(connectionString, "forum-images");
-            var contentDisposition = ContentDispositionHeaderValue.Parse(file.ContentDisposition);
-            if (contentDisposition.FileName == null) return null;
-            var filename = contentDisposition.FileName.Trim('"');
-            var blockBlob =
-                container.GetBlockBlobReference(Guid.NewGuid() + filename.Substring(filename.Length - 5, 5));
-            blockBlob.UploadFromStreamAsync(file.OpenReadStream()).Wait();
-            return blockBlob;
         }
 
         private static ForumListingModel BuildForumListing(Post post)
@@ -181,6 +174,37 @@ namespace SForum.Controllers
                 Description = forum.Description,
                 ImageUrl = forum.ImageUrl
             };
+        }
+
+        private CloudBlockBlob UploadForumImageForAzure(IFormFile file)
+        {
+            if (file.Length > 4 * 1024 * 1024 && !file.ContentType.Contains("image"))
+                return null;
+            var connectionString = _configuration.GetConnectionString("AzureStorageAccount");
+            var container = _uploadService.GetBlobContainer(connectionString, "forum-images");
+            var contentDisposition = ContentDispositionHeaderValue.Parse(file.ContentDisposition);
+            if (contentDisposition.FileName == null) return null;
+            var filename = contentDisposition.FileName.Trim('"');
+            var blockBlob =
+                container.GetBlockBlobReference(Guid.NewGuid() + Path.GetExtension(filename));
+            blockBlob.UploadFromStreamAsync(file.OpenReadStream()).Wait();
+
+            return blockBlob;
+        }
+
+        private string UploadForumImage(IFormFile file)
+        {
+            if (file.Length > 4 * 1024 * 1024 && !file.ContentType.Contains("image")) return null;
+            var wwwRootPath = _webHostEnvironment.WebRootPath;
+            var contentDisposition = ContentDispositionHeaderValue.Parse(file.ContentDisposition);
+            if (contentDisposition.FileName == null) return null;
+            var filename = contentDisposition.FileName.Trim('"');
+            var uniqueFileName = Guid.NewGuid() + Path.GetExtension(filename);
+            var path = Path.Combine(wwwRootPath + "/images/forum-images/", uniqueFileName);
+            using var fileStream = new FileStream(path, FileMode.Create);
+            file.CopyTo(fileStream);
+
+            return path;
         }
     }
 }

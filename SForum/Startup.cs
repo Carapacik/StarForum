@@ -43,6 +43,7 @@ namespace SForum
             services.AddScoped<IForum, ForumService>();
             services.AddScoped<IPost, PostService>();
             services.AddScoped<IUpload, UploadService>();
+            services.AddScoped<IPostReply, PostReplyService>();
             services.AddScoped<IApplicationUser, ApplicationUserService>();
             services.AddSingleton(Configuration);
 

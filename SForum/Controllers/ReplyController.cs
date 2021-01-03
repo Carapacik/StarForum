@@ -13,12 +13,14 @@ namespace SForum.Controllers
     public class ReplyController : Controller
     {
         private readonly IPost _postService;
+        private readonly IPostReply _replyService;
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly IApplicationUser _userService;
 
-        public ReplyController(IPost postService, IApplicationUser userService,
+        public ReplyController(IPost postService, IApplicationUser userService, IPostReply replyService,
             UserManager<ApplicationUser> userManager)
         {
+            _replyService = replyService;
             _postService = postService;
             _userService = userService;
             _userManager = userManager;
@@ -46,6 +48,7 @@ namespace SForum.Controllers
         }
 
         [HttpPost]
+        [Authorize]
         public async Task<ActionResult> AddReply(PostReplyModel model)
         {
             var userId = _userManager.GetUserId(User);
@@ -66,6 +69,29 @@ namespace SForum.Controllers
                 Created = DateTime.Now,
                 User = user
             };
+        }
+
+        [Authorize]
+        public IActionResult Edit(int id)
+        {
+            var reply = _replyService.GetById(id);
+            var model = new EditPostReplyModel
+            {
+                PostId = reply.Post.Id,
+                ReplyId = reply.Id,
+                AuthorName = reply.User.UserName,
+                Content = reply.Content,
+                PostTitle = reply.Post.Title
+            };
+            return View(model);
+        }
+
+        [Authorize]
+        [HttpPost]
+        public async Task<IActionResult> EditReply(EditPostReplyModel model)
+        {
+            await _replyService.Edit(model.ReplyId, model.Content);
+            return RedirectToAction("Index", "Post", new {id = model.PostId});
         }
     }
 }
