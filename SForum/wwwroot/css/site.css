@@ -406,7 +406,7 @@
     margin: 20px auto;
 }
 
-#createReply {
+#createReply, #editPost, #editReply {
     margin-top: 10px;
     width: 100%;
     background-color: #fff;
@@ -494,6 +494,11 @@
 .isAdminEdit{
     width: 100%;
     text-align: center;
+}
+
+.editIcon{
+    color: grey;
+    opacity: 0.6;
 }
 
 .smaller {

@@ -27,13 +27,13 @@ namespace SForum.Controllers
         private readonly IWebHostEnvironment _webHostEnvironment;
 
         public ProfileController(UserManager<ApplicationUser> userManager, IApplicationUser userService,
-            IUpload uploadService, IConfiguration configuration, IWebHostEnvironment hostEnvironment)
+            IUpload uploadService, IConfiguration configuration, IWebHostEnvironment webHostEnvironment)
         {
             _userManager = userManager;
             _userService = userService;
             _uploadService = uploadService;
             _configuration = configuration;
-            _webHostEnvironment = hostEnvironment;
+            _webHostEnvironment = webHostEnvironment;
         }
 
         [Authorize(Roles = "Admin")]
@@ -207,8 +207,9 @@ namespace SForum.Controllers
             var imageUri = "";
             if (model.ImageUpload != null)
             {
-                imageUri = UploadProfileImage(model.ImageUpload);
-                //imageUri = blockBlob.Uri.AbsoluteUri;
+                //imageUri = UploadProfileImage(model.ImageUpload); без Azure
+                var blockBlob = UploadProfileImageForAzure(model.ImageUpload);
+                imageUri = blockBlob.Uri.AbsoluteUri;
             }
 
             var forum = new ApplicationUser
@@ -223,12 +224,12 @@ namespace SForum.Controllers
             return RedirectToAction("Detail", "Profile", new {id = userId});
         }
 
-        private CloudBlockBlob UploadProfileImage1(IFormFile file)
+        private CloudBlockBlob UploadProfileImageForAzure(IFormFile file)
         {
             if (file.Length > 4 * 1024 * 1024 && !file.ContentType.Contains("image"))
                 return null;
             var connectionString = _configuration.GetConnectionString("AzureStorageAccount");
-            var container = _uploadService.GetBlobContainer(connectionString, "forum-images");
+            var container = _uploadService.GetBlobContainer(connectionString, "profile-images");
             var contentDisposition = ContentDispositionHeaderValue.Parse(file.ContentDisposition);
             if (contentDisposition.FileName == null) return null;
             var filename = contentDisposition.FileName.Trim('"');
@@ -241,21 +242,17 @@ namespace SForum.Controllers
 
         private string UploadProfileImage(IFormFile file)
         {
-            if (file.Length > 4 * 1024 * 1024 && !file.ContentType.Contains("image"))
-                return null;
-            string wwwRootPath = _webHostEnvironment.WebRootPath;
+            if (file.Length > 4 * 1024 * 1024 && !file.ContentType.Contains("image")) return null;
+            var wwwRootPath = _webHostEnvironment.WebRootPath;
             var contentDisposition = ContentDispositionHeaderValue.Parse(file.ContentDisposition);
             if (contentDisposition.FileName == null) return null;
             var filename = contentDisposition.FileName.Trim('"');
-            string uniqueFileName = (Guid.NewGuid() + Path.GetExtension(filename));
+            var uniqueFileName = Guid.NewGuid() + Path.GetExtension(filename);
+            var path = Path.Combine(wwwRootPath + "/images/profile-images/", uniqueFileName);
+            using var fileStream = new FileStream(path, FileMode.Create);
+            file.CopyTo(fileStream);
 
-            string path = Path.Combine(wwwRootPath + "/images/", filename);
-
-            using (var fileStream = new FileStream(path, FileMode.Create))
-            {
-                file.CopyTo(fileStream);
-            }
-            return uniqueFileName;
+            return path;
         }
     }
 }

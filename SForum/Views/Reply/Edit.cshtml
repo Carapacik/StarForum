@@ -25,8 +25,8 @@
                             <textarea asp-for="Content" rows="10" class="form-control" required placeholder="Написать ответ..." value="@Model.Content" maxlength="300"></textarea>
                             <span asp-validation-for="Content" class="text-danger"></span>
                         </div>
-                        <input asp-for="ReplyId" type="hidden" />
-                        <input asp-for="PostId" type="hidden" />
+                        <input asp-for="ReplyId" type="hidden"/>
+                        <input asp-for="PostId" type="hidden"/>
                         <button type="submit" id="submitReplyBtn" class="btn btn-submitPost">Отправить ответ</button>
                     </form>
                 </div>

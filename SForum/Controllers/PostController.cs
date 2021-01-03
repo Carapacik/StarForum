@@ -87,11 +87,10 @@ namespace SForum.Controllers
             var post = _postService.GetById(id);
             var model = new EditPostModel
             {
-                PostId = post.Id,
+                Id = post.Id,
                 Content = post.Content,
                 Title = post.Title,
-                AuthorName = post.User.UserName,
-                IsAdmin = post.User.IsAdmin
+                AuthorName = post.User.UserName
             };
             return View(model);
         }
@@ -100,9 +99,9 @@ namespace SForum.Controllers
         [HttpPost]
         public async Task<IActionResult> EditPost(EditPostModel model)
         {
-            await _postService.EditPostContent(model.PostId, model.Content);
-            await _postService.EditPostTitle(model.PostId, model.Title);
-            return RedirectToAction("Index", "Post", new { id = model.PostId });
+            await _postService.EditPostContent(model.Id, model.Content);
+            await _postService.EditPostTitle(model.Id, model.Title);
+            return RedirectToAction("Index", "Post", new {id = model.Id});
         }
 
         private static bool IsAuthorAdmin(ApplicationUser user)
