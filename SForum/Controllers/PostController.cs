@@ -46,10 +46,26 @@ namespace SForum.Controllers
                 Replies = replies,
                 ForumId = post.Forum.Id,
                 ForumName = post.Forum.Title,
-                IsAuthorAdmin = IsAuthorAdmin(post.User)
+                IsAuthorAdmin = IsAuthorAdmin(post.User),
+                IsPostArchived = post.IsArchived
             };
 
             return View(model);
+        }
+
+
+        [Authorize]
+        public async Task<IActionResult> Archive(int id)
+        {
+            await _postService.Archive(id);
+            return RedirectToAction("Index", new {id});
+        }
+
+        [Authorize]
+        public async Task<IActionResult> UnArchive(int id)
+        {
+            await _postService.UnArchive(id);
+            return RedirectToAction("Index", new {id});
         }
 
         [Authorize]

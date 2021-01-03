@@ -20,6 +20,6 @@ namespace SForum.Data
         IEnumerable<Post> GetFilteredPosts(Forum forum, string searchQuery);
         IEnumerable<Post> GetFilteredPosts(string searchQuery);
         IEnumerable<Post> GetLatestPosts(int numberPosts);
-        string GetForumImageUrl(int id);
+        Task UnArchive(int id);
     }
 }

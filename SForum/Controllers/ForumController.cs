@@ -57,6 +57,37 @@ namespace SForum.Controllers
         }
 
         [Authorize(Roles = "Admin")]
+        public IActionResult Create()
+        {
+            var model = new AddForumModel();
+            return View(model);
+        }
+
+        [HttpPost]
+        [Authorize(Roles = "Admin")]
+        public async Task<IActionResult> CreateForum(AddForumModel model)
+        {
+            var imageUri = "/images/theme/defaultForum.png";
+            if (model.ImageUpload != null)
+            {
+                //imageUri = UploadForumImage(model.ImageUpload); без Azure
+                var blockBlob = UploadForumImageForAzure(model.ImageUpload);
+                imageUri = blockBlob.Uri.AbsoluteUri;
+            }
+
+            var forum = new Forum
+            {
+                Title = model.Title,
+                Description = model.Description,
+                Created = DateTime.Now,
+                ImageUrl = imageUri
+            };
+
+            await _forumService.Create(forum);
+            return RedirectToAction("Index", "Forum");
+        }
+
+        [Authorize(Roles = "Admin")]
         public IActionResult Edit(int id)
         {
             var forum = _forumService.GetById(id);
@@ -108,7 +139,8 @@ namespace SForum.Controllers
                 Title = post.Title,
                 DatePosted = post.Created.ToString(CultureInfo.InvariantCulture),
                 RepliesCount = post.Replies.Count(),
-                Forum = BuildForumListing(post)
+                Forum = BuildForumListing(post),
+                IsPostArchived = post.IsArchived
             });
 
             var model = new ForumTopicModel
@@ -126,37 +158,6 @@ namespace SForum.Controllers
         public IActionResult Search(int id, string searchQuery)
         {
             return RedirectToAction("Topic", new {id, searchQuery});
-        }
-
-        [Authorize(Roles = "Admin")]
-        public IActionResult Create()
-        {
-            var model = new AddForumModel();
-            return View(model);
-        }
-
-        [HttpPost]
-        [Authorize(Roles = "Admin")]
-        public async Task<IActionResult> AddForum(AddForumModel model)
-        {
-            var imageUri = "/images/theme/defaultForum.png";
-            if (model.ImageUpload != null)
-            {
-                //imageUri = UploadForumImage(model.ImageUpload); без Azure
-                var blockBlob = UploadForumImageForAzure(model.ImageUpload);
-                imageUri = blockBlob.Uri.AbsoluteUri;
-            }
-
-            var forum = new Forum
-            {
-                Title = model.Title,
-                Description = model.Description,
-                Created = DateTime.Now,
-                ImageUrl = imageUri
-            };
-
-            await _forumService.Create(forum);
-            return RedirectToAction("Index", "Forum");
         }
 
         private static ForumListingModel BuildForumListing(Post post)

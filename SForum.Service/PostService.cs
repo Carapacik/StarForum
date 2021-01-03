@@ -110,15 +110,17 @@ namespace SForum.Service
             return _context.Posts.Where(post => post.User.Id == id.ToString());
         }
 
-        public string GetForumImageUrl(int id)
-        {
-            var post = GetById(id);
-            return post.Forum.ImageUrl;
-        }
-
         public int GetReplyCount(int id)
         {
             return GetById(id).Replies.Count();
+        }
+
+        public async Task UnArchive(int id)
+        {
+            var post = GetById(id);
+            post.IsArchived = false;
+            _context.Update(post);
+            await _context.SaveChangesAsync();
         }
     }
 }

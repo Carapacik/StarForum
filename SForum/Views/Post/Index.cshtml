@@ -43,15 +43,21 @@
             </div>
         </div>
     </div>
-    <div class="row" id="replyDivider"></div>
-    @if (User.Identity.IsAuthenticated)
+    @if (User.Identity.IsAuthenticated && !Model.IsPostArchived)
     {
         <div class="row" id="postReplyRow">
-            <span>
-                <a asp-controller="Reply" asp-action="Create" asp-route-id="@Model.Id">Ответить</a>
-            </span>
+            <a asp-controller="Reply" asp-action="Create" asp-route-id="@Model.Id" class="btn btn-newReply">Ответить</a>
         </div>
     }
+    else
+    {
+        <div class="row archiveTextBlock">
+            <h3 class="archiveText">
+                Тема закрыта
+            </h3>
+        </div>
+    }
+    <div class="row" id="replyDivider"></div>
     @if (Model.Replies.Any())
     {
         foreach (var reply in Model.Replies)
@@ -84,6 +90,22 @@
                         }
                     </div>
                 </div>
+            </div>
+        }
+        @if ((User.Identity.Name == Model.AuthorName || User.IsInRole("Admin")) && !Model.IsPostArchived)
+        {
+            <div class="row" id="postReplyRow">
+                <span class="btn-center">
+                    <a asp-controller="Post" asp-action="Archive" asp-route-id="@Model.Id" class="btn btn-archive">Закрыть тему</a>
+                </span>
+            </div>
+        }
+        else if ((User.Identity.Name == Model.AuthorName || User.IsInRole("Admin")) && Model.IsPostArchived)
+        {
+            <div class="row" id="postReplyRow">
+                <span class="btn-center">
+                    <a asp-controller="Post" asp-action="UnArchive" asp-route-id="@Model.Id" class="btn btn-archive">Открыть тему</a>
+                </span>
             </div>
         }
     }
