@@ -501,6 +501,10 @@
     opacity: 0.6;
 }
 
+.editForum{
+    font-size: 0.9em;
+}
+
 .smaller {
     font-size: 0.8em;
 }
