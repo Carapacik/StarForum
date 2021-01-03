@@ -249,9 +249,11 @@
 .archiveTextBlock {
     color: #fff;
     font-family: "Roboto Mono";
-    text-align: center;
     padding: 10px;
-    background-color: #212121;
+    background-color: #212121;  
+    opacity: 0.7;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2), 0 6px 6px rgba(0, 0, 0, 0.3);
+
 }
 
 .archiveText {
@@ -331,8 +333,7 @@
 }
 
 #postIndexContent {
-    background-color: white;
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2), 0 6px 6px rgba(0, 0, 0, 0.3);
+    background-color: #fff;
 }
 
 #replyDivider {
