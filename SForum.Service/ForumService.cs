@@ -17,13 +17,6 @@ namespace SForum.Service
             _context = context;
         }
 
-        public bool HasRecentPost(int id)
-        {
-            const int hoursAgo = 12;
-            var windows = DateTime.Now.AddHours(-hoursAgo);
-            return GetById(id).Posts.Any(post => post.Created > windows);
-        }
-
         public async Task Create(Forum forum)
         {
             _context.Add(forum);
@@ -37,11 +30,6 @@ namespace SForum.Service
             await _context.SaveChangesAsync();
         }
 
-        public IEnumerable<Forum> GetPopularForums(int numberForums)
-        {
-            return GetAll().OrderByDescending(forum => forum.Posts.Count()).Take(numberForums);
-        }
-
         public async Task Edit(Forum forum)
         {
             var forumOld = GetById(forum.Id);
@@ -52,11 +40,6 @@ namespace SForum.Service
             await _context.SaveChangesAsync();
         }
 
-        public IEnumerable<Forum> GetAll()
-        {
-            return _context.Forums.Include(forum => forum.Posts);
-        }
-
         public IEnumerable<ApplicationUser> GetActiveUsers(int id)
         {
             var posts = GetById(id).Posts;
@@ -64,6 +47,11 @@ namespace SForum.Service
             var postUsers = posts.Select(p => p.User);
             var replyUsers = posts.SelectMany(r => r.Replies).Select(p => p.User);
             return postUsers.Union(replyUsers).Distinct();
+        }
+
+        public IEnumerable<Forum> GetAll()
+        {
+            return _context.Forums.Include(forum => forum.Posts);
         }
 
         public Forum GetById(int id)
@@ -76,6 +64,18 @@ namespace SForum.Service
                 .ThenInclude(r => r.User)
                 .FirstOrDefault();
             return forum;
+        }
+
+        public IEnumerable<Forum> GetPopularForums(int numberForums)
+        {
+            return GetAll().OrderByDescending(forum => forum.Posts.Count()).Take(numberForums);
+        }
+
+        public bool HasRecentPost(int id)
+        {
+            const int hoursAgo = 12;
+            var windows = DateTime.Now.AddHours(-hoursAgo);
+            return GetById(id).Posts.Any(post => post.Created > windows);
         }
     }
 }

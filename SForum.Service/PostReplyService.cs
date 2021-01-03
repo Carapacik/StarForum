@@ -15,15 +15,6 @@ namespace SForum.Service
             _context = context;
         }
 
-        public PostReply GetById(int id)
-        {
-            return _context.PostReplies
-                .Include(r => r.Post)
-                .ThenInclude(post => post.Forum)
-                .Include(r => r.Post)
-                .ThenInclude(post => post.User).First(r => r.Id == id);
-        }
-
         public async Task Delete(int id)
         {
             var reply = GetById(id);
@@ -37,6 +28,15 @@ namespace SForum.Service
             reply.Content = message;
             _context.Update(reply);
             await _context.SaveChangesAsync();
+        }
+
+        public PostReply GetById(int id)
+        {
+            return _context.PostReplies
+                .Include(r => r.Post)
+                .ThenInclude(post => post.Forum)
+                .Include(r => r.Post)
+                .ThenInclude(post => post.User).First(r => r.Id == id);
         }
     }
 }

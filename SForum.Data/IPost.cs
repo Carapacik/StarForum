@@ -10,10 +10,9 @@ namespace SForum.Data
         Task AddReply(PostReply reply);
         Task Archive(int id);
         Task Delete(int id);
-        Task EditPostContent(int id, string content);
-        Task EditPostTitle(int id, string title);
-        int GetReplyCount(int id);
+        Task Edit(Post post);
         Post GetById(int id);
+        int GetReplyCount(int id);
         IEnumerable<Post> GetAll();
         IEnumerable<Post> GetPostsByUserId(int id);
         IEnumerable<Post> GetPostsByForumId(int id);

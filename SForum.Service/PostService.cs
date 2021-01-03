@@ -43,19 +43,12 @@ namespace SForum.Service
             await _context.SaveChangesAsync();
         }
 
-        public async Task EditPostContent(int id, string content)
+        public async Task Edit(Post post)
         {
-            var post = GetById(id);
-            post.Content = content;
-            _context.Posts.Update(post);
-            await _context.SaveChangesAsync();
-        }
-
-        public async Task EditPostTitle(int id, string title)
-        {
-            var post = GetById(id);
-            post.Title = title;
-            _context.Posts.Update(post);
+            var oldPost = GetById(post.Id);
+            oldPost.Title = post.Title;
+            oldPost.Content = post.Content;
+            _context.Posts.Update(oldPost);
             await _context.SaveChangesAsync();
         }
 

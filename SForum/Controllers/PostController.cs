@@ -53,7 +53,6 @@ namespace SForum.Controllers
             return View(model);
         }
 
-
         [Authorize]
         public async Task<IActionResult> Archive(int id)
         {
@@ -115,8 +114,13 @@ namespace SForum.Controllers
         [HttpPost]
         public async Task<IActionResult> EditPost(EditPostModel model)
         {
-            await _postService.EditPostContent(model.Id, model.Content);
-            await _postService.EditPostTitle(model.Id, model.Title);
+            var post = new Post
+            {
+                Id = model.Id,
+                Title = model.Title,
+                Content = model.Content
+            };
+            await _postService.Edit(post);
             return RedirectToAction("Index", "Post", new {id = model.Id});
         }
 
