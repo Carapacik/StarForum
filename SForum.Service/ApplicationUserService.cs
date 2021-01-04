@@ -26,12 +26,6 @@ namespace SForum.Service
         {
             var userOld = GetById(user.Id);
             if (user.UserDescription != null) userOld.UserDescription = user.UserDescription;
-            if (userOld.UserName != null)
-            {
-                userOld.UserName = user.UserName;
-                userOld.NormalizedUserName = user.UserName.Normalize();
-            }
-
             if (!string.IsNullOrEmpty(user.ProfileImageUrl)) userOld.ProfileImageUrl = user.ProfileImageUrl;
             _context.ApplicationUsers.Update(userOld);
             await _context.SaveChangesAsync();

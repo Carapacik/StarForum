@@ -46,8 +46,8 @@ namespace SForum.Service
         public async Task Edit(Post post)
         {
             var oldPost = GetById(post.Id);
-            oldPost.Title = post.Title;
-            oldPost.Content = post.Content;
+            if (post.Title != null) oldPost.Title = post.Title;
+            if (post.Content != null) oldPost.Content = post.Content;
             _context.Posts.Update(oldPost);
             await _context.SaveChangesAsync();
         }

@@ -49,7 +49,7 @@ namespace SForum.Controllers
 
         [HttpPost]
         [Authorize]
-        public async Task<ActionResult> AddReply(PostReplyModel model)
+        public async Task<ActionResult> CreateReply(PostReplyModel model)
         {
             var userId = _userManager.GetUserId(User);
             var user = await _userManager.FindByIdAsync(userId);
@@ -57,18 +57,6 @@ namespace SForum.Controllers
             await _postService.AddReply(reply);
             await _userService.UpdateUserRating(userId, typeof(PostReply));
             return RedirectToAction("Index", "Post", new {id = model.PostId});
-        }
-
-        private PostReply BuildReply(PostReplyModel model, ApplicationUser user)
-        {
-            var post = _postService.GetById(model.PostId);
-            return new PostReply
-            {
-                Post = post,
-                Content = model.ReplyContent,
-                Created = DateTime.Now,
-                User = user
-            };
         }
 
         [Authorize]
@@ -92,6 +80,26 @@ namespace SForum.Controllers
         {
             await _replyService.Edit(model.ReplyId, model.Content);
             return RedirectToAction("Index", "Post", new {id = model.PostId});
+        }
+
+        [Authorize]
+        public async Task<IActionResult> Delete(int id)
+        {
+            await _replyService.Delete(id);
+            var reply = _replyService.GetById(id);
+            return RedirectToAction("Index", "Post", new {id = reply.Post.Id});
+        }
+
+        private PostReply BuildReply(PostReplyModel model, ApplicationUser user)
+        {
+            var post = _postService.GetById(model.PostId);
+            return new PostReply
+            {
+                Post = post,
+                Content = model.ReplyContent,
+                Created = DateTime.Now,
+                User = user
+            };
         }
     }
 }

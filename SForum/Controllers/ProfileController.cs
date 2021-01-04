@@ -216,7 +216,6 @@ namespace SForum.Controllers
             {
                 Id = model.UserId,
                 UserDescription = model.UserDescription,
-                UserName = model.Username,
                 ProfileImageUrl = imageUri
             };
 

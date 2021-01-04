@@ -31,7 +31,7 @@
             <div class="postContent">
                 @Html.Raw(Model.PostContent)
             </div>
-            <div class="edit-btn">
+            <div class="btn-edit">
                 @if (User.Identity.Name == Model.AuthorName || User.IsInRole("Admin"))
                 {
                     <a asp-controller="Post" asp-action="Edit" asp-route-id="@Model.Id">
@@ -79,16 +79,26 @@
                     <div class="postContent">
                         @Html.Raw(reply.ReplyContent)
                     </div>
-                    <div class="edit-btn">
-                        @if (User.Identity.Name == reply.AuthorName || User.IsInRole("Admin"))
-                        {
+                    @if (User.Identity.Name == reply.AuthorName || User.IsInRole("Admin"))
+                    {
+                        <div class="btn-edit">
                             <a asp-controller="Reply" asp-action="Edit" asp-route-id="@reply.Id">
                                 <span class="material-icons editIcon">
                                     edit
                                 </span>
                             </a>
-                        }
-                    </div>
+                        </div>
+                    }
+                    @if (User.IsInRole("Admin"))
+                    {
+                        <div class="btn-delete">
+                            <a asp-controller="Reply" asp-action="Delete" asp-route-id="@reply.Id">
+                                <span class="material-icons deleteButtonRed">
+                                    delete
+                                </span>
+                            </a>
+                        </div>
+                    }
                 </div>
             </div>
         }

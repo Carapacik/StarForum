@@ -22,16 +22,17 @@
             {
                 <span class="isAdmin">Admin</span>
             }
+            @if (Model.UserDescription != null)
+            {
+                <span id="userDescription">Статус: @Model.UserDescription</span>
+                <br/>
+            }
             <span id="userRating">Текущий рейтинг: @Model.UserRating</span>
             @if (User.Identity.Name == Model.Username || User.IsInRole("Admin"))
             {
                 <span id="userEmailLabel">Email: @Model.Email</span>
             }
             <span id="userCreatedLabel">Пользователь зарегестрирован: @Model.MemberSince</span>
-            @if (Model.UserDescription != null)
-            {
-                <span id="userDescription">Статус: @Model.UserDescription</span>
-            }
             @if (User.Identity.Name == Model.Username || User.IsInRole("Admin"))
             {
                 <div class="edit-btn">

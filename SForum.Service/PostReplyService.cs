@@ -22,10 +22,10 @@ namespace SForum.Service
             await _context.SaveChangesAsync();
         }
 
-        public async Task Edit(int id, string message)
+        public async Task Edit(int id, string content)
         {
             var reply = GetById(id);
-            reply.Content = message;
+            if (string.IsNullOrEmpty(content)) reply.Content = content;
             _context.Update(reply);
             await _context.SaveChangesAsync();
         }

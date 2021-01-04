@@ -33,8 +33,8 @@ namespace SForum.Service
         public async Task Edit(Forum forum)
         {
             var forumOld = GetById(forum.Id);
-            forumOld.Description = forum.Description;
-            forumOld.Title = forum.Title;
+            if (forum.Description != null) forumOld.Description = forum.Description;
+            if (forum.Title != null) forumOld.Title = forum.Title;
             if (!string.IsNullOrEmpty(forum.ImageUrl)) forumOld.ImageUrl = forum.ImageUrl;
             _context.Forums.Update(forumOld);
             await _context.SaveChangesAsync();

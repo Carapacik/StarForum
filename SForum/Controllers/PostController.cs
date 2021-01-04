@@ -84,7 +84,7 @@ namespace SForum.Controllers
 
         [HttpPost]
         [Authorize]
-        public async Task<IActionResult> AddPost(NewPostModel model)
+        public async Task<IActionResult> CreatePost(NewPostModel model)
         {
             var userId = _userManager.GetUserId(User);
             var user = _userManager.FindByIdAsync(userId).Result;
