@@ -3,7 +3,6 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
-using Microsoft.EntityFrameworkCore.Metadata;
 
 namespace SForum.Data.Migrations
 {
@@ -14,9 +13,9 @@ namespace SForum.Data.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "3.1.10")
+                .UseIdentityColumns()
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
-                .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                .HasAnnotation("ProductVersion", "5.0.1");
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
             {
@@ -28,18 +27,18 @@ namespace SForum.Data.Migrations
                     .HasColumnType("nvarchar(max)");
 
                 b.Property<string>("Name")
-                    .HasColumnType("nvarchar(256)")
-                    .HasMaxLength(256);
+                    .HasMaxLength(256)
+                    .HasColumnType("nvarchar(256)");
 
                 b.Property<string>("NormalizedName")
-                    .HasColumnType("nvarchar(256)")
-                    .HasMaxLength(256);
+                    .HasMaxLength(256)
+                    .HasColumnType("nvarchar(256)");
 
                 b.HasKey("Id");
 
                 b.HasIndex("NormalizedName")
                     .IsUnique()
-                    .HasName("RoleNameIndex")
+                    .HasDatabaseName("RoleNameIndex")
                     .HasFilter("[NormalizedName] IS NOT NULL");
 
                 b.ToTable("AspNetRoles");
@@ -50,8 +49,7 @@ namespace SForum.Data.Migrations
                 b.Property<int>("Id")
                     .ValueGeneratedOnAdd()
                     .HasColumnType("int")
-                    .HasAnnotation("SqlServer:ValueGenerationStrategy",
-                        SqlServerValueGenerationStrategy.IdentityColumn);
+                    .UseIdentityColumn();
 
                 b.Property<string>("ClaimType")
                     .HasColumnType("nvarchar(max)");
@@ -87,8 +85,8 @@ namespace SForum.Data.Migrations
                     .HasColumnType("nvarchar(max)");
 
                 b.Property<string>("Email")
-                    .HasColumnType("nvarchar(256)")
-                    .HasMaxLength(256);
+                    .HasMaxLength(256)
+                    .HasColumnType("nvarchar(256)");
 
                 b.Property<bool>("EmailConfirmed")
                     .HasColumnType("bit");
@@ -100,12 +98,12 @@ namespace SForum.Data.Migrations
                     .HasColumnType("datetimeoffset");
 
                 b.Property<string>("NormalizedEmail")
-                    .HasColumnType("nvarchar(256)")
-                    .HasMaxLength(256);
+                    .HasMaxLength(256)
+                    .HasColumnType("nvarchar(256)");
 
                 b.Property<string>("NormalizedUserName")
-                    .HasColumnType("nvarchar(256)")
-                    .HasMaxLength(256);
+                    .HasMaxLength(256)
+                    .HasColumnType("nvarchar(256)");
 
                 b.Property<string>("PasswordHash")
                     .HasColumnType("nvarchar(max)");
@@ -123,17 +121,17 @@ namespace SForum.Data.Migrations
                     .HasColumnType("bit");
 
                 b.Property<string>("UserName")
-                    .HasColumnType("nvarchar(256)")
-                    .HasMaxLength(256);
+                    .HasMaxLength(256)
+                    .HasColumnType("nvarchar(256)");
 
                 b.HasKey("Id");
 
                 b.HasIndex("NormalizedEmail")
-                    .HasName("EmailIndex");
+                    .HasDatabaseName("EmailIndex");
 
                 b.HasIndex("NormalizedUserName")
                     .IsUnique()
-                    .HasName("UserNameIndex")
+                    .HasDatabaseName("UserNameIndex")
                     .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                 b.ToTable("AspNetUsers");
@@ -146,8 +144,7 @@ namespace SForum.Data.Migrations
                 b.Property<int>("Id")
                     .ValueGeneratedOnAdd()
                     .HasColumnType("int")
-                    .HasAnnotation("SqlServer:ValueGenerationStrategy",
-                        SqlServerValueGenerationStrategy.IdentityColumn);
+                    .UseIdentityColumn();
 
                 b.Property<string>("ClaimType")
                     .HasColumnType("nvarchar(max)");
@@ -169,12 +166,12 @@ namespace SForum.Data.Migrations
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
             {
                 b.Property<string>("LoginProvider")
-                    .HasColumnType("nvarchar(128)")
-                    .HasMaxLength(128);
+                    .HasMaxLength(128)
+                    .HasColumnType("nvarchar(128)");
 
                 b.Property<string>("ProviderKey")
-                    .HasColumnType("nvarchar(128)")
-                    .HasMaxLength(128);
+                    .HasMaxLength(128)
+                    .HasColumnType("nvarchar(128)");
 
                 b.Property<string>("ProviderDisplayName")
                     .HasColumnType("nvarchar(max)");
@@ -211,12 +208,12 @@ namespace SForum.Data.Migrations
                     .HasColumnType("nvarchar(450)");
 
                 b.Property<string>("LoginProvider")
-                    .HasColumnType("nvarchar(128)")
-                    .HasMaxLength(128);
+                    .HasMaxLength(128)
+                    .HasColumnType("nvarchar(128)");
 
                 b.Property<string>("Name")
-                    .HasColumnType("nvarchar(128)")
-                    .HasMaxLength(128);
+                    .HasMaxLength(128)
+                    .HasColumnType("nvarchar(128)");
 
                 b.Property<string>("Value")
                     .HasColumnType("nvarchar(max)");
@@ -231,8 +228,7 @@ namespace SForum.Data.Migrations
                 b.Property<int>("Id")
                     .ValueGeneratedOnAdd()
                     .HasColumnType("int")
-                    .HasAnnotation("SqlServer:ValueGenerationStrategy",
-                        SqlServerValueGenerationStrategy.IdentityColumn);
+                    .UseIdentityColumn();
 
                 b.Property<DateTime>("Created")
                     .HasColumnType("datetime2");
@@ -256,8 +252,7 @@ namespace SForum.Data.Migrations
                 b.Property<int>("Id")
                     .ValueGeneratedOnAdd()
                     .HasColumnType("int")
-                    .HasAnnotation("SqlServer:ValueGenerationStrategy",
-                        SqlServerValueGenerationStrategy.IdentityColumn);
+                    .UseIdentityColumn();
 
                 b.Property<string>("Content")
                     .HasColumnType("nvarchar(max)");
@@ -291,8 +286,7 @@ namespace SForum.Data.Migrations
                 b.Property<int>("Id")
                     .ValueGeneratedOnAdd()
                     .HasColumnType("int")
-                    .HasAnnotation("SqlServer:ValueGenerationStrategy",
-                        SqlServerValueGenerationStrategy.IdentityColumn);
+                    .UseIdentityColumn();
 
                 b.Property<string>("Content")
                     .HasColumnType("nvarchar(max)");
@@ -400,6 +394,10 @@ namespace SForum.Data.Migrations
                 b.HasOne("SForum.Data.Models.ApplicationUser", "User")
                     .WithMany()
                     .HasForeignKey("UserId");
+
+                b.Navigation("Forum");
+
+                b.Navigation("User");
             });
 
             modelBuilder.Entity("SForum.Data.Models.PostReply", b =>
@@ -411,7 +409,15 @@ namespace SForum.Data.Migrations
                 b.HasOne("SForum.Data.Models.ApplicationUser", "User")
                     .WithMany()
                     .HasForeignKey("UserId");
+
+                b.Navigation("Post");
+
+                b.Navigation("User");
             });
+
+            modelBuilder.Entity("SForum.Data.Models.Forum", b => { b.Navigation("Posts"); });
+
+            modelBuilder.Entity("SForum.Data.Models.Post", b => { b.Navigation("Replies"); });
 #pragma warning restore 612, 618
         }
     }

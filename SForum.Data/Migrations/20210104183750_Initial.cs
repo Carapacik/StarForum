@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace SForum.Data.Migrations
 {
-    public partial class Addinitialentitymodels : Migration
+    public partial class Initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -11,10 +11,10 @@ namespace SForum.Data.Migrations
                 "AspNetRoles",
                 table => new
                 {
-                    Id = table.Column<string>(nullable: false),
-                    Name = table.Column<string>(maxLength: 256, nullable: true),
-                    NormalizedName = table.Column<string>(maxLength: 256, nullable: true),
-                    ConcurrencyStamp = table.Column<string>(nullable: true)
+                    Id = table.Column<string>("nvarchar(450)", nullable: false),
+                    Name = table.Column<string>("nvarchar(256)", maxLength: 256, nullable: true),
+                    NormalizedName = table.Column<string>("nvarchar(256)", maxLength: 256, nullable: true),
+                    ConcurrencyStamp = table.Column<string>("nvarchar(max)", nullable: true)
                 },
                 constraints: table => { table.PrimaryKey("PK_AspNetRoles", x => x.Id); });
 
@@ -22,28 +22,28 @@ namespace SForum.Data.Migrations
                 "AspNetUsers",
                 table => new
                 {
-                    Id = table.Column<string>(nullable: false),
-                    UserName = table.Column<string>(maxLength: 256, nullable: true),
-                    NormalizedUserName = table.Column<string>(maxLength: 256, nullable: true),
-                    Email = table.Column<string>(maxLength: 256, nullable: true),
-                    NormalizedEmail = table.Column<string>(maxLength: 256, nullable: true),
-                    EmailConfirmed = table.Column<bool>(nullable: false),
-                    PasswordHash = table.Column<string>(nullable: true),
-                    SecurityStamp = table.Column<string>(nullable: true),
-                    ConcurrencyStamp = table.Column<string>(nullable: true),
-                    PhoneNumber = table.Column<string>(nullable: true),
-                    PhoneNumberConfirmed = table.Column<bool>(nullable: false),
-                    TwoFactorEnabled = table.Column<bool>(nullable: false),
-                    LockoutEnd = table.Column<DateTimeOffset>(nullable: true),
-                    LockoutEnabled = table.Column<bool>(nullable: false),
-                    AccessFailedCount = table.Column<int>(nullable: false),
-                    Discriminator = table.Column<string>(nullable: false),
-                    UserDescription = table.Column<string>(nullable: true),
-                    ProfileImageUrl = table.Column<string>(nullable: true),
-                    Rating = table.Column<int>(nullable: true),
-                    IsAdmin = table.Column<bool>(nullable: true),
-                    IsActive = table.Column<bool>(nullable: true),
-                    MemberSince = table.Column<DateTime>(nullable: true)
+                    Id = table.Column<string>("nvarchar(450)", nullable: false),
+                    Discriminator = table.Column<string>("nvarchar(max)", nullable: false),
+                    UserDescription = table.Column<string>("nvarchar(max)", nullable: true),
+                    ProfileImageUrl = table.Column<string>("nvarchar(max)", nullable: true),
+                    Rating = table.Column<int>("int", nullable: true),
+                    MemberSince = table.Column<DateTime>("datetime2", nullable: true),
+                    IsActive = table.Column<bool>("bit", nullable: true),
+                    IsAdmin = table.Column<bool>("bit", nullable: true),
+                    UserName = table.Column<string>("nvarchar(256)", maxLength: 256, nullable: true),
+                    NormalizedUserName = table.Column<string>("nvarchar(256)", maxLength: 256, nullable: true),
+                    Email = table.Column<string>("nvarchar(256)", maxLength: 256, nullable: true),
+                    NormalizedEmail = table.Column<string>("nvarchar(256)", maxLength: 256, nullable: true),
+                    EmailConfirmed = table.Column<bool>("bit", nullable: false),
+                    PasswordHash = table.Column<string>("nvarchar(max)", nullable: true),
+                    SecurityStamp = table.Column<string>("nvarchar(max)", nullable: true),
+                    ConcurrencyStamp = table.Column<string>("nvarchar(max)", nullable: true),
+                    PhoneNumber = table.Column<string>("nvarchar(max)", nullable: true),
+                    PhoneNumberConfirmed = table.Column<bool>("bit", nullable: false),
+                    TwoFactorEnabled = table.Column<bool>("bit", nullable: false),
+                    LockoutEnd = table.Column<DateTimeOffset>("datetimeoffset", nullable: true),
+                    LockoutEnabled = table.Column<bool>("bit", nullable: false),
+                    AccessFailedCount = table.Column<int>("int", nullable: false)
                 },
                 constraints: table => { table.PrimaryKey("PK_AspNetUsers", x => x.Id); });
 
@@ -51,12 +51,12 @@ namespace SForum.Data.Migrations
                 "Forums",
                 table => new
                 {
-                    Id = table.Column<int>(nullable: false)
+                    Id = table.Column<int>("int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Title = table.Column<string>(nullable: true),
-                    Description = table.Column<string>(nullable: true),
-                    Created = table.Column<DateTime>(nullable: false),
-                    ImageUrl = table.Column<string>(nullable: true)
+                    Title = table.Column<string>("nvarchar(max)", nullable: true),
+                    Description = table.Column<string>("nvarchar(max)", nullable: true),
+                    Created = table.Column<DateTime>("datetime2", nullable: false),
+                    ImageUrl = table.Column<string>("nvarchar(max)", nullable: true)
                 },
                 constraints: table => { table.PrimaryKey("PK_Forums", x => x.Id); });
 
@@ -64,11 +64,11 @@ namespace SForum.Data.Migrations
                 "AspNetRoleClaims",
                 table => new
                 {
-                    Id = table.Column<int>(nullable: false)
+                    Id = table.Column<int>("int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    RoleId = table.Column<string>(nullable: false),
-                    ClaimType = table.Column<string>(nullable: true),
-                    ClaimValue = table.Column<string>(nullable: true)
+                    RoleId = table.Column<string>("nvarchar(450)", nullable: false),
+                    ClaimType = table.Column<string>("nvarchar(max)", nullable: true),
+                    ClaimValue = table.Column<string>("nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -85,11 +85,11 @@ namespace SForum.Data.Migrations
                 "AspNetUserClaims",
                 table => new
                 {
-                    Id = table.Column<int>(nullable: false)
+                    Id = table.Column<int>("int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    UserId = table.Column<string>(nullable: false),
-                    ClaimType = table.Column<string>(nullable: true),
-                    ClaimValue = table.Column<string>(nullable: true)
+                    UserId = table.Column<string>("nvarchar(450)", nullable: false),
+                    ClaimType = table.Column<string>("nvarchar(max)", nullable: true),
+                    ClaimValue = table.Column<string>("nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -106,10 +106,10 @@ namespace SForum.Data.Migrations
                 "AspNetUserLogins",
                 table => new
                 {
-                    LoginProvider = table.Column<string>(maxLength: 128, nullable: false),
-                    ProviderKey = table.Column<string>(maxLength: 128, nullable: false),
-                    ProviderDisplayName = table.Column<string>(nullable: true),
-                    UserId = table.Column<string>(nullable: false)
+                    LoginProvider = table.Column<string>("nvarchar(128)", maxLength: 128, nullable: false),
+                    ProviderKey = table.Column<string>("nvarchar(128)", maxLength: 128, nullable: false),
+                    ProviderDisplayName = table.Column<string>("nvarchar(max)", nullable: true),
+                    UserId = table.Column<string>("nvarchar(450)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -126,8 +126,8 @@ namespace SForum.Data.Migrations
                 "AspNetUserRoles",
                 table => new
                 {
-                    UserId = table.Column<string>(nullable: false),
-                    RoleId = table.Column<string>(nullable: false)
+                    UserId = table.Column<string>("nvarchar(450)", nullable: false),
+                    RoleId = table.Column<string>("nvarchar(450)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -150,10 +150,10 @@ namespace SForum.Data.Migrations
                 "AspNetUserTokens",
                 table => new
                 {
-                    UserId = table.Column<string>(nullable: false),
-                    LoginProvider = table.Column<string>(maxLength: 128, nullable: false),
-                    Name = table.Column<string>(maxLength: 128, nullable: false),
-                    Value = table.Column<string>(nullable: true)
+                    UserId = table.Column<string>("nvarchar(450)", nullable: false),
+                    LoginProvider = table.Column<string>("nvarchar(128)", maxLength: 128, nullable: false),
+                    Name = table.Column<string>("nvarchar(128)", maxLength: 128, nullable: false),
+                    Value = table.Column<string>("nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -170,27 +170,28 @@ namespace SForum.Data.Migrations
                 "Posts",
                 table => new
                 {
-                    Id = table.Column<int>(nullable: false)
+                    Id = table.Column<int>("int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Title = table.Column<string>(nullable: true),
-                    Content = table.Column<string>(nullable: true),
-                    Created = table.Column<DateTime>(nullable: false),
-                    UserId = table.Column<string>(nullable: true),
-                    ForumId = table.Column<int>(nullable: true)
+                    Title = table.Column<string>("nvarchar(max)", nullable: true),
+                    Content = table.Column<string>("nvarchar(max)", nullable: true),
+                    Created = table.Column<DateTime>("datetime2", nullable: false),
+                    IsArchived = table.Column<bool>("bit", nullable: false),
+                    UserId = table.Column<string>("nvarchar(450)", nullable: true),
+                    ForumId = table.Column<int>("int", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Posts", x => x.Id);
                     table.ForeignKey(
-                        "FK_Posts_Forums_ForumId",
-                        x => x.ForumId,
-                        "Forums",
-                        "Id",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
                         "FK_Posts_AspNetUsers_UserId",
                         x => x.UserId,
                         "AspNetUsers",
+                        "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        "FK_Posts_Forums_ForumId",
+                        x => x.ForumId,
+                        "Forums",
                         "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
@@ -199,26 +200,26 @@ namespace SForum.Data.Migrations
                 "PostReplies",
                 table => new
                 {
-                    Id = table.Column<int>(nullable: false)
+                    Id = table.Column<int>("int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Content = table.Column<string>(nullable: true),
-                    Created = table.Column<DateTime>(nullable: false),
-                    UserId = table.Column<string>(nullable: true),
-                    PostId = table.Column<int>(nullable: true)
+                    Content = table.Column<string>("nvarchar(max)", nullable: true),
+                    Created = table.Column<DateTime>("datetime2", nullable: false),
+                    UserId = table.Column<string>("nvarchar(450)", nullable: true),
+                    PostId = table.Column<int>("int", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_PostReplies", x => x.Id);
                     table.ForeignKey(
-                        "FK_PostReplies_Posts_PostId",
-                        x => x.PostId,
-                        "Posts",
-                        "Id",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
                         "FK_PostReplies_AspNetUsers_UserId",
                         x => x.UserId,
                         "AspNetUsers",
+                        "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        "FK_PostReplies_Posts_PostId",
+                        x => x.PostId,
+                        "Posts",
                         "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
@@ -310,10 +311,10 @@ namespace SForum.Data.Migrations
                 "Posts");
 
             migrationBuilder.DropTable(
-                "Forums");
+                "AspNetUsers");
 
             migrationBuilder.DropTable(
-                "AspNetUsers");
+                "Forums");
         }
     }
 }
