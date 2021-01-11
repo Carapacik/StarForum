@@ -8,6 +8,13 @@
     font-family: 'Roboto', sans-serif;
 }
 
+.footer {
+    bottom: 0;
+    width: 100%;
+    white-space: nowrap;
+    line-height: 60px;
+}
+
 .linkDecorationNone {
     text-decoration: none;
     color: #000 !important;
@@ -132,7 +139,7 @@
     outline: none !important;
     transition: ease-in 0.3s;
     width: 100%;
-    color: #03a9f4;
+    color: #491cb5;
     background-color: rgba(0, 0, 0, 0.7);
     box-shadow: 0 5px 4px -6px #000;
 }
@@ -235,6 +242,7 @@
     border: none;
     font-family: "Roboto Mono";
     margin-bottom: 20px;
+    color: #fff;
 }
 
 .searchBar:focus {
