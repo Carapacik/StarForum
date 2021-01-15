@@ -206,11 +206,10 @@ namespace SForum.Controllers
             var userId = _userManager.GetUserId(User);
             var imageUri = "";
             if (model.ImageUpload != null)
-            {
-                //imageUri = UploadProfileImage(model.ImageUpload); без Azure
-                var blockBlob = UploadProfileImageForAzure(model.ImageUpload);
-                imageUri = blockBlob.Uri.AbsoluteUri;
-            }
+                //Azure
+                //var blockBlob = UploadProfileImageForAzure(model.ImageUpload);
+                //imageUri = blockBlob.Uri.AbsoluteUri;
+                imageUri = UploadProfileImage(model.ImageUpload); 
 
             var forum = new ApplicationUser
             {

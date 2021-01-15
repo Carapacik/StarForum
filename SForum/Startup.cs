@@ -25,7 +25,6 @@ namespace SForum
         {
             services.AddDatabaseDeveloperPageExceptionFilter();
             services.AddDistributedMemoryCache();
-
             services.AddSession(options =>
             {
                 options.IdleTimeout = TimeSpan.FromSeconds(10);
@@ -46,7 +45,6 @@ namespace SForum
             services.AddScoped<IPostReply, PostReplyService>();
             services.AddScoped<IApplicationUser, ApplicationUserService>();
             services.AddSingleton(Configuration);
-
             services.AddTransient<DataSeeder>();
         }
 
@@ -63,16 +61,12 @@ namespace SForum
                 app.UseHsts();
             }
 
-            dataSeeder.SeedSuperUser();
-
+            dataSeeder.SeedSuperUser().Wait();
             app.UseHttpsRedirection();
             app.UseStaticFiles();
-
             app.UseRouting();
-
             app.UseAuthentication();
             app.UseAuthorization();
-
             app.UseSession();
             app.UseEndpoints(endpoints =>
             {
