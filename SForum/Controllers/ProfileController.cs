@@ -209,7 +209,7 @@ namespace SForum.Controllers
                 //Azure
                 //var blockBlob = UploadProfileImageForAzure(model.ImageUpload);
                 //imageUri = blockBlob.Uri.AbsoluteUri;
-                imageUri = UploadProfileImage(model.ImageUpload); 
+                imageUri = UploadProfileImage(model.ImageUpload);
 
             var forum = new ApplicationUser
             {
@@ -250,7 +250,7 @@ namespace SForum.Controllers
             using var fileStream = new FileStream(path, FileMode.Create);
             file.CopyTo(fileStream);
 
-            return path;
+            return "/images/profile-images/" + uniqueFileName;
         }
     }
 }

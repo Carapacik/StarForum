@@ -72,7 +72,7 @@ namespace SForum.Controllers
                 //Azure
                 //var blockBlob = UploadForumImageForAzure(model.ImageUpload);
                 //imageUri = blockBlob.Uri.AbsoluteUri;  
-                imageUri = UploadForumImage(model.ImageUpload); 
+                imageUri = UploadForumImage(model.ImageUpload);
 
             var forum = new Forum
             {
@@ -106,11 +106,10 @@ namespace SForum.Controllers
             var imageUri = "";
 
             if (model.ImageUpload != null)
-            {
-                //imageUri = UploadForumImage(model.ImageUpload); без Azure
-                var blockBlob = UploadForumImageForAzure(model.ImageUpload);
-                imageUri = blockBlob.Uri.AbsoluteUri;
-            }
+                //Azure
+                //var blockBlob = UploadForumImageForAzure(model.ImageUpload);
+                //imageUri = blockBlob.Uri.AbsoluteUri;
+                imageUri = UploadForumImage(model.ImageUpload);
 
             var forum = new Forum
             {
@@ -204,7 +203,7 @@ namespace SForum.Controllers
             using var fileStream = new FileStream(path, FileMode.Create);
             file.CopyTo(fileStream);
 
-            return path;
+            return "/images/forum-images/" + uniqueFileName;
         }
     }
 }

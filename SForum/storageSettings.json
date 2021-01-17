@@ -1,5 +1,5 @@
 {
   "ConnectionStrings": {
-    "AzureStorageAccount": "DefaultEndpointsProtocol=https;AccountName=sforum;AccountKey=zNwB+c5kPFFyWWP9AlcfWA5ExOG8YOXM0HoJoYuOdTFYJKvzs2rpfnflb8bbzdXY5BF/ii3+HRcu94DNFxZaYg==;EndpointSuffix=core.windows.net"
+    "AzureStorageAccount": "blockStorage"
   }
 }
