@@ -48,7 +48,7 @@ namespace SForum.Controllers
                         {
                             UserId = u.Id,
                             Email = u.Email,
-                            Username = u.UserName,
+                            UserName = u.UserName,
                             ProfileImageUrl = u.ProfileImageUrl,
                             UserRating = u.Rating.ToString(),
                             MemberSince = u.MemberSince
@@ -61,7 +61,7 @@ namespace SForum.Controllers
                         {
                             UserId = u.Id,
                             Email = u.Email,
-                            Username = u.UserName,
+                            UserName = u.UserName,
                             ProfileImageUrl = u.ProfileImageUrl,
                             UserRating = u.Rating.ToString(),
                             MemberSince = u.MemberSince
@@ -74,7 +74,7 @@ namespace SForum.Controllers
                         {
                             UserId = u.Id,
                             Email = u.Email,
-                            Username = u.UserName,
+                            UserName = u.UserName,
                             ProfileImageUrl = u.ProfileImageUrl,
                             UserRating = u.Rating.ToString(),
                             MemberSince = u.MemberSince
@@ -87,7 +87,7 @@ namespace SForum.Controllers
                         {
                             UserId = u.Id,
                             Email = u.Email,
-                            Username = u.UserName,
+                            UserName = u.UserName,
                             ProfileImageUrl = u.ProfileImageUrl,
                             UserRating = u.Rating.ToString(),
                             MemberSince = u.MemberSince
@@ -100,7 +100,7 @@ namespace SForum.Controllers
                         {
                             UserId = u.Id,
                             Email = u.Email,
-                            Username = u.UserName,
+                            UserName = u.UserName,
                             ProfileImageUrl = u.ProfileImageUrl,
                             UserRating = u.Rating.ToString(),
                             MemberSince = u.MemberSince
@@ -113,7 +113,7 @@ namespace SForum.Controllers
                         {
                             UserId = u.Id,
                             Email = u.Email,
-                            Username = u.UserName,
+                            UserName = u.UserName,
                             ProfileImageUrl = u.ProfileImageUrl,
                             UserRating = u.Rating.ToString(),
                             MemberSince = u.MemberSince
@@ -129,7 +129,7 @@ namespace SForum.Controllers
                             {
                                 UserId = u.Id,
                                 Email = u.Email,
-                                Username = u.UserName,
+                                UserName = u.UserName,
                                 ProfileImageUrl = u.ProfileImageUrl,
                                 UserRating = u.Rating.ToString(),
                                 MemberSince = u.MemberSince
@@ -143,7 +143,7 @@ namespace SForum.Controllers
                             {
                                 UserId = u.Id,
                                 Email = u.Email,
-                                Username = u.UserName,
+                                UserName = u.UserName,
                                 ProfileImageUrl = u.ProfileImageUrl,
                                 UserRating = u.Rating.ToString(),
                                 MemberSince = u.MemberSince
@@ -167,13 +167,15 @@ namespace SForum.Controllers
         public IActionResult Detail(string id)
         {
             var user = _userService.GetById(id);
+            user.NickName ??= user.UserName;
             var userRoles = _userManager.GetRolesAsync(user).Result;
             var model = new ProfileModel
             {
                 UserId = user.Id,
-                Username = user.UserName,
+                UserName = user.UserName,
                 UserRating = user.Rating.ToString(),
                 Email = user.Email,
+                NickName = user.NickName,
                 ProfileImageUrl = user.ProfileImageUrl,
                 MemberSince = user.MemberSince,
                 UserDescription = user.UserDescription,
@@ -186,12 +188,14 @@ namespace SForum.Controllers
         public IActionResult Edit(string id)
         {
             var user = _userService.GetById(id);
+            user.NickName ??= user.UserName;
             var userRoles = _userManager.GetRolesAsync(user).Result;
             var model = new ProfileModel
             {
                 UserId = user.Id,
-                Username = user.UserName,
+                UserName = user.UserName,
                 Email = user.Email,
+                NickName = user.NickName,
                 UserDescription = user.UserDescription,
                 ProfileImageUrl = user.ProfileImageUrl,
                 IsAdmin = userRoles.Contains("Admin"),
@@ -211,14 +215,15 @@ namespace SForum.Controllers
                 //imageUri = blockBlob.Uri.AbsoluteUri;
                 imageUri = UploadProfileImage(model.ImageUpload);
 
-            var forum = new ApplicationUser
+            var applicationUser = new ApplicationUser
             {
                 Id = model.UserId,
+                NickName = model.NickName,
                 UserDescription = model.UserDescription,
                 ProfileImageUrl = imageUri
             };
 
-            await _userService.Edit(forum);
+            await _userService.Edit(applicationUser);
             return RedirectToAction("Detail", "Profile", new {id = userId});
         }
 

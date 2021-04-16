@@ -25,6 +25,7 @@ namespace SForum.Service
         public async Task Edit(ApplicationUser user)
         {
             var userOld = GetById(user.Id);
+            if (user.NickName != null) userOld.NickName = user.NickName;
             if (user.UserDescription != null) userOld.UserDescription = user.UserDescription;
             if (!string.IsNullOrEmpty(user.ProfileImageUrl)) userOld.ProfileImageUrl = user.ProfileImageUrl;
             _context.ApplicationUsers.Update(userOld);

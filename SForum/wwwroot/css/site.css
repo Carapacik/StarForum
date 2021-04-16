@@ -705,13 +705,18 @@
     padding-top: 3px;
 }
 
-#userName {
-    display: block;
+#userNick {
     color: #2569d5;
     font-size: 1.7em;
     font-family: 'Roboto', sans-serif;
 }
 
+#userName{
+    display: block;
+    color: #2569d5;
+    font-size: 1.2em;
+    font-family: 'Roboto', sans-serif;
+}
 
 /* Provide sufficient contrast against white background */
 

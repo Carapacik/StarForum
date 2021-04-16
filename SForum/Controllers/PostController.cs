@@ -39,6 +39,7 @@ namespace SForum.Controllers
                 Title = post.Title,
                 AuthorId = post.User.Id,
                 AuthorName = post.User.UserName,
+                NickName =  post.User.NickName ?? post.User.UserName,
                 AuthorImageUrl = post.User.ProfileImageUrl,
                 AuthorRating = post.User.Rating,
                 Created = post.Created,
@@ -89,10 +90,8 @@ namespace SForum.Controllers
             var userId = _userManager.GetUserId(User);
             var user = _userManager.FindByIdAsync(userId).Result;
             var post = BuildPost(model, user);
-
             await _postService.Add(post);
             await _userService.UpdateUserRating(userId, typeof(Post));
-
             return RedirectToAction("Index", "Post", new {id = post.Id});
         }
 

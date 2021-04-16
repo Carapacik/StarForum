@@ -7,7 +7,8 @@ namespace SForum.Models.ApplicationUser
     {
         public string UserId { get; set; }
         public string Email { get; set; }
-        public string Username { get; set; }
+        public string NickName { get; set; }
+        public string UserName { get; set; }
         public string UserRating { get; set; }
         public string ProfileImageUrl { get; set; }
         public string UserDescription { get; set; }

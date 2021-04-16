@@ -8,6 +8,7 @@ namespace SForum.Models.Post
     {
         public int Id { get; set; }
         public string Title { get; set; }
+        public string NickName { get; set; }
         public string AuthorId { get; set; }
         public string AuthorName { get; set; }
         public string AuthorImageUrl { get; set; }

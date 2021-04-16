@@ -16,7 +16,7 @@
                 </th>
                 <th>
                     <a asp-controller="Profile" asp-action="Index" asp-route-typeQuery="userName" asp-route-oldTypeQuery="@Model.OldTypeQuery" class="linkDecorationNone">
-                        Имя
+                        UserName
                         @if (Model.TypeQuery == "userName" && Model.OldTypeQuery == Model.TypeQuery)
                         {
                             <i class="material-icons">arrow_drop_down</i>
@@ -77,7 +77,7 @@
                     </td>
                     <td>
                         <a asp-controller="Profile" asp-action="Detail" asp-route-id="@profile.UserId">
-                            @profile.Username
+                            @profile.UserName
                         </a>
                     </td>
                     <td>
