@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using SForum.Data.Models;
@@ -11,12 +10,10 @@ namespace SForum.Data
     public class DataSeeder
     {
         private readonly ApplicationDbContext _context;
-        private readonly IWebHostEnvironment _webHostEnvironment;
 
-        public DataSeeder(ApplicationDbContext context, IWebHostEnvironment webHostEnvironment)
+        public DataSeeder(ApplicationDbContext context)
         {
             _context = context;
-            _webHostEnvironment = webHostEnvironment;
         }
 
         public async Task SeedSuperUser()
