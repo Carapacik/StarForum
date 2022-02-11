@@ -1,0 +1,74 @@
+﻿@model StarForum.WebApi.Models.Forum.ForumIndexModel
+@{
+    ViewData["Title"] = "Категории";
+}
+
+<div class="container body-content">
+    <div class="row sectionHeader">
+        <div class="sectionHeading">
+            <span id="results">Категории</span>
+            @if (User.IsInRole("Admin"))
+            {
+                <span id="headingBtn">
+                    <a asp-controller="Forum" asp-action="Create" class="btn btn-newPost">Создать категорию</a>
+                </span>
+            }
+        </div>
+        <div class="sectionDescription">
+            <p>Добро пожаловать на <strong>StarForum</strong>. Темы классифицируются на отдельные категории по интересам</p>
+            <p>
+                Пожалуйста прочитайте правила прежде чем сделать тему.
+                @if (!User.Identity.IsAuthenticated)
+                {
+                    <span>Вы должны быть <a asp-area="Identity" asp-page="/Account/Register">Зарегистрированным</a> пользователем, чтобы создать тему.</span>
+                }
+            </p>
+        </div>
+    </div>
+    <div class="row" id="forumIndexContent">
+        <table class="table table-hover table-bordered" id="forumIndexTable">
+            <tbody>
+            @foreach (var forum in Model.ForumList)
+            {
+                <tr>
+                    <td>
+                        <div class="forumLogo" style="background-image: url(@forum.ImageUrl)"></div>
+                        <div class="forumData">
+                            <div class="forumTitle">
+                                <a asp-controller="Forum" asp-action="Topic" asp-route-id="@forum.Id">@forum.Name</a>
+                                @if (User.IsInRole("Admin"))
+                                {
+                                    <a asp-controller="Forum" asp-action="Edit" asp-route-id="@forum.Id">
+                                        <span class="material-icons editIcon editForum">
+                                            edit
+                                        </span>
+                                    </a>
+                                }
+                            </div>
+                            <div class="forumSubTitle">
+                                @if (forum.HasRecentPosts)
+                                {
+                                    <div class="hasRecentPost">Hot</div>
+                                }
+                            </div>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="forumPostCount">
+                            @forum.NumberOfPosts Тем
+                        </div>
+                        <div class="forumMemberCount">
+                            @forum.NumberOfUsers Пользователей
+                        </div>
+                    </td>
+                    <td class="tdDisplayNone">
+                        <div class="forumDescription">
+                            @forum.Description
+                        </div>
+                    </td>
+                </tr>
+            }
+            </tbody>
+        </table>
+    </div>
+</div>

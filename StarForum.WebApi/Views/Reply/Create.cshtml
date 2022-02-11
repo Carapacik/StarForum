@@ -1,0 +1,48 @@
+﻿@model StarForum.WebApi.Models.Reply.PostReplyModel
+@{
+    ViewData["Title"] = "Создать ответ";
+}
+
+<div class="container body-content">
+    <div class="container body-content">
+        <div class="row sectionHeader">
+            <div class="sectionHeading">
+                Ответ | @Model.PostTitle
+                <div class="forumLogo" style="background-image: url(@Model.ForumImageUrl)"></div>
+                <span id="headingBtn">
+                    <a asp-controller="Post" asp-action="Index" asp-route-id="@Model.PostId" class="btn btn-back">Назад в @Model.PostTitle</a>
+                </span>
+            </div>
+        </div>
+        <div class="row">
+            <div id="originalPost">
+                <h3>
+                    @Model.PostTitle
+                </h3>
+                <p>
+                    @Model.PostContent
+                </p>
+            </div>
+        </div>
+        <div class="row">
+            <div id="createReply">
+                <div class="authorBlock">
+                    Вы отправляете ответ как @Model.AuthorName
+                </div>
+                <form asp-action="CreateReply" method="post" id="addPostForum">
+                    <div asp-validation-summary="All" class="text-danger">
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="ReplyContent">Ответ: </label>
+                        <textarea asp-for="ReplyContent" rows="10" class="form-control" required placeholder="Написать ответ..." maxlength="300"></textarea>
+                        <span asp-validation-for="ReplyContent" class="text-danger"></span>
+                    </div>
+                    <button type="submit" id="submitReplyBtn" class="btn btn-submitPost">Отправить ответ</button>
+                    <input asp-for="AuthorId" type="hidden"/>
+                    <input asp-for="PostId" type="hidden"/>
+                    <input asp-for="ForumId" type="hidden"/>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
