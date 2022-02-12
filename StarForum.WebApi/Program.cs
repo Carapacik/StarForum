@@ -33,7 +33,8 @@ else
     app.UseHsts();
 }
 
-app.Services.GetService<DataSeeder>()?.SeedSuperUser().Wait();
+using var scope = app.Services.CreateScope();
+scope.ServiceProvider.GetRequiredService<DataSeeder>().SeedSuperUser().Wait();
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 

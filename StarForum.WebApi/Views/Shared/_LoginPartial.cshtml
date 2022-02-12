@@ -1,34 +1,37 @@
 ﻿@using Microsoft.AspNetCore.Identity
-@inject SignInManager<IdentityUser> SignInManager
-@inject UserManager<IdentityUser> UserManager
+@using StarForum.Infrastructure.Entities
+@inject SignInManager<ApplicationUser> _signInManager
+@inject UserManager<ApplicationUser> _userManager
 
 <ul class="navbar-nav">
-    @if (SignInManager.IsSignedIn(User))
+    @if (_signInManager.IsSignedIn(User))
     {
         <li class="nav-item">
-            <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Привет, @User.Identity?.Name!</a>
+            <a class="nav-link text-dark" title="Manage">Привет, @_userManager.GetUserName(User)</a>
         </li>
-        <li class="nav-item dropdown">
-            <a href="#" class="nav-link dropdown-toggle text-dark" style="text-decoration: none" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Настройки<span class="caret"></span></a>
-            <ul class="dropdown-menu dropdownLeft">
-                <li role="separator" class="divider"></li>
-                <li class="dropdown-header ">Profile</li>
-                <li class="dropdown-item">
-                    <a asp-controller="Profile" asp-action="Detail" asp-route-id="@UserManager.GetUserId(User)">Мой профиль</a>
-                </li>
-                @if (User.IsInRole("Admin"))
-                {
-                    <li role="separator" class="divider"></li>
-                    <li class="dropdown-header">Admin</li>
-                    <li class="dropdown-item">
-                        <a asp-controller="Profile" asp-action="Index">Посмотреть пользователей</a>
+        <li class="nav-item">
+            <div class="dropdown">
+                <a class="nav-link dropdown-toggle text-dark" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                    Настройки
+                </a>
+                <ul class="dropdown-menu dropdownLeft" aria-labelledby="dropdownMenuLink">
+                    <li>
+                        <a class="dropdown-item" asp-controller="Profile" asp-action="Detail" asp-route-id="@_userManager.GetUserId(User)">Мой профиль</a>
                     </li>
-                }
-            </ul>
+                    @if (User.IsInRole("Admin"))
+                    {
+                        <li >
+                            <a class="dropdown-item" asp-controller="Profile" asp-action="Index">Посмотреть пользователей</a>
+                        </li>
+                    }
+                </ul>
+            </div>
         </li>
         <li class="nav-item">
             <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
-                <button type="submit" class="nav-link btn btn-link text-dark">Logout</button>
+                <button type="submit" class="nav-link btn btn-link text-dark">
+                    <strong>Выйти</strong>
+                </button>
             </form>
         </li>
     }
