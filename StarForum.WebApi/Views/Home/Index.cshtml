@@ -1,0 +1,92 @@
+﻿@model StarForum.WebApi.Models.Home.HomeIndexModel
+@{
+    ViewData["Title"] = "Главная";
+}
+
+<div class="container body-content">
+    <div class="row frontPageSplash">
+        <div class="col-md-6 frontPageLearn">
+            <div class="frontPageHeading">Добро пожаловать</div>
+            <div>
+                <p class="frontPageSubHeading">Star - это место обсуждения интересных вещей</p>
+            </div>
+            <div>
+                <form asp-controller="Search" asp-action="Search" method="post">
+                    <input asp-for="SearchQuery" type="text" class="homeSearch" placeholder="Поиск..."/>
+                </form>
+            </div>
+        </div>
+        <div class="col-md-6">
+        </div>
+    </div>
+    <div class="row frontPageContent">
+        <h3 id="popularForums">ПОПУЛЯРНЫЕ КАТЕГОРИИ</h3>
+        <table class="table table-hover" id="popularForumsTable">
+            <tbody>
+            @foreach (var forum in Model.PopularForums)
+            {
+                <tr>
+                    <td>
+                        <div class="forumLogo" style="background-image: url(@forum.ImageUrl)"></div>
+                        <div class="forumData">
+                            <div class="forumTitle">
+                                <a asp-controller="Forum" asp-action="Topic" asp-route-id="@forum.Id">@forum.Name</a>
+                            </div>
+                            <div class="forumSubTitle">
+                                @if (forum.HasRecentPosts)
+                                {
+                                    <div class="hasRecentPost">Hot</div>
+                                }
+                            </div>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="forumPostCount">
+                            @forum.NumberOfPosts Тем
+                        </div>
+                    </td>
+                    <td class="tdDisplayNone">
+                        <div class="forumDescription">
+                            @forum.Description
+                        </div>
+                    </td>
+                </tr>
+            }
+            </tbody>
+        </table>
+    </div>
+    <div class="row frontPageContent">
+        <h3 id="latestPosts">ПОСЛЕДНИЕ ТЕМЫ</h3>
+        <table class="table table-hover" id="latestPostsTable">
+            <tbody>
+            @foreach (var post in Model.LatestPosts)
+            {
+                <tr>
+                    <td>
+                        <div class="forumLogo" style="background-image: url(@post.Forum.ImageUrl)">
+                        </div>
+                        <div class="postTitle">
+                            <a asp-controller="Post" asp-action="Index" asp-route-id="@post.Id">
+                                @post.Title
+                            </a>
+                        </div>
+                        <div class="postSubTitle">
+                            @if (post.RepliesCount == 0)
+                            {
+                                <span>Нет ответов</span>
+                            }
+                            else
+                            {
+                                <span>@post.RepliesCount ответов</span>
+                            }
+                            <span class="postUser">
+                                <a asp-controller="Profile" asp-action="Detail" asp-route-id="@post.AuthorId">@post.Author</a>
+                            </span>
+                        </div>
+                    </td>
+                </tr>
+            }
+            </tbody>
+        </table>
+    </div>
+</div>

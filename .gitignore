@@ -270,7 +270,7 @@ __pycache__/
 
 ### Csharp ###
 ##
-## Get latest from https://github.com/github/gitignore/blob/master/VisualStudio.gitignore
+## Get latest from https://github.com/github/gitignore/blob/main/VisualStudio.gitignore
 
 # User-specific files
 *.rsuser
@@ -281,6 +281,7 @@ __pycache__/
 mono_crash.*
 
 # Build results
+[Ww][Ii][Nn]32/
 [Aa][Rr][Mm]/
 [Aa][Rr][Mm]64/
 [Ll]ogs/
@@ -303,6 +304,9 @@ BenchmarkDotNet.Artifacts/
 
 # .NET Core
 
+# ASP.NET Scaffolding
+ScaffoldingReadMe.txt
+
 # StyleCop
 StyleCopReport.xml
 
@@ -311,6 +315,7 @@ StyleCopReport.xml
 *.iobj
 *.ipdb
 *_wpftmp.csproj
+*.tlog
 
 # Chutzpah Test files
 
@@ -336,7 +341,9 @@ StyleCopReport.xml
 !.axoCover/settings.json
 
 # Coverlet is a free, cross platform Code Coverage Tool
-coverage*[.json, .xml, .info]
+coverage*.json
+coverage*.xml
+coverage*.info
 
 # Visual Studio code coverage results
 
@@ -424,6 +431,15 @@ ServiceFabricBackup/
 # Visual Studio 6 auto-generated workspace file (contains which files were open etc.)
 *.vbw
 
+# Visual Studio 6 auto-generated project file (contains which files were open etc.)
+*.vbp
+
+# Visual Studio 6 workspace and project file (working project files containing files to include in project)
+*.dsw
+*.dsp
+
+# Visual Studio 6 technical files
+
 # Visual Studio LightSwitch build output
 
 # Paket dependency manager
@@ -469,6 +485,9 @@ ASALocalRun/
 # Local History for Visual Studio
 .localhistory/
 
+# Visual Studio History (VSHistory) files
+.vshistory/
+
 # BeatPulse healthcheck temp database
 healthchecksdb
 
@@ -477,6 +496,29 @@ MigrationBackup/
 
 # Ionide (cross platform F# VS Code tools) working folder
 .ionide/
+
+# Fody - auto-generated XML schema
+FodyWeavers.xsd
+
+# VS Code files for those working on multiple tools
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+*.code-workspace
+
+# Local History for Visual Studio Code
+.history/
+
+# Windows Installer files from build outputs
+*.cab
+*.msi
+*.msix
+*.msm
+*.msp
+
+# JetBrains Rider
 
 ### DotnetCore ###
 # .NET Core build folders
@@ -497,6 +539,9 @@ obj/
 .idea/**/usage.statistics.xml
 .idea/**/dictionaries
 .idea/**/shelf
+
+# AWS User-specific
+.idea/**/aws.xml
 
 # Generated files
 .idea/**/contentModel.xml
@@ -548,6 +593,9 @@ atlassian-ide-plugin.xml
 # Cursive Clojure plugin
 .idea/replstate.xml
 
+# SonarLint plugin
+.idea/sonarlint/
+
 # Crashlytics plugin (for Android Studio and IntelliJ)
 com_crashlytics_export_strings.xml
 crashlytics.properties
@@ -559,17 +607,6 @@ fabric.properties
 
 # Android studio 3.1+ serialized cache file
 .idea/caches/build_file_checksums.ser
-
-### VisualStudioCode ###
-.vscode/*
-!.vscode/tasks.json
-!.vscode/launch.json
-*.code-workspace
-
-### VisualStudioCode Patch ###
-# Ignore all local history of files
-.history
-.ionide
 
 ### Windows ###
 # Windows thumbnail cache files
@@ -588,11 +625,6 @@ ehthumbs_vista.db
 $RECYCLE.BIN/
 
 # Windows Installer files
-*.cab
-*.msi
-*.msix
-*.msm
-*.msp
 
 # Windows shortcuts
 *.lnk
@@ -621,6 +653,8 @@ $RECYCLE.BIN/
 # Benchmark Results
 
 # .NET Core
+
+# ASP.NET Scaffolding
 
 # StyleCop
 
@@ -717,6 +751,12 @@ $RECYCLE.BIN/
 
 # Visual Studio 6 auto-generated workspace file (contains which files were open etc.)
 
+# Visual Studio 6 auto-generated project file (contains which files were open etc.)
+
+# Visual Studio 6 workspace and project file (working project files containing files to include in project)
+
+# Visual Studio 6 technical files
+
 # Visual Studio LightSwitch build output
 
 # Paket dependency manager
@@ -749,10 +789,23 @@ $RECYCLE.BIN/
 
 # Local History for Visual Studio
 
+# Visual Studio History (VSHistory) files
+
 # BeatPulse healthcheck temp database
 
 # Backup folder for Package Reference Convert tool in Visual Studio 2017
 
 # Ionide (cross platform F# VS Code tools) working folder
 
-# End of https://www.toptal.com/developers/gitignore/api/aspnetcore,csharp,dotnetcore,rider,visualstudio,visualstudiocode,windows
+# Fody - auto-generated XML schema
+
+# VS Code files for those working on multiple tools
+
+# Local History for Visual Studio Code
+
+# Windows Installer files from build outputs
+
+# JetBrains Rider
+
+### VisualStudio Patch ###
+# Additional files built by Visual Studio
