@@ -45,7 +45,7 @@ public class SearchController : Controller
     [HttpPost]
     public IActionResult Search(string searchQuery)
     {
-        return RedirectToAction("Results", new { searchQuery });
+        return RedirectToAction("Results", new {searchQuery});
     }
 
     private ForumListingModel BuildForumListing(Post post)

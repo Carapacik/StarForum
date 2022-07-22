@@ -37,7 +37,7 @@ public class DataSeeder
         var hashedPassword = hasher.HashPassword(user, "admin");
         user.PasswordHash = hashedPassword;
         var hasAdminRole = _context.Roles.Any(r => r.Name == "Admin");
-        if (!hasAdminRole) await roleStore.CreateAsync(new IdentityRole { Name = "Admin", NormalizedName = "ADMIN" });
+        if (!hasAdminRole) await roleStore.CreateAsync(new IdentityRole {Name = "Admin", NormalizedName = "ADMIN"});
         var hasSuperUser = _context.Users.Any(u => u.NormalizedUserName == user.NormalizedUserName);
         if (!hasSuperUser)
         {

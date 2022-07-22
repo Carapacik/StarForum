@@ -54,14 +54,14 @@ public class PostController : Controller
     public async Task<IActionResult> Archive(int id)
     {
         await _postService.Archive(id);
-        return RedirectToAction("Index", new { id });
+        return RedirectToAction("Index", new {id});
     }
 
     [Authorize]
     public async Task<IActionResult> UnArchive(int id)
     {
         await _postService.UnArchive(id);
-        return RedirectToAction("Index", new { id });
+        return RedirectToAction("Index", new {id});
     }
 
     [Authorize]
@@ -91,7 +91,7 @@ public class PostController : Controller
         await _postService.Add(post);
         await _userService.UpdateUserRating(userId, typeof(Post));
 
-        return RedirectToAction("Index", "Post", new { id = post.Id });
+        return RedirectToAction("Index", "Post", new {id = post.Id});
     }
 
     [Authorize]
@@ -121,7 +121,7 @@ public class PostController : Controller
             Content = model.Content
         };
         await _postService.Edit(post);
-        return RedirectToAction("Index", "Post", new { id = model.Id });
+        return RedirectToAction("Index", "Post", new {id = model.Id});
     }
 
     private static bool IsAuthorAdmin(ApplicationUser user)

@@ -55,7 +55,7 @@ public class ReplyController : Controller
         var reply = await BuildReply(model, user);
         await _postService.AddReply(reply);
         await _userService.UpdateUserRating(userId, typeof(PostReply));
-        return RedirectToAction("Index", "Post", new { id = model.PostId });
+        return RedirectToAction("Index", "Post", new {id = model.PostId});
     }
 
     [Authorize]
@@ -79,7 +79,7 @@ public class ReplyController : Controller
     public async Task<IActionResult> EditReply(EditPostReplyModel model)
     {
         await _replyService.Edit(model.ReplyId, model.Content);
-        return RedirectToAction("Index", "Post", new { id = model.PostId });
+        return RedirectToAction("Index", "Post", new {id = model.PostId});
     }
 
     [Authorize]
@@ -89,7 +89,7 @@ public class ReplyController : Controller
         var reply = await _replyService.GetById(id);
         return reply == null
             ? RedirectToAction("Error", "Home")
-            : RedirectToAction("Index", "Post", new { id = reply.Post.Id });
+            : RedirectToAction("Index", "Post", new {id = reply.Post.Id});
     }
 
     private async Task<PostReply> BuildReply(PostReplyModel model, ApplicationUser user)

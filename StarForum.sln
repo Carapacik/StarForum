@@ -1,13 +1,10 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 17
-VisualStudioVersion = 17.0.32112.339
-MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StarForum.WebApi", "StarForum.WebApi\StarForum.WebApi.csproj", "{74BBCC46-3F1B-4B38-93E0-8DC2882139CC}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StarForum.WebApi", "StarForum.WebApi\StarForum.WebApi.csproj", "{DC1E28A0-5B6B-4215-BD94-48060CF89ADC}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StarForum.Infrastructure", "StarForum.Infrastructure\StarForum.Infrastructure.csproj", "{D322215F-7B6F-47F9-8B87-81E1B2DED413}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StarForum.Application", "StarForum.Application\StarForum.Application.csproj", "{1EB2C4F9-641A-4396-9302-80F9D38AC3F3}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StarForum.Application", "StarForum.Application\StarForum.Application.csproj", "{49B9A008-658A-4314-AD08-9D3548DA0A3C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StarForum.Infrastructure", "StarForum.Infrastructure\StarForum.Infrastructure.csproj", "{67D90A91-60AD-42EE-AA2B-3EE19FBDDED0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,23 +12,17 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{74BBCC46-3F1B-4B38-93E0-8DC2882139CC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{74BBCC46-3F1B-4B38-93E0-8DC2882139CC}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{74BBCC46-3F1B-4B38-93E0-8DC2882139CC}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{74BBCC46-3F1B-4B38-93E0-8DC2882139CC}.Release|Any CPU.Build.0 = Release|Any CPU
-		{D322215F-7B6F-47F9-8B87-81E1B2DED413}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D322215F-7B6F-47F9-8B87-81E1B2DED413}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D322215F-7B6F-47F9-8B87-81E1B2DED413}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D322215F-7B6F-47F9-8B87-81E1B2DED413}.Release|Any CPU.Build.0 = Release|Any CPU
-		{49B9A008-658A-4314-AD08-9D3548DA0A3C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{49B9A008-658A-4314-AD08-9D3548DA0A3C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{49B9A008-658A-4314-AD08-9D3548DA0A3C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{49B9A008-658A-4314-AD08-9D3548DA0A3C}.Release|Any CPU.Build.0 = Release|Any CPU
-	EndGlobalSection
-	GlobalSection(SolutionProperties) = preSolution
-		HideSolutionNode = FALSE
-	EndGlobalSection
-	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {A405BFE9-BE74-4B48-A8E5-5EC1A07EA42A}
+		{DC1E28A0-5B6B-4215-BD94-48060CF89ADC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DC1E28A0-5B6B-4215-BD94-48060CF89ADC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DC1E28A0-5B6B-4215-BD94-48060CF89ADC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DC1E28A0-5B6B-4215-BD94-48060CF89ADC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1EB2C4F9-641A-4396-9302-80F9D38AC3F3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1EB2C4F9-641A-4396-9302-80F9D38AC3F3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1EB2C4F9-641A-4396-9302-80F9D38AC3F3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1EB2C4F9-641A-4396-9302-80F9D38AC3F3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{67D90A91-60AD-42EE-AA2B-3EE19FBDDED0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{67D90A91-60AD-42EE-AA2B-3EE19FBDDED0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{67D90A91-60AD-42EE-AA2B-3EE19FBDDED0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{67D90A91-60AD-42EE-AA2B-3EE19FBDDED0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

@@ -51,7 +51,7 @@ public class RegisterModel : PageModel
         if (ModelState.IsValid)
         {
             var user = new ApplicationUser
-                { UserName = Input.UserName, Email = Input.Email, MemberSince = DateTime.Now, IsActive = true };
+                {UserName = Input.UserName, Email = Input.Email, MemberSince = DateTime.Now, IsActive = true};
             var result = await _userManager.CreateAsync(user, Input.Password);
             if (result.Succeeded)
             {
@@ -62,14 +62,14 @@ public class RegisterModel : PageModel
                 var callbackUrl = Url.Page(
                     "/Account/ConfirmEmail",
                     null,
-                    new { area = "Identity", userId = user.Id, code, returnUrl },
+                    new {area = "Identity", userId = user.Id, code, returnUrl},
                     Request.Scheme);
 
                 await _emailSender.SendEmailAsync(Input.Email, "Confirm your email",
                     $"Please confirm your account by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
 
                 if (_userManager.Options.SignIn.RequireConfirmedAccount)
-                    return RedirectToPage("RegisterConfirmation", new { email = Input.Email, returnUrl });
+                    return RedirectToPage("RegisterConfirmation", new {email = Input.Email, returnUrl});
 
                 await _signInManager.SignInAsync(user, false);
                 return LocalRedirect(returnUrl);

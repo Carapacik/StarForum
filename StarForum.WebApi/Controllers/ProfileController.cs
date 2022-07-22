@@ -213,7 +213,7 @@ public class ProfileController : Controller
         };
 
         await _userService.Edit(forum);
-        return RedirectToAction("Detail", "Profile", new { id = userId });
+        return RedirectToAction("Detail", "Profile", new {id = userId});
     }
 
     private CloudBlockBlob UploadProfileImageForAzure(IFormFile file)

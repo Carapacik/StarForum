@@ -151,7 +151,7 @@ public class ForumController : Controller
     [HttpPost]
     public IActionResult Search(int id, string searchQuery)
     {
-        return RedirectToAction("Topic", new { id, searchQuery });
+        return RedirectToAction("Topic", new {id, searchQuery});
     }
 
     private static ForumListingModel BuildForumListing(Post post)
